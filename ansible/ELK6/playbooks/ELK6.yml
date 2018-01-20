@@ -1,0 +1,38 @@
+- name: Install ELK6
+  hosts: testserver
+  become: True
+  tasks: 
+    - name: add GPG-KEY-elasticsearch
+      script: scripts/add_GPG-KEY-elasticsearch.sh
+    - name: create elastic-6.x.list
+      copy: src=files/elastic-6.x.list dest=/etc/apt/sources.list.d/elastic-6.x.list
+    - name: install apt packages
+      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      become: True
+      with_items:
+        - apt-transport-https
+        - openjdk-8-jdk
+        - elasticsearch
+        - logstash
+        - kibana
+    - name: restart elasticsearch.service
+      systemd:
+        name: elasticsearch.service
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
+      become: yes
+    - name: restart logstash.service
+      systemd:
+        name: logstash.service
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
+      become: yes
+    - name: restart kibana.service
+      systemd:
+        name: kibana.service
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
+      become: yes
