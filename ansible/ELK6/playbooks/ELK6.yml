@@ -27,6 +27,9 @@
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
       become: yes
+    - name: compile yaf
+      script: scripts/compile_yaf.sh
+      become: yes
     - name: restart elasticsearch.service
       systemd:
         name: elasticsearch.service
