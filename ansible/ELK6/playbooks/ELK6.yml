@@ -10,11 +10,23 @@
       apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
       become: True
       with_items:
+        - ntp
+        - git
+        - wireshark
+        - libglib2.0-dev
+        - libfixbuf3
+        - libfixbuf3-dev
+        - libpcap-dev
+        - libndpi-dev
+        - libndpi-bin
         - apt-transport-https
         - openjdk-8-jdk
         - elasticsearch
         - logstash
         - kibana
+    - name: compile libp0f.tgz
+      script: scripts/compile_libp0f.sh
+      become: yes
     - name: restart elasticsearch.service
       systemd:
         name: elasticsearch.service
