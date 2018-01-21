@@ -20,6 +20,9 @@
         - libpcap-dev
         - libndpi-dev
         - libndpi-bin
+        - mysql-server
+        - mysql-client
+        - libmysqlclient-dev
         - apt-transport-https
         - openjdk-8-jdk
         - elasticsearch
@@ -30,6 +33,9 @@
       become: yes
     - name: compile yaf
       script: scripts/compile_yaf.sh
+      become: yes
+    - name: compile super_mediator
+      script: scripts/compile_super_mediator.sh
       become: yes
     - name: restart elasticsearch.service
       systemd:
