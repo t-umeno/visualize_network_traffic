@@ -37,6 +37,8 @@
     - name: compile super_mediator
       script: scripts/compile_super_mediator.sh
       become: yes
+    - name: copy logstash config file
+      copy: src=files/logstash_ipfix.conf dest=/etc/logstash/conf.d/logstash_ipfix.conf
     - name: restart elasticsearch.service
       systemd:
         name: elasticsearch.service
