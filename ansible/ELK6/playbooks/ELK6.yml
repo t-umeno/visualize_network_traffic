@@ -43,6 +43,8 @@
       file: path=/home/ubuntu/yaf/log state=directory owner=ubuntu group=ubuntu mode=0755
     - name: copy yaf.sh
       copy: src=files/yaf.sh dest=/home/ubuntu/bin/yaf.sh mode=0755
+    - name: copy super_mediator.sh
+      copy: src=files/super_mediator.sh dest=/home/ubuntu/bin/super_mediator.sh mode=0755
     - name: copy super_mediator config file
       copy: src=files/super_mediator.conf dest=/usr/local/etc/super_mediator.conf
     - name: copy logstash config file
