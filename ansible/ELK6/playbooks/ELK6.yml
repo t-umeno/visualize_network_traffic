@@ -51,6 +51,11 @@
       copy: src=files/super_mediator.conf dest=/usr/local/etc/super_mediator.conf
     - name: copy logstash config file
       copy: src=files/logstash_ipfix.conf dest=/etc/logstash/conf.d/logstash_ipfix.conf
+    - name: edit kibana config file
+      blockinfile:
+        dest: /etc/kibana/kibana.yml
+        insertafter: '^#server.host: "localhost"'
+        content: 'server.host: "0.0.0.0"'
     - name: restart elasticsearch.service
       systemd:
         name: elasticsearch.service
