@@ -41,6 +41,8 @@
       file: path=/home/ubuntu/yaf/json state=directory owner=ubuntu group=ubuntu mode=0755
     - name: mkdir /home/ubuntu/yaf/log
       file: path=/home/ubuntu/yaf/log state=directory owner=ubuntu group=ubuntu mode=0755
+    - name: copy super_mediator config file
+      copy: src=files/super_mediator.conf dest=/usr/local/etc/super_mediator.conf
     - name: copy logstash config file
       copy: src=files/logstash_ipfix.conf dest=/etc/logstash/conf.d/logstash_ipfix.conf
     - name: restart elasticsearch.service
