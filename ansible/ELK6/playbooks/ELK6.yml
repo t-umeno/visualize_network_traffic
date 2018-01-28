@@ -41,6 +41,8 @@
       file: path=/home/ubuntu/yaf/json state=directory owner=ubuntu group=ubuntu mode=0755
     - name: mkdir /home/ubuntu/yaf/log
       file: path=/home/ubuntu/yaf/log state=directory owner=ubuntu group=ubuntu mode=0755
+    - name: mkdir /home/ubuntu/bin
+      file: path=/home/ubuntu/bin state=directory owner=ubuntu group=ubuntu mode=0755
     - name: copy yaf.sh
       copy: src=files/yaf.sh dest=/home/ubuntu/bin/yaf.sh mode=0755
     - name: copy super_mediator.sh
