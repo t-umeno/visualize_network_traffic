@@ -13,6 +13,7 @@
         - ntp
         - git
         - curl
+        - jq
         - wireshark
         - libglib2.0-dev
         - libfixbuf3
