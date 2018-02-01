@@ -6,6 +6,8 @@
       script: scripts/add_GPG-KEY-elasticsearch.sh
     - name: create elastic-6.x.list
       copy: src=files/elastic-6.x.list dest=/etc/apt/sources.list.d/elastic-6.x.list
+    - name: create curator.list
+      copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
     - name: install apt packages
       apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
       become: True
@@ -29,6 +31,7 @@
         - elasticsearch
         - logstash
         - kibana
+        - elasticsearch-curator
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
       become: yes
