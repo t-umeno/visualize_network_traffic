@@ -1,0 +1,9 @@
+- name: LTS Enablement Stacks
+  hosts: testserver
+  become: True
+  tasks: 
+    - name: install linux-generic-hwe-16.04
+      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600 install_recommends=yes
+      become: True
+      with_items:
+        - linux-generic-hwe-16.04
