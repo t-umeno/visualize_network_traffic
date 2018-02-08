@@ -28,6 +28,10 @@
         - libmysqlclient-dev
         - apt-transport-https
         - openjdk-8-jdk
+    - name: install ELK apt packages
+      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      become: True
+      with_items:
         - elasticsearch
         - logstash
         - kibana
