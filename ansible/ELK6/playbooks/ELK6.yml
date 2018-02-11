@@ -47,12 +47,13 @@
     - name: compile super_mediator
       script: scripts/compile_super_mediator.sh
       become: yes
-    - name: mkdir ~/yaf/json
-      file: path=~/yaf/json state=directory mode=0755
-    - name: mkdir ~/yaf/log
-      file: path=~/yaf/log state=directory mode=0755
-    - name: mkdir ~/bin
-      file: path=~/bin state=directory mode=0755
+    - name: mkdir
+      file: path={{ item }}  state=directory mode=0755
+      with_items:
+        - ~/yaf/json
+        - ~/yaf/log
+        - ~/bin
+        - ~/etc
     - name: copy shell scripts
       copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
       with_items:
@@ -61,8 +62,7 @@
         - super_mediator.sh
         - logstash_config_test.sh
     - name: copy super_mediator config file
-      copy: src=files/super_mediator.conf dest=/usr/local/etc/super_mediator.conf
-      become: yes
+      copy: src=files/super_mediator.conf dest=~/etc/super_mediator.conf
     - name: copy logstash config file
       copy: src=files/logstash_ipfix.conf dest=/etc/logstash/conf.d/logstash_ipfix.conf
       become: yes
