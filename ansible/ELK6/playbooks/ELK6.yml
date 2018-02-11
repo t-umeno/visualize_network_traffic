@@ -53,14 +53,13 @@
       file: path=~/yaf/log state=directory mode=0755
     - name: mkdir ~/bin
       file: path=~/bin state=directory mode=0755
-    - name: copy yaf.sh
-      copy: src=files/yaf.sh dest=~/bin/yaf.sh mode=0755
-    - name: copy yaf_ndpi.sh
-      copy: src=files/yaf_ndpi.sh dest=~/bin/yaf_ndpi.sh mode=0755
-    - name: copy super_mediator.sh
-      copy: src=files/super_mediator.sh dest=~/bin/super_mediator.sh mode=0755
-    - name: copy logstash_config_test.sh
-      copy: src=files/logstash_config_test.sh dest=~/bin/logstash_config_test.sh mode=0755
+    - name: copy shell scripts
+      copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
+      with_items:
+        - yaf.sh
+        - yaf_ndpi.sh
+        - super_mediator.sh
+        - logstash_config_test.sh
     - name: copy super_mediator config file
       copy: src=files/super_mediator.conf dest=/usr/local/etc/super_mediator.conf
       become: yes
