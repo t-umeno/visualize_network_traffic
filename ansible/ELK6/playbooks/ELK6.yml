@@ -1,6 +1,10 @@
 - name: Install ELK6
   hosts: testserver
   tasks: 
+    - name: get home_dir
+      command: pwd
+      register: pwd
+    - set_fact:  home_dir="{{ pwd.stdout }}"
     - name: add GPG-KEY-elasticsearch
       script: scripts/add_GPG-KEY-elasticsearch.sh
       become: yes
@@ -62,9 +66,9 @@
         - super_mediator.sh
         - logstash_config_test.sh
     - name: copy super_mediator config file
-      copy: src=files/super_mediator.conf dest=~/etc/super_mediator.conf
+      template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
     - name: copy logstash config file
-      copy: src=files/logstash_ipfix.conf dest=/etc/logstash/conf.d/logstash_ipfix.conf
+      template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
       become: yes
     - name: edit kibana config file
       blockinfile:
