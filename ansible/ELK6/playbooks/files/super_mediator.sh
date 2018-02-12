@@ -1,2 +1,2 @@
 #!/bin/sh
-super_mediator -c /usr/local/etc/super_mediator.conf --daemonize
+super_mediator -c ~/etc/super_mediator.conf --daemonize
