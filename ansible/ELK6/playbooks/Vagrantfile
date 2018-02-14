@@ -70,4 +70,9 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.playbook = "ELK6.yml"
+    ansible.inventory_path = "hosts"
+    ansible.limit = 'all'
+  end
 end
