@@ -1,10 +1,7 @@
 - name: Install ELK6
   hosts: testserver
   tasks: 
-    - name: get home_dir
-      command: pwd
-      register: pwd
-    - set_fact:  home_dir="{{ pwd.stdout }}"
+    - set_fact: home_dir="{{ ansible_env.HOME }}"
     - name: add GPG-KEY-elasticsearch
       script: scripts/add_GPG-KEY-elasticsearch.sh
       become: yes
@@ -15,7 +12,7 @@
       copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
       become: yes
     - name: install apt packages
-      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      apt: pkg={{ item }} update_cache=yes
       become: yes
       with_items:
         - ntp
@@ -35,7 +32,7 @@
         - apt-transport-https
         - openjdk-8-jdk
     - name: install ELK apt packages
-      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      apt: pkg={{ item }} update_cache=yes
       become: yes
       with_items:
         - elasticsearch
