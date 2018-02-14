@@ -1,5 +1,6 @@
 - name: Install ELK6
   hosts: testserver
+  connection: local
   tasks: 
     - set_fact: home_dir="{{ ansible_env.HOME }}"
     - name: add GPG-KEY-elasticsearch
