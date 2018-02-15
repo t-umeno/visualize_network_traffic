@@ -70,13 +70,9 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['http_proxy'] )
-    puts '- Proxy Setting ----------------------------------'
-    puts ENV['http_proxy']
-    puts ENV['https_proxy']
+  if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
     config.proxy.http     = ENV['http_proxy']
     config.proxy.https    = ENV['https_proxy']
     config.proxy.no_proxy = "localhost,127.0.0.1"
-    puts '--------------------------------------------------'
   end
 end
