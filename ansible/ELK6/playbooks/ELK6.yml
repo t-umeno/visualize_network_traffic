@@ -1,8 +1,13 @@
 - name: Install ELK6
   hosts: testserver
+  vars:
+    timezone: Asia/Tokyo
   connection: local
   tasks: 
     - set_fact: home_dir="{{ ansible_env.HOME }}"
+    - name: set timezone
+      script: scripts/set_timezone.sh {{ timezone }}
+      become: yes
     - name: add GPG-KEY-elasticsearch
       script: scripts/add_GPG-KEY-elasticsearch.sh
       become: yes
