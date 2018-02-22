@@ -15,16 +15,19 @@ filter {
             locale => "en"
             match => ["[flows][flowStartMilliseconds]", "yyyy-MM-dd HH:mm:ss.SSS", "ISO8601"]
             target => "@timestamp"
+            timezone => "UTC"
         }
         date {
             locale => "en"
             match => ["[flows][flowStartMilliseconds]", "yyyy-MM-dd HH:mm:ss.SSS", "ISO8601"]
             target => "[flows][flowStartMilliseconds]"
+            timezone => "UTC"
         }
         date {
             locale => "en"
             match => ["[flows][flowEndMilliseconds]", "yyyy-MM-dd HH:mm:ss.SSS", "ISO8601"]
             target => "[flows][flowEndMilliseconds]"
+            timezone => "UTC"
         }
 
 	if ([flows][sourceIPv4Address]) {
