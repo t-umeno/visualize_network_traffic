@@ -2,6 +2,11 @@
   hosts: testserver
   vars:
     timezone: Asia/Tokyo
+    super_mediator_version: 1.5.3
+    yaf_version: 2.9.3
+  environment:
+    super_mediator_version: "{{ super_mediator_version }}"
+    yaf_version: "{{ yaf_version }}"
   connection: local
   tasks: 
     - set_fact: home_dir="{{ ansible_env.HOME }}"
