@@ -1,0 +1,8 @@
+- name: install elasticsearch apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+    - openjdk-8-jdk
+    - apt-transport-https
+    - elasticsearch
+
