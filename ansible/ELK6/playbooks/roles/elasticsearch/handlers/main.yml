@@ -1,0 +1,7 @@
+    - name: restart elasticsearch.service
+      systemd:
+        name: elasticsearch.service
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
+      become: yes
