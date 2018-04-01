@@ -8,7 +8,7 @@
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
   connection: local
-  tasks: 
+  pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"
     - name: set timezone
       script: scripts/set_timezone.sh {{ timezone }}
@@ -34,18 +34,6 @@
         - mysql-server
         - mysql-client
         - libmysqlclient-dev
-    - name: install elasticsearch by roles
-      roles: 
-        - role: elasticsearch
-    - name: install logstash kibana apt packages
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
-        - logstash
-        - kibana
-        - elasticsearch-curator
-      roles: 
-        - role: elasticsearch
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
       become: yes
@@ -71,6 +59,14 @@
         - logstash_config_test.sh
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
+  tasks:
+    - name: install logstash kibana apt packages
+      apt: pkg={{ item }} update_cache=yes
+      become: yes
+      with_items:
+        - logstash
+        - kibana
+        - elasticsearch-curator
     - name: copy logstash config file
       template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
       become: yes
@@ -79,13 +75,6 @@
         dest: /etc/kibana/kibana.yml
         insertafter: '^#server.host: "localhost"'
         content: 'server.host: "0.0.0.0"'
-      become: yes
-    - name: restart elasticsearch.service
-      systemd:
-        name: elasticsearch.service
-        state: restarted
-        daemon_reload: yes
-        enabled: yes
       become: yes
     - name: restart logstash.service
       systemd:
@@ -101,3 +90,5 @@
         daemon_reload: yes
         enabled: yes
       become: yes
+  roles:
+    - role: elasticsearch
