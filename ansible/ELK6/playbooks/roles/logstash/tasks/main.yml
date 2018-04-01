@@ -1,0 +1,8 @@
+- name: install logstash apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+- name: copy logstash config file
+  template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
+  become: yes
+  notify: restart logstash
