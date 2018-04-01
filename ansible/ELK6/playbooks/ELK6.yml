@@ -59,36 +59,7 @@
         - logstash_config_test.sh
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
-  tasks:
-    - name: install logstash kibana apt packages
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
-        - logstash
-        - kibana
-        - elasticsearch-curator
-    - name: copy logstash config file
-      template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
-      become: yes
-    - name: edit kibana config file
-      blockinfile:
-        dest: /etc/kibana/kibana.yml
-        insertafter: '^#server.host: "localhost"'
-        content: 'server.host: "0.0.0.0"'
-      become: yes
-    - name: restart logstash.service
-      systemd:
-        name: logstash.service
-        state: restarted
-        daemon_reload: yes
-        enabled: yes
-      become: yes
-    - name: restart kibana.service
-      systemd:
-        name: kibana.service
-        state: restarted
-        daemon_reload: yes
-        enabled: yes
-      become: yes
   roles:
     - role: elasticsearch
+    - role: logstash
+    - role: kibana

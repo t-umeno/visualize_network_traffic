@@ -1,0 +1,12 @@
+- name: install kibana apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+    - kibana
+- name: edit kibana config file
+  blockinfile:
+    dest: /etc/kibana/kibana.yml
+    insertafter: '^#server.host: "localhost"'
+    content: 'server.host: "0.0.0.0"'
+  become: yes
+  notify: restart kibana
