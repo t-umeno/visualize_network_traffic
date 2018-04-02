@@ -5,4 +5,4 @@
     - openjdk-8-jdk
     - apt-transport-https
     - elasticsearch
-
+  notify: restart elasticsearch
