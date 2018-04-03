@@ -1,0 +1,8 @@
+- name: create curator.list
+  copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
+  become: yes
+- name: install elasticsearch-curator
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+    - elasticsearch-curator

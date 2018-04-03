@@ -13,9 +13,6 @@
     - name: set timezone
       script: scripts/set_timezone.sh {{ timezone }}
       become: yes
-    - name: create curator.list
-      copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
-      become: yes
     - name: install apt packages
       apt: pkg={{ item }} update_cache=yes
       become: yes
@@ -63,3 +60,4 @@
     - role: elasticsearch
     - role: logstash
     - role: kibana
+    - role: elasticsearch-curator
