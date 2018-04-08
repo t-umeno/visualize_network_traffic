@@ -8,13 +8,24 @@ install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
 * vagrant plugin install vagrant-disksize
 
 ### install
-    vagrant plugin install vagrant-disksize
-    cd ansible/ELK6/playbooks
-    vagrant up
+    $ vagrant plugin install vagrant-disksize
+    $ cd ansible/ELK6/playbooks
+    $ vagrant up
+    (snip)
+    (select network interface for packet capture)
+    ==> default: Available bridged network interfaces:
+    1) en1: Wi-Fi (AirPort)
+    2) bridge0
+    3) en0: Ethernet
+    4) en2: Thunderbolt 1
+    5) p2p0
+    ==> default: When choosing an interface, it is usually the one that is
+    ==> default: being used to connect to the internet.
+        default: Which interface should the network bridge to? 3
 
 ### usage (shell)
-    cd ansible/ELK6/playbooks
-    vagrant ssh
+    $ cd ansible/ELK6/playbooks
+    $ vagrant ssh
     vagrant@ubuntu-xenial:~$ super_mediator.sh
     vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
