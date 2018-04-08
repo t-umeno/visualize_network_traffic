@@ -18,7 +18,7 @@ install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
     cd ansible/ELK6/playbooks
     vagrant ssh
     vagrant@ubuntu-xenial:~$ super_mediator.sh
-    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null
+    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
 ### usage (browser)
 - open http://127.0.0.1:5601/
