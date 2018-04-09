@@ -9,9 +9,9 @@ install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
 
 ### install
 Please set http_proxy and https_proxy if you need.
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # option 
 
+    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
+    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
     $ vagrant plugin install vagrant-disksize
     $ cd ansible/ELK6/playbooks
     $ vagrant up
