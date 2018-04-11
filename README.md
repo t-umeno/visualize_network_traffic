@@ -51,3 +51,8 @@ Please set http_proxy and https_proxy if you need.
 - select "Dashboard"
 - select "main" or select "bar"
 - enjoy!
+
+### ToDo
+- remove old json files and indexes automatically
+- disable dhcp client at network interface for packet capture
+- document
