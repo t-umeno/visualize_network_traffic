@@ -1,0 +1,10 @@
+- name: create influxdb.list 
+  script: scripts/create_influxdb.list.sh
+  become: yes
+- name: install influxdb apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+    - influxdb
+
+
