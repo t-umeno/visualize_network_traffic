@@ -6,5 +6,3 @@
   become: yes
   with_items:
     - influxdb
-
-
