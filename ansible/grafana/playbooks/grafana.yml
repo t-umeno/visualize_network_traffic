@@ -1,4 +1,4 @@
-- name: Install ELK6
+- name: Install influxdb and grafana
   hosts: testserver
   vars:
     timezone: Asia/Tokyo
