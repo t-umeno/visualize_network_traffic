@@ -3,6 +3,9 @@
   become: yes
   with_items:
     - logstash
+- name: install logstash-output-influxdb
+  script: scripts/install-logstash-output-influxdb.sh
+  become: yes
 - name: copy logstash config file
   template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
   become: yes
