@@ -84,5 +84,58 @@ output {
             hosts => ["localhost:9200"]
             index => "%{index}"
         }
+       	influxdb {
+            send_as_tags => ["uniq"]
+            data_points => {
+                "flows_flowStartMilliseconds" => "%{[flows][flowStartMilliseconds]]}"
+                "flows_flowEndMilliseconds" => "%{[flows][flowEndMilliseconds]]}"
+                "flows_flowDurationMilliseconds" => "%{[flows][flowDurationMilliseconds]]}"
+                "flows_reverseFlowDeltaMilliseconds" => "%{[flows][reverseFlowDeltaMilliseconds]]}"
+                "flows_protocolIdentifier" => "%{[flows][protocolIdentifier]]}"
+                "flows_sourceIPv4Address" => "%{[flows][sourceIPv4Address]]}"
+                "flows_sourceTransportPort" => "%{[flows][sourceTransportPort]]}"
+                "flows_packetTotalCount" => "%{[flows][packetTotalCount]]}"
+                "flows_octetTotalCount" => "%{[flows][octetTotalCount]]}"
+                "flows_flowAttributes" => "%{[flows][flowAttributes]}"
+                "flows_sourceMacAddress" => "%{[flows][sourceMacAddress]}"
+                "flows_destinationIPv4Address" => "%{[flows][destinationIPv4Address]]}"
+                "flows_destinationTransportPort" => "%{[flows][destinationTransportPort]]}"
+                "flows_reversePacketTotalCount" => "%{[flows][reversePacketTotalCount]]}"
+                "flows_reverseOctetTotalCount" => "%{[flows][reverseOctetTotalCount]]}"
+                "flows_reverseFlowAttributes" => "%{[flows][reverseFlowAttributes]}"
+                "flows_destinationMacAddress" => "%{[flows][destinationMacAddress]}"
+                "flows_initialTCPFlags" => "%{[flows][initialTCPFlags]}"
+                "flows_unionTCPFlags" => "%{[flows][unionTCPFlags]}"
+                "flows_reverseInitialTCPFlags" => "%{[flows][reverseInitialTCPFlags]}"
+                "flows_reverseUnionTCPFlags" => "%{[flows][reverseUnionTCPFlags]}"
+                "flows_tcpSequenceNumber" => "%{[flows][tcpSequenceNumber]}"
+                "flows_reverseTcpSequenceNumber" => "%{[flows][reverseTcpSequenceNumber]}"
+                "flows_ingressInterface" => "%{[flows][ingressInterface]}"
+                "flows_egressInterface" => "%{[flows][egressInterface]}"
+                "flows_vlanId" => "%{[flows][vlanId]}"
+                "flows_silkAppLabel" => "%{[flows][silkAppLabel]}"
+                "flows_ipClassOfService" => "%{[flows][ipClassOfService]}"
+                "flows_flowEndReason" => "%{[flows][flowEndReason]}"
+                "flows_collectorName" => "%{[flows][collectorName]}"
+                "uniq" => "%{[flows][sourceTransportPort]]}_%{[flows][destinationTransportPort]]}"
+            }
+            coerce_values => {
+                "flows_flowDurationMilliseconds" => "float"
+                "flows_reverseFlowDeltaMilliseconds" => "float"
+                "flows_protocolIdentifier" => "integer"
+                "flows_sourceTransportPort" => "integer"
+                "flows_packetTotalCount" => "integer"
+                "flows_octetTotalCount" => "integer"
+                "flows_destinationTransportPort" => "integer"
+                "flows_reversePacketTotalCount" => "integer"
+                "flows_reverseOctetTotalCount" => "integer"
+                "flows_ingressInterface" => "integer"
+                "flows_egressInterface" => "integer"
+                "flows_silkAppLabel" => "integer"
+            }
+            host => ["localhost"]
+            db => "traffic1"
+            retention_policy => "traffic"
+        }
     }
 }
