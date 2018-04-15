@@ -4,4 +4,3 @@
 - name: create elastic-6.x.list
   copy: src=files/elastic-6.x.list dest=/etc/apt/sources.list.d/elastic-6.x.list
   become: yes
-
