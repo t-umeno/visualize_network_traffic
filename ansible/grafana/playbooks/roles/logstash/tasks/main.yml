@@ -2,6 +2,7 @@
   apt: pkg={{ item }} update_cache=yes
   become: yes
   with_items:
+    - openjdk-8-jdk
     - logstash
 - name: install logstash-output-influxdb
   script: scripts/install-logstash-output-influxdb.sh
