@@ -6,4 +6,10 @@
   become: yes
   with_items:
     - influxdb
+- name: edit influxdb config file
+  blockinfile:
+    dest: /etc/influxdb/influxdb.conf
+    insertafter: '# max-values-per-tag = 100000'
+    content: 'max-values-per-tag = 0'
+  become: yes
   notify: restart influxdb
