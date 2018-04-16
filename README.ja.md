@@ -57,11 +57,10 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - "yaf*" as "New index pattern" を選択します。
 - "Confirm all changes" を押します。
 - "Dashboard" を選択します。
-- "main" か select "bar" を選択します。
+- "main" か "bar" を選択します。
 - ダッシュボードにネットワークのトラフィック情報が表示されます。
 
 ### ToDo
 - 古いJSONファイルやElasticsearchのインデックスを自動的に削除する。
 - パケットキャプチャを行うインタフェースのDHCPクライアントの無効化
 - ドキュメント
-
