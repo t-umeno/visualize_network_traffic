@@ -6,3 +6,4 @@
   become: yes
   with_items:
     - grafana
+  notify: restart grafana-server
