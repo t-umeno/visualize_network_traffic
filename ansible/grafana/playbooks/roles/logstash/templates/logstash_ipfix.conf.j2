@@ -80,10 +80,6 @@ filter {
 
 output {
     if ([type] == "ipfix") {
-        elasticsearch {
-            hosts => ["localhost:9200"]
-            index => "%{index}"
-        }
        	influxdb {
             send_as_tags => ["uniq"]
             data_points => {
