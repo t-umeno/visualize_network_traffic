@@ -1,2 +1,2 @@
 - name: restart influxdb
-  incllude: restart_tasks.yml
+  include: restart_tasks.yml
