@@ -1,8 +1,12 @@
-- name: install logstash apt packages
+- name: install openjdk-8-jdk apt packages
   apt: pkg={{ item }} update_cache=yes
   become: yes
   with_items:
     - openjdk-8-jdk
+- name: install logstash apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
     - logstash
 - name: copy logstash config file
   template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
