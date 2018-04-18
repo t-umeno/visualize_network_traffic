@@ -1,8 +1,12 @@
-- name: install logstash apt packages
+- name: install openjdk-8-jdk apt packages
   apt: pkg={{ item }} update_cache=yes
   become: yes
   with_items:
     - openjdk-8-jdk
+- name: install logstash apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
     - logstash
 - name: install logstash-output-influxdb
   script: scripts/install-logstash-output-influxdb.sh
