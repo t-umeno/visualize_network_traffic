@@ -1,0 +1,9 @@
+- name: systemd restart influxdb
+  systemd:
+    name: influxdb.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
+- name: create influxdb database
+  script: scripts/create_influxdb_database.sh
