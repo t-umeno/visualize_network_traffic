@@ -47,6 +47,7 @@
         - ~/yaf/log
         - ~/bin
         - ~/etc
+        - ~/.curator
     - name: copy shell scripts
       copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
       with_items:
@@ -54,6 +55,11 @@
         - yaf_ndpi.sh
         - super_mediator.sh
         - logstash_config_test.sh
+    - name: copy curator file
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      with_items:
+        - curator.yml
+        - delete_indices_yaf.yml
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
   roles:
