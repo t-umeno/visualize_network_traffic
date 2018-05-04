@@ -54,6 +54,8 @@
         - yaf_ndpi.sh
         - super_mediator.sh
         - logstash_config_test.sh
+    - name: set crontab
+      script: scripts/cron_find.sh
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
   roles:
