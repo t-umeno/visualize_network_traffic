@@ -1,7 +1,7 @@
 # visualize_network_traffic
 ## ELK6
-install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
-
+* install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
+* JSON files and Elasticsearch indicies created before 30 days are automatically deleted.
 ### requirements
 * VirtualBox
 * Vagrant
@@ -53,6 +53,5 @@ Please set http_proxy and https_proxy if you need.
 - enjoy!
 
 ### ToDo
-- remove old json files and indexes automatically
 - disable dhcp client at network interface for packet capture
 - document

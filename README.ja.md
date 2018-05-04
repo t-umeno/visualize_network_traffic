@@ -9,8 +9,8 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * JSONファイルをLogstash経由でElasticsearchに入力します。
 * KibanaでElasticsearchに入力されたフロー情報を表示します。
 * curlやwiresharkなどパケットの解析に用いるソフトウェアもインストールします。
-
-### requirements
+* 作成されて30日以上経過した古いJSONファイルやElasticsearchのインデックスは自動的に削除されます。
+### 事前にインストールするソフトウェア
 * VirtualBox
 * Vagrant
 * vagrant plugin install vagrant-disksize
@@ -61,6 +61,5 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - ダッシュボードにネットワークのトラフィック情報が表示されます。
 
 ### ToDo
-- 古いJSONファイルやElasticsearchのインデックスを自動的に削除する。
 - パケットキャプチャを行うインタフェースのDHCPクライアントの無効化
 - ドキュメント
