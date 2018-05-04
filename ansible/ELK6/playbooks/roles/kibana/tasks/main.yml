@@ -3,10 +3,16 @@
   become: yes
   with_items:
     - kibana
-- name: edit kibana config file
+- name: edit server.host in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml
     insertafter: '^#server.host: "localhost"'
     content: 'server.host: "0.0.0.0"'
+  become: yes
+- name: edit server.maxPayloadBytes in /etc/kibana/kibana.yml
+  blockinfile:
+    dest: /etc/kibana/kibana.yml
+    insertafter: '^#server.maxPayloadBytes: 1048576'
+    content: 'server.maxPayloadBytes: 2097152'
   become: yes
   notify: restart kibana
