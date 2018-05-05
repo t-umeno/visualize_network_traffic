@@ -53,5 +53,4 @@ Please set http_proxy and https_proxy if you need.
 - enjoy!
 
 ### ToDo
-- disable dhcp client at network interface for packet capture
 - document
