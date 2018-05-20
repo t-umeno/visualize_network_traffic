@@ -49,7 +49,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - index pattern に "yaf*" を入力します。
 - Time Filter field name から "@timestamp" を選択します。
 - "Create index pattern" を押します。
-- "Maagement" を選択します。
+- "Management" を選択します。
 - "Saved Objects" を選択します。
 - "Import" を押します。
 - kibana6/export.json をアップロードします。
