@@ -41,7 +41,7 @@ Please set http_proxy and https_proxy if you need.
 - input "yaf*" in index pattern
 - select "@timestamp" in Time Filter field name
 - push "Create index pattern"
-- select "Maagement"
+- select "Management"
 - select "Saved Objects"
 - push "Import"
 - File Upload: kibana6/export.json
