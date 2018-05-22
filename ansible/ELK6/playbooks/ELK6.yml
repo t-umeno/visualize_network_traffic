@@ -2,11 +2,13 @@
   hosts: testserver
   vars:
     timezone: Asia/Tokyo
-    super_mediator_version: 1.5.3
-    yaf_version: 2.9.3
+    super_mediator_version: 1.6.0
+    yaf_version: 2.10.0
+    fixbuf_version: 2.0.0
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
+    fixbuf_version: "{{ fixbuf_version }}"
   connection: local
   pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"
@@ -23,8 +25,8 @@
         - jq
         - wireshark
         - libglib2.0-dev
-        - libfixbuf3
-        - libfixbuf3-dev
+        - libssl-dev
+        - openssl
         - libpcap-dev
         - libndpi-dev
         - libndpi-bin
@@ -33,6 +35,9 @@
         - libmysqlclient-dev
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
+      become: yes
+    - name: compile fixbuf
+      script: scripts/compile_fixbuf.sh
       become: yes
     - name: compile yaf
       script: scripts/compile_yaf.sh
