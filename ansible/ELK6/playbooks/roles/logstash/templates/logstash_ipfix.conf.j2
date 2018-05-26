@@ -50,6 +50,8 @@ filter {
 	        add_field => { "dst_ip_port" => "%{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]}" }
 	        add_field => { "src_ip_port_proto" => "%{[flows][sourceIPv4Address]}:%{[flows][sourceTransportPort]} %{[flows][protocolIdentifier]}" }
 	        add_field => { "dst_ip_port_proto" => "%{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]} %{[flows][protocolIdentifier]}" }
+	        add_field => { "src_ip_dst_ip_port" => "%{[flows][sourceIPv4Address]} - %{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]}" }
+	        add_field => { "src_ip_dst_ip_port_proto" => "%{[flows][sourceIPv4Address]} - %{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]} %{[flows][protocolIdentifier]}" }
 	        add_field => { "src_ip_port_dst_ip_port" => "%{[flows][sourceIPv4Address]}:%{[flows][sourceTransportPort]} - %{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]}" }
 	        add_field => { "src_ip_port_dst_ip_port_proto" => "%{[flows][sourceIPv4Address]}:%{[flows][sourceTransportPort]} - %{[flows][destinationIPv4Address]}:%{[flows][destinationTransportPort]} %{[flows][protocolIdentifier]}" }
             }
