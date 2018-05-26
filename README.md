@@ -49,7 +49,7 @@ Please set http_proxy and https_proxy if you need.
 - select "yaf*" as "New index pattern"
 - push "Confirm all changes"
 - select "Dashboard"
-- select "main" or select "bar"
+- select "main", "bar", or "bar2"
 - enjoy!
 
 ### ToDo
