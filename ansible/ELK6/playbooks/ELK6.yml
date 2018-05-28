@@ -1,13 +1,8 @@
 - name: Install ELK6
   hosts: testserver
-  vars:
-    timezone: Asia/Tokyo
-    super_mediator_version: 1.6.0
-    yaf_version: 2.10.0
-    fixbuf_version: 2.0.0
-    kibana_server_host: "0.0.0.0"
-    kibana_server_maxPayloadBytes: 10485760
-    kibana_elasticsearch_requestTimeout: 300000
+  vars_files:
+    - version.yml
+    - config.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
