@@ -57,7 +57,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - "yaf*" as "New index pattern" を選択します。
 - "Confirm all changes" を押します。
 - "Dashboard" を選択します。
-- "main", "bar", "bar2" もしくは "circle2" を選択します。
+- "main", "bar", "bar2", "circle" もしくは "circle2" を選択します。
 - ダッシュボードにネットワークのトラフィック情報が表示されます。
 
 ### ToDo
