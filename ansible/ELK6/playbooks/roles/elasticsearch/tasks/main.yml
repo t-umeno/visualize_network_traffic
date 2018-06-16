@@ -1,8 +1,16 @@
-- name: install elasticsearch apt packages
+- name: install openjdk-8-jdk apt packages
   apt: pkg={{ item }} update_cache=yes
   become: yes
   with_items:
     - openjdk-8-jdk
+- name: install apt-transport-https apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
     - apt-transport-https
+- name: install elasticsearch apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
     - elasticsearch
   notify: restart elasticsearch
