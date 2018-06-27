@@ -13,7 +13,7 @@
   become: yes
   with_items:
     - elasticsearch
-- name: edit server.host in /etc/elasticsearch/elasticsearch.yml
+- name: edit thread_pool.search.queue_size in /etc/elasticsearch/elasticsearch.yml
   blockinfile:
     dest: /etc/elasticsearch/elasticsearch.yml
     insertafter: EOF
