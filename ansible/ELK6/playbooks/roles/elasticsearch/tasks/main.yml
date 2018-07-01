@@ -13,4 +13,23 @@
   become: yes
   with_items:
     - elasticsearch
+- name: edit thread_pool.search.queue_size in /etc/elasticsearch/elasticsearch.yml
+  blockinfile:
+    dest: /etc/elasticsearch/elasticsearch.yml
+    insertafter: EOF
+    block: |
+      thread_pool.search.queue_size: {{ elasticsearch_thread_pool_search_queue_size }}
+  become: yes
+- name: edit the initial size of total heap space in /etc/elasticsearch/jvm.options
+  replace:
+    path: /etc/elasticsearch/jvm.options
+    regexp: '^-Xms1g$'
+    replace: '{{ elasticsearch_total_heap_space }}'
+  become: yes
+- name: edit the maximum size of total heap space in /etc/elasticsearch/jvm.options
+  replace:
+    path: /etc/elasticsearch/jvm.options
+    regexp: '^-Xmx1g$'
+    replace: '{{ elasticsearch_maximum_heap_space }}'
+  become: yes
   notify: restart elasticsearch
