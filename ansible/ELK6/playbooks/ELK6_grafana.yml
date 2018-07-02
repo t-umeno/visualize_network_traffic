@@ -72,3 +72,4 @@
     - role: logstash
     - role: kibana
     - role: elasticsearch-curator
+    - role: grafana
