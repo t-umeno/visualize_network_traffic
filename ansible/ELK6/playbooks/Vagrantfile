@@ -83,7 +83,8 @@ Vagrant.configure("2") do |config|
     apt-get install -y python2.7
   SHELL
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "ELK6.yml"
+    #ansible.playbook = "ELK6.yml"
+    ansible.playbook = "ELK6_grafana.yml"
     ansible.inventory_path = "hosts"
     ansible.limit = 'all'
   end
