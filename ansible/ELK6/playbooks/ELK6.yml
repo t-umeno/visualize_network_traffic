@@ -26,8 +26,6 @@
         - libssl-dev
         - openssl
         - libpcap-dev
-        - libndpi-dev
-        - libndpi-bin
         - mysql-server
         - mysql-client
         - libmysqlclient-dev
