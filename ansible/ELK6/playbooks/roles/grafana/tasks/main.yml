@@ -1,0 +1,9 @@
+- name: create grafana.list 
+  script: scripts/create_grafana.list.sh
+  become: yes
+- name: install grafana apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
+    - grafana
+  notify: restart grafana-server

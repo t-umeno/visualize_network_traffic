@@ -1,0 +1,75 @@
+- name: Install ELK6
+  hosts: testserver
+  vars_files:
+    - version.yml
+    - config.yml
+  environment:
+    super_mediator_version: "{{ super_mediator_version }}"
+    yaf_version: "{{ yaf_version }}"
+    fixbuf_version: "{{ fixbuf_version }}"
+  connection: local
+  pre_tasks:
+    - set_fact: home_dir="{{ ansible_env.HOME }}"
+    - name: set timezone
+      script: scripts/set_timezone.sh {{ timezone }}
+      become: yes
+    - name: install apt packages
+      apt: pkg={{ item }} update_cache=yes
+      become: yes
+      with_items:
+        - ntp
+        - git
+        - curl
+        - jq
+        - wireshark
+        - libglib2.0-dev
+        - libssl-dev
+        - openssl
+        - libpcap-dev
+        - libndpi-dev
+        - libndpi-bin
+        - mysql-server
+        - mysql-client
+        - libmysqlclient-dev
+    - name: compile libp0f.tgz
+      script: scripts/compile_libp0f.sh
+      become: yes
+    - name: compile fixbuf
+      script: scripts/compile_fixbuf.sh
+      become: yes
+    - name: compile yaf
+      script: scripts/compile_yaf.sh
+      become: yes
+    - name: compile super_mediator
+      script: scripts/compile_super_mediator.sh
+      become: yes
+    - name: mkdir
+      file: path={{ item }}  state=directory mode=0755
+      with_items:
+        - ~/yaf/json
+        - ~/yaf/log
+        - ~/bin
+        - ~/etc
+        - ~/.curator
+    - name: copy shell scripts
+      copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
+      with_items:
+        - yaf.sh
+        - yaf_ndpi.sh
+        - super_mediator.sh
+        - logstash_config_test.sh
+    - name: copy curator file
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      with_items:
+        - curator.yml
+        - delete_indices_yaf.yml
+    - name: set crontab
+      script: scripts/cron_curator.sh
+    - name: copy super_mediator config file
+      template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
+  roles:
+    - role: elasticsearch
+    - role: logstash
+    - role: kibana
+    - role: elasticsearch-curator
+    - role: grafana
