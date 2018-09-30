@@ -53,7 +53,6 @@
       copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
       with_items:
         - yaf.sh
-        - yaf_ndpi.sh
         - super_mediator.sh
         - logstash_config_test.sh
     - name: copy curator file
