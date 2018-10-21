@@ -6,12 +6,16 @@
 * VirtualBox
 * Vagrant
 * vagrant plugin install vagrant-disksize
+* vagrant plugin install vagrant-proxyconf (if you use proxy)
+* vagrant plugin install vagrant-vbguest (option)
 
 ### install
 Please set http_proxy and https_proxy if you need.
 
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
+    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
+    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
+    $ vagrant plugin install vagrant-proxyconf # if you use proxy
+    $ vagrant plugin install vagrant-vbguest # option
     $ vagrant plugin install vagrant-disksize
     $ cd ansible/ELK6/playbooks
     $ vagrant up
