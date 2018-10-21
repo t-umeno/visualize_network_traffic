@@ -1,9 +1,11 @@
 - name: install kibana apt packages
-  apt: pkg={{ item }} update_cache=yes
-  become: yes
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - kibana
-
+  become: yes
 - name: edit server.host in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml
