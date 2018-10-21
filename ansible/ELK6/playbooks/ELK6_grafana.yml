@@ -14,9 +14,11 @@
       script: scripts/set_timezone.sh {{ timezone }}
       become: yes
     - name: install apt packages
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
+      apt:
+        name: "{{ packages }}"
+        update_cache: yes
+      vars:
+        packages:
         - ntp
         - git
         - curl
@@ -31,6 +33,7 @@
         - mysql-server
         - mysql-client
         - libmysqlclient-dev
+      become: yes
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
       become: yes
