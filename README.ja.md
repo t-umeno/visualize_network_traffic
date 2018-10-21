@@ -14,13 +14,17 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * VirtualBox
 * Vagrant
 * vagrant plugin install vagrant-disksize
+* vagrant plugin install vagrant-proxyconf (if you use proxy)
+* vagrant plugin install vagrant-vbguest (option)
 
 ### install
 必要に応じてhttp_proxy, https_proxyの環境変数を設定してください。
 
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
+    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
+    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
     $ vagrant plugin install vagrant-disksize
+    $ vagrant plugin install vagrant-proxyconf # if you use proxy
+    $ vagrant plugin install vagrant-vbguest # option
     $ cd ansible/ELK6/playbooks
     $ vagrant up
     (snip)
