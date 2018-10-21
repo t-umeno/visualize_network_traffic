@@ -1,18 +1,27 @@
 - name: install openjdk-8-jdk apt packages
-  apt: pkg={{ item }} update_cache=yes
-  become: yes
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - openjdk-8-jdk
+  become: yes
 - name: install apt-transport-https apt packages
-  apt: pkg={{ item }} update_cache=yes
-  become: yes
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - apt-transport-https
-- name: install elasticsearch apt packages
-  apt: pkg={{ item }} update_cache=yes
   become: yes
-  with_items:
+- name: install elasticsearch apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - elasticsearch
+  become: yes
 - name: edit thread_pool.search.queue_size in /etc/elasticsearch/elasticsearch.yml
   blockinfile:
     dest: /etc/elasticsearch/elasticsearch.yml
