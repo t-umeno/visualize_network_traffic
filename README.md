@@ -71,7 +71,7 @@ Please use firefox or chrome.
 - select "+" and "Import"
 - push "Upload .json File"
 - upload "grafana/ElasticSearch YAF count.json"
-- select yaf from "Select a Elasticsearch data source"
+- select "yaf" from "Select a Elasticsearch data source"
 - push "Import"
 - enjoy!
 
