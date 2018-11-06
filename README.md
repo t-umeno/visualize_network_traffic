@@ -37,8 +37,8 @@ Please set http_proxy and https_proxy if you need.
     vagrant@ubuntu-xenial:~$ super_mediator.sh
     vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
-### usage (browser)
-- open http://127.0.0.1:5601/
+### usage (kibana)
+- open http://127.0.0.1:5601/ by firefox or chrome
 - select "Management"
 - select "Index Patterns"
 - select "Create Index Pattern"
@@ -54,6 +54,24 @@ Please set http_proxy and https_proxy if you need.
 - push "Confirm all changes"
 - select "Dashboard"
 - select "main", "bar", "bar2", "circle" or "circle2"
+- enjoy!
+
+### usage (grafana)
+- open http://127.0.0.1:5601/
+- login (username: admin password: admin)
+- change password
+- push "Add data source"
+- input "yaf" in Name
+- select "Elasticsearch" in Type
+- input "http://localhost:9200" in URL
+- input "yaf.*" in Elasticsearch details Index Name
+- select "5.6+" in Elasticsearch deaiils Version
+- push "Save & Test"
+- select "+" and "Import"
+- push "Upload .json File"
+- upload "grafana/ElasticSearch YAF count.json"
+- select yaf from "Select a Elasticsearch data source"
+- push "Import"
 - enjoy!
 
 ### ToDo
