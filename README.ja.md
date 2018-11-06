@@ -45,7 +45,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
     vagrant@ubuntu-xenial:~$ super_mediator.sh
     vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
-### 使用方法 (ブラウザ)
+### 使用方法 (kibana)
 - http://127.0.0.1:5601/ をfirefox, chromeなどのブラウザで開きます。
 - "Management" を選択します
 - "Index Patterns" を選択します。
@@ -63,6 +63,24 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - "Dashboard" を選択します。
 - "main", "bar", "bar2", "circle" もしくは "circle2" を選択します。
 - ダッシュボードにネットワークのトラフィック情報が表示されます。
+
+### 使用方法 (grafana)
+- http://127.0.0.1:3000/ をブラウザで開きます。
+- username: admin password: admin でログインします。
+- パスワードを変更します。
+- "Add data source" を押します。
+- Name に "yaf" を入力します。
+- Type から "Elasticsearch" を選択します。
+- URL に "http://localhost:9200" を入力します。
+- Elasticsearch details の Index Name に "yaf.*" を入力します。
+- Elasticsearch deaiils の Versionselect から "5.6+" を選択します。
+- "Save & Test" を押します。
+- "+" を押し、 "Import" を選択します。
+- "Upload .json File" を押します。
+- "grafana/ElasticSearch YAF count.json" をアップロードします。
+- "Select a Elasticsearch data source" から "yaf" を選択します。
+- "Import" を押します。
+- ElasticSearch YAF count のダッシュボードが表示されます。flow count, octetTotalCount, packetTotalCount について表示します。
 
 ### ToDo
 - ドキュメント
