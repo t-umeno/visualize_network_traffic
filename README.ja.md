@@ -2,7 +2,7 @@
 ネットワークトラフィックのフロー情報を可視化します。
 
 ## ELK6
-Vagrantでネットワークトラフィックのフロー情報をKibanaで表示するVMを作成します。
+Vagrantでネットワークトラフィックのフロー情報をKibanaやGrafanaで表示するVMを作成します。
 VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * NICから受信したパケットをYAFでフロー情報を抽出しIPfix形式に変換します。
 * super_mediatorでIPfix形式をJSONファイルに変換します。
