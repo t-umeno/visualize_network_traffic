@@ -38,7 +38,8 @@ Please set http_proxy and https_proxy if you need.
     vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
 ### usage (kibana)
-- open http://127.0.0.1:5601/ by firefox or chrome
+Please use firefox or chrome.
+- open http://127.0.0.1:5601/
 - select "Management"
 - select "Index Patterns"
 - select "Create Index Pattern"
@@ -57,7 +58,7 @@ Please set http_proxy and https_proxy if you need.
 - enjoy!
 
 ### usage (grafana)
-- open http://127.0.0.1:5601/
+- open http://127.0.0.1:3000/
 - login (username: admin password: admin)
 - change password
 - push "Add data source"
