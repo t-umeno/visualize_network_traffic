@@ -7,7 +7,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * NICから受信したパケットをYAFでフロー情報を抽出しIPfix形式に変換します。
 * super_mediatorでIPfix形式をJSONファイルに変換します。
 * JSONファイルをLogstash経由でElasticsearchに入力します。
-* KibanaでElasticsearchに入力されたフロー情報を表示します。
+* KibanaやGrafanaでElasticsearchに入力されたフロー情報を表示します。
 * curlやwiresharkなどパケットの解析に用いるソフトウェアもインストールします。
 * 作成されて30日以上経過した古いJSONファイルやElasticsearchのインデックスは自動的に削除されます。
 ### 事前にインストールするソフトウェア
