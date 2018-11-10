@@ -1,3 +1,11 @@
+- name: install apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - libpcap-dev
+  become: yes
 - name: compile libp0f
   script: scripts/compile_libp0f.sh
   become: yes
