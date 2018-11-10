@@ -1,0 +1,13 @@
+- name: install apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - libglib2.0-dev
+    - libssl-dev
+    - openssl
+  become: yes
+- name: compile fixbuf
+  script: scripts/compile_fixbuf.sh
+  become: yes
