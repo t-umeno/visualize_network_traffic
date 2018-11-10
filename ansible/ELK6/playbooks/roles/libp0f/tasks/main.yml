@@ -1,0 +1,3 @@
+- name: compile libp0f
+  script: scripts/compile_libp0f.sh
+  become: yes
