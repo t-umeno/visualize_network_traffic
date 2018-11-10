@@ -24,27 +24,6 @@
         - curl
         - jq
         - wireshark
-        - libglib2.0-dev
-        - libssl-dev
-        - openssl
-        - libpcap-dev
-        - libndpi-dev
-        - libndpi-bin
-        - mysql-server
-        - mysql-client
-        - libmysqlclient-dev
-      become: yes
-    - name: compile libp0f.tgz
-      script: scripts/compile_libp0f.sh
-      become: yes
-    - name: compile fixbuf
-      script: scripts/compile_fixbuf.sh
-      become: yes
-    - name: compile yaf
-      script: scripts/compile_yaf.sh
-      become: yes
-    - name: compile super_mediator
-      script: scripts/compile_super_mediator.sh
       become: yes
     - name: mkdir
       file: path={{ item }}  state=directory mode=0755
@@ -71,6 +50,10 @@
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
   roles:
+    - role: libp0f
+    - role: fixbuf
+    - role: yaf
+    - role: super_mediator
     - role: elasticsearch
     - role: logstash
     - role: kibana
