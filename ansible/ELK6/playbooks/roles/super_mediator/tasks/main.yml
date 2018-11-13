@@ -9,9 +9,6 @@
     - mysql-client
     - libmysqlclient-dev
   become: yes
-- name: compile yaf
-  script: scripts/compile_yaf.sh
-  become: yes
 - name: compile super_mediator
   script: scripts/compile_super_mediator.sh
   become: yes
