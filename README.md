@@ -6,12 +6,16 @@
 * VirtualBox
 * Vagrant
 * vagrant plugin install vagrant-disksize
+* vagrant plugin install vagrant-proxyconf (if you use proxy)
+* vagrant plugin install vagrant-vbguest (option)
 
 ### install
 Please set http_proxy and https_proxy if you need.
 
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # option
+    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
+    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
+    $ vagrant plugin install vagrant-proxyconf # if you use proxy
+    $ vagrant plugin install vagrant-vbguest # option
     $ vagrant plugin install vagrant-disksize
     $ cd ansible/ELK6/playbooks
     $ vagrant up
@@ -33,7 +37,8 @@ Please set http_proxy and https_proxy if you need.
     vagrant@ubuntu-xenial:~$ super_mediator.sh
     vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
-### usage (browser)
+### usage (kibana)
+Please use firefox or chrome.
 - open http://127.0.0.1:5601/
 - select "Management"
 - select "Index Patterns"
@@ -50,6 +55,24 @@ Please set http_proxy and https_proxy if you need.
 - push "Confirm all changes"
 - select "Dashboard"
 - select "main", "bar", "bar2", "circle" or "circle2"
+- enjoy!
+
+### usage (grafana)
+- open http://127.0.0.1:3000/
+- login (username: admin password: admin)
+- change password
+- push "Add data source"
+- input "yaf" in Name
+- select "Elasticsearch" in Type
+- input "http://localhost:9200" in URL
+- input "yaf.*" in Elasticsearch details Index Name
+- select "5.6+" in Elasticsearch deaiils Version
+- push "Save & Test"
+- select "+" and "Import"
+- push "Upload .json File"
+- upload "grafana/ElasticSearch YAF count.json"
+- select "yaf" from "Select a Elasticsearch data source"
+- push "Import"
 - enjoy!
 
 ### ToDo

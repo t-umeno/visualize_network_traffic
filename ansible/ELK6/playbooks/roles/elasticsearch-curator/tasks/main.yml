@@ -2,7 +2,10 @@
   copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
   become: yes
 - name: install elasticsearch-curator
-  apt: pkg={{ item }} update_cache=yes
-  become: yes
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - elasticsearch-curator
+  become: yes

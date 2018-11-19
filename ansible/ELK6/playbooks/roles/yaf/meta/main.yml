@@ -1,0 +1,3 @@
+dependencies:
+  - { role: fixbuf }
+  - { role: libp0f }
