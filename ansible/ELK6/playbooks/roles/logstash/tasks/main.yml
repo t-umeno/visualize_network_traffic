@@ -14,7 +14,16 @@
     packages:
     - logstash
   become: yes
-- name: copy logstash config file
-  template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
+- name: edit the initial size of total heap space in /etc/logstash/jvm.options
+  replace:
+    path: /etc/logstash/jvm.options
+    regexp: '^-Xms1g$'
+    replace: '{{ logstash_total_heap_space }}'
+  become: yes
+- name: edit the maximum size of total heap space in /etc/logstash/jvm.options
+  replace:
+    path: /etc/logstash/jvm.options
+    regexp: '^-Xmx1g$'
+    replace: '{{ logstash_maximum_heap_space }}'
   become: yes
   notify: restart logstash
