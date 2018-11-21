@@ -26,4 +26,16 @@
     regexp: '^-Xmx1g$'
     replace: '{{ logstash_maximum_heap_space }}'
   become: yes
+- name: install logstash-codec-sflow
+  command: /usr/share/logstash/bin/logstash-plugin install logstash-codec-sflow
+  become: yes
+- name: update logstash-codec-netflow
+  command: /usr/share/logstash/bin/logstash-plugin update logstash-codec-netflow
+  become: yes
+- name: update logstash-input-udp
+  command: /usr/share/logstash/bin/logstash-plugin update logstash-input-udp
+  become: yes
+- name: update logstash-filter-dns
+  command: /usr/share/logstash/bin/logstash-plugin update logstash-filter-dns
+  become: yes
   notify: restart logstash
