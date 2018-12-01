@@ -7,7 +7,7 @@
   script: scripts/setup_kibana.sh
 - name: copy logstash configuration file
   copy:
-    src: ~/elastiflow-master/logstash/elastiflow/
+    src: /home/vagrant/elastiflow-master/logstash/elastiflow/
     dest: /etc/logstash/elastiflow/
     mode: preserve
     remote_src: yes
@@ -15,7 +15,7 @@
   become: yes
 - name: copy logstash service file
   copy:
-    src: ~/elastiflow-master/logstash/logstash.service.d/
+    src: /home/vagrant/elastiflow-master/logstash/logstash.service.d/
     dest: /etc/systemd/system/logstash.service.d/
     mode: preserve
     remote_src: yes
