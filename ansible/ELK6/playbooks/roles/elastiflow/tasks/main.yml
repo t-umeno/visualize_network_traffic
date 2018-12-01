@@ -19,3 +19,11 @@
     remote_src: yes
     directory_mode: yes
   become: yes
+- name: edit pipeline.id in /etc/logstash/pipelines.yml
+  blockinfile:
+    dest: /etc/logstash/pipelines.yml
+    insertafter: EOF
+    block: |
+      - pipeline.id: elastiflow
+      path.config: "/etc/logstash/elastiflow/conf.d/*.conf"
+  become: yes
