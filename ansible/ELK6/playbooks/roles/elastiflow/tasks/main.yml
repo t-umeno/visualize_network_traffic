@@ -27,3 +27,7 @@
       - pipeline.id: elastiflow
       path.config: "/etc/logstash/elastiflow/conf.d/*.conf"
   become: yes
+- name: exec /usr/share/logstash/bin/system-install
+  command: /usr/share/logstash/bin/system-install
+  become: yes
+  notify: restart logstash for elastiflow
