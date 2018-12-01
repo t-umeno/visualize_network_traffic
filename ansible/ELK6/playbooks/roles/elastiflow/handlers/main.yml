@@ -1,4 +1,4 @@
-- name: restart logstash
+- name: restart logstash for elastiflow
   systemd:
     name: logstash.service
     state: restarted
