@@ -3,3 +3,19 @@
     src: https://github.com/robcowart/elastiflow/archive/master.zip
     dest: ~/
     remote_src: yes
+- name: copy logstash configuration file
+  copy:
+    src: ~/elastiflow-master/logstash/elastiflow/
+    dest: /etc/logstash/elastiflow/
+    mode: preserve
+    remote_src: yes
+    directory_mode: yes
+  become: yes
+- name: copy logstash service file
+  copy:
+    src: ~/elastiflow-master/logstash/logstash.service.d/
+    dest: /etc/systemd/system/logstash.service.d/
+    mode: preserve
+    remote_src: yes
+    directory_mode: yes
+  become: yes
