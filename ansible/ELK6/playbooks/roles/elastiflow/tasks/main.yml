@@ -1,0 +1,5 @@
+- name: extract elastiflow
+  unarchive:
+    src: https://github.com/robcowart/elastiflow/archive/master.zip
+    dest: ~/
+    remote_src: yes
