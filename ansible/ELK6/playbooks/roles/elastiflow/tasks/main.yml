@@ -14,7 +14,7 @@
   become: yes
 - name: copy logstash service file
   copy:
-    src: /home/vagrant/elastiflow-master/logstash/logstash.service.d/
+    src: /home/vagrant/elastiflow-master/logstash.service.d/
     dest: /etc/systemd/system/logstash.service.d/
     mode: preserve
     directory_mode: yes
