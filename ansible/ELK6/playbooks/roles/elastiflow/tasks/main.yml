@@ -10,7 +10,6 @@
     src: /home/vagrant/elastiflow-master/logstash/elastiflow/
     dest: /etc/logstash/elastiflow/
     mode: preserve
-    remote_src: yes
     directory_mode: yes
   become: yes
 - name: copy logstash service file
@@ -18,7 +17,6 @@
     src: /home/vagrant/elastiflow-master/logstash/logstash.service.d/
     dest: /etc/systemd/system/logstash.service.d/
     mode: preserve
-    remote_src: yes
     directory_mode: yes
   become: yes
 - name: edit pipeline.id in /etc/logstash/pipelines.yml
