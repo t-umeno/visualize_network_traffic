@@ -61,3 +61,8 @@
     - role: elasticsearch-curator
     - role: grafana
     - role: elastiflow
+  tasks:
+    - name: setup kibana for elastiflow
+      script: scripts/setup_kibana.sh
+
+ 
