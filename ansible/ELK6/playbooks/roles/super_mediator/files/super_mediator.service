@@ -5,7 +5,7 @@ After=network.target local-fs.target syslog.socket named.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/super_mediator -c /etc/super_mediator.conf
+ExecStart=/usr/local/bin/super_mediator -c /etc/super_mediator.conf
 Restart=on-failure
 KillSignal=INT
 
