@@ -13,7 +13,8 @@
   script: scripts/compile_super_mediator.sh
   become: yes
 - name: copy super_mediator config file
-  template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
+  template: src=templates/super_mediator.conf.j2 dest=/usr/local/etc/super_mediator.conf
+  become: yes
 - name: copy systemd startup script
   copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service
   become: yes
