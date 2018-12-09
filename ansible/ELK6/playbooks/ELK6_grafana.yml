@@ -48,8 +48,6 @@
         - delete_indices_yaf.yml
     - name: set crontab
       script: scripts/cron_curator.sh
-    - name: copy super_mediator config file
-      template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
   roles:
     - role: libp0f
     - role: fixbuf
