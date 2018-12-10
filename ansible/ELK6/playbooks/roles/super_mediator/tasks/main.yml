@@ -20,7 +20,7 @@
     dest: /etc/crontab
     insertafter: EOF
     block: |
-      1 5 * * * find ~/yaf/json -mtime +29 -exec rm -f {} \;
+      1 5 * * * find /home/vagrant/yaf/json -mtime +29 -exec rm -f {} \;
   become: yes
 - name: copy systemd startup script
   copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service
