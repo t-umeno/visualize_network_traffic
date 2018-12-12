@@ -52,9 +52,9 @@
       blockinfile:
       dest: /etc/network/interfaces.d/50-cloud-init.cfg
       insertafter: EOF
-        block: |
-          auto enp0s8
-          iface enp0s8 inet manual
+      block: |
+        auto enp0s8
+        iface enp0s8 inet manual
       become: yes
   roles:
     - role: libp0f
