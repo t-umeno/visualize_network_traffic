@@ -50,11 +50,11 @@
       script: scripts/cron_curator.sh
     - name: enp0s8 up
       blockinfile:
-      dest: /etc/network/interfaces.d/50-cloud-init.cfg
-      insertafter: EOF
-      block: |
-        auto enp0s8
-        iface enp0s8 inet manual
+        dest: /etc/network/interfaces.d/50-cloud-init.cfg
+        insertafter: EOF
+        block: |
+          auto enp0s8
+          iface enp0s8 inet manual
       become: yes
   roles:
     - role: libp0f
