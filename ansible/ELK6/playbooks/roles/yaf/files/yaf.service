@@ -5,7 +5,7 @@ After=network.target local-fs.target syslog.socket named.service super_mediator.
 
 [Service]
 Type=simple
-ExecStart=yaf --force-read-all --mac --silk --verbose --in enp0s8 --out 127.0.0.1 --ipfix-port 18000 --ipfix tcp --noerror --plugin-name=/usr/local/lib/yaf/dpacketplugin.la --max-payload 4096 --applabel --p0fprint --live pcap
+ExecStart=/usr/local/bin/yaf --force-read-all --mac --silk --verbose --in enp0s8 --out 127.0.0.1 --ipfix-port 18000 --ipfix tcp --noerror --plugin-name=/usr/local/lib/yaf/dpacketplugin.la --max-payload 4096 --applabel --p0fprint --live pcap
 Restart=on-failure
 KillSignal=INT
 
