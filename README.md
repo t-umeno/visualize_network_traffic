@@ -62,11 +62,11 @@ Please use firefox or chrome.
 - login (username: admin password: admin)
 - change password
 - push "Add data source"
+- push "Elasticsearch" from "Choose data source type"
 - input "yaf" in Name
-- select "Elasticsearch" in Type
 - input "http://localhost:9200" in URL
 - input "yaf.*" in Elasticsearch details Index Name
-- select "5.6+" in Elasticsearch deaiils Version
+- select "6.0+" in Elasticsearch deaiils Version
 - push "Save & Test"
 - select "+" and "Import"
 - push "Upload .json File"
