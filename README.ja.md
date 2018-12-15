@@ -69,11 +69,11 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - username: admin password: admin でログインします。
 - パスワードを変更します。
 - "Add data source" を押します。
+- "Choose data source type" から "Elasticsearch" を押します。
 - Name に "yaf" を入力します。
-- Type から "Elasticsearch" を選択します。
 - URL に "http://localhost:9200" を入力します。
 - Elasticsearch details の Index Name に "yaf.*" を入力します。
-- Elasticsearch deaiils の Versionselect から "5.6+" を選択します。
+- Elasticsearch deaiils の Versionselect から "6.0+" を選択します。
 - "Save & Test" を押します。
 - "+" を押し、 "Import" を選択します。
 - "Upload .json File" を押します。
