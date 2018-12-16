@@ -10,6 +10,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * KibanaやGrafanaでElasticsearchに入力されたフロー情報を表示します。
 * curlやwiresharkなどパケットの解析に用いるソフトウェアもインストールします。
 * 作成されて30日以上経過した古いJSONファイルやElasticsearchのインデックスは自動的に削除されます。
+* systemdからsuper_mediatorとyafを起動する様に変更しました。super_mediator.shやyaf.sh をshell から実行する必要はありません。
 ### 事前にインストールするソフトウェア
 * VirtualBox
 * Vagrant
@@ -38,12 +39,6 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
     ==> default: When choosing an interface, it is usually the one that is
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
-
-### 使用方法 (shell)
-    $ cd ansible/ELK6/playbooks
-    $ vagrant ssh
-    vagrant@ubuntu-xenial:~$ super_mediator.sh
-    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
 
 ### 使用方法 (kibana)
 - http://127.0.0.1:5601/ をfirefox, chromeなどのブラウザで開きます。

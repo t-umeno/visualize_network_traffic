@@ -48,8 +48,14 @@
         - delete_indices_yaf.yml
     - name: set crontab
       script: scripts/cron_curator.sh
-    - name: copy super_mediator config file
-      template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
+    - name: enp0s8 up
+      blockinfile:
+        dest: /etc/network/interfaces.d/50-cloud-init.cfg
+        insertafter: EOF
+        block: |
+          auto enp0s8
+          iface enp0s8 inet manual
+      become: yes
   roles:
     - role: libp0f
     - role: fixbuf

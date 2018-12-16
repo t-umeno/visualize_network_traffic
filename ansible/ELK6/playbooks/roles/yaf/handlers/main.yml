@@ -1,0 +1,7 @@
+- name: restart yaf
+  systemd:
+    name: yaf.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes

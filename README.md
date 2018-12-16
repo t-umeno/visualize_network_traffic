@@ -31,12 +31,6 @@ Please set http_proxy and https_proxy if you need.
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
 
-### usage (shell)
-    $ cd ansible/ELK6/playbooks
-    $ vagrant ssh
-    vagrant@ubuntu-xenial:~$ super_mediator.sh
-    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
-
 ### usage (kibana)
 Please use firefox or chrome.
 - open http://127.0.0.1:5601/
