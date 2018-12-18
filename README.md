@@ -10,14 +10,10 @@
 * vagrant plugin install vagrant-vbguest (option)
 
 ### install
-Please set http_proxy and https_proxy if you need.
+* Please set http_proxy and https_proxy if you need.
+* execute "vagrant up" and select NIC for receive packets
+* execute "vagrant ssh" and check JSON file in ~/yaf/json
 
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
-    $ vagrant plugin install vagrant-proxyconf # if you use proxy
-    $ vagrant plugin install vagrant-vbguest # option
-    $ vagrant plugin install vagrant-disksize
-    $ cd ansible/ELK6/playbooks
     $ vagrant up
     (snip)
     (select network interface for packet capture)
@@ -30,6 +26,16 @@ Please set http_proxy and https_proxy if you need.
     ==> default: When choosing an interface, it is usually the one that is
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
+    (snip)
+    PLAY RECAP *********************************************************************
+    testserver                 : ok=44   changed=40   unreachable=0    failed=0       
+    
+    $ vagrant ssh
+    (snip)
+    vagrant@ubuntu-xenial:~$ ls -l yaf/json
+    total 2396
+    -rw-r--r-- 1 root root 2447363 Dec 18 06:11 yaf.20181217154009.json
+    vagrant@ubuntu-xenial:~$ 
 
 ### usage (kibana)
 Please use firefox or chrome.
