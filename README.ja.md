@@ -20,6 +20,9 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 
 ### install
 必要に応じてhttp_proxy, https_proxyの環境変数を設定してください。
+vagrant up を実行し、パケットを受信するNICを選択します。
+vagrant up 終了後に vagrant ssh を実行し、
+ls -l yaf/json を実行し、JSONファイルが存在することを確認します。
 
     $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
     $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
@@ -39,7 +42,17 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
     ==> default: When choosing an interface, it is usually the one that is
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
-
+    (snip)
+    PLAY RECAP *********************************************************************
+    testserver                 : ok=44   changed=40   unreachable=0    failed=0       
+    
+    $ vagrant ssh
+    (snip)
+    vagrant@ubuntu-xenial:~$ ls -l yaf/json
+    total 2396
+    -rw-r--r-- 1 root root 2447363 Dec 18 06:11 yaf.20181217154009.json
+    vagrant@ubuntu-xenial:~$ 
+    
 ### 使用方法 (kibana)
 - http://127.0.0.1:5601/ をfirefox, chromeなどのブラウザで開きます。
 - "Management" を選択します
