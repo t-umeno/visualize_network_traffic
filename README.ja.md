@@ -19,9 +19,9 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * vagrant plugin install vagrant-vbguest (option)
 
 ### install
-* 必要に応じてhttp_proxy, https_proxyの環境変数を設定してください。
-* vagrant up を実行し、パケットを受信するNICを選択します。
-* vagrant ssh を実行し、~/yaf/json にJSONファイルが存在することを確認します。
+必要に応じてhttp_proxy, https_proxyの環境変数を設定してください。
+vagrant up を実行し、パケットを受信するNICを選択します。
+vagrant ssh を実行し、~/yaf/json にJSONファイルが存在することを確認します。
 
     $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
     $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
