@@ -11,8 +11,8 @@
 
 ### install
 Please set http_proxy and https_proxy if you need.
-- execute "vagrant up" and select NIC for receive packets
-- execute "vagrant ssh" and check JSON file in ~/yaf/json
+execute "vagrant up" and select NIC for receive packets
+execute "vagrant ssh" and check JSON file in ~/yaf/json
 
     $ vagrant up
     (snip)
