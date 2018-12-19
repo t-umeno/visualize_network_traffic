@@ -16,3 +16,4 @@
   copy: src=files/yaf.service dest=/lib/systemd/system/yaf.service
   become: yes
   notify: restart yaf
+  when: {{ yaf_systemd }} == true
