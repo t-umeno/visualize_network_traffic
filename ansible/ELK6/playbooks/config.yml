@@ -5,3 +5,5 @@ kibana_elasticsearch_requestTimeout: 300000
 elasticsearch_thread_pool_search_queue_size: 100000
 elasticsearch_total_heap_space: -Xms2g
 elasticsearch_maximum_heap_space: -Xmx2g
+super_mediator_systemd: true
+yaf_systemd: true
