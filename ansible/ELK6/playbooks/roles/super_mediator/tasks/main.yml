@@ -26,3 +26,4 @@
   copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service
   become: yes
   notify: restart super_mediator
+  when: super_mediator_systemd == true
