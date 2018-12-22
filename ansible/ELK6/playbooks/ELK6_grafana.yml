@@ -46,8 +46,8 @@
       with_items:
         - curator.yml
         - delete_indices_yaf.yml
-    - name: set crontab
-      script: scripts/cron_curator.sh
+    - name: install curator cron job
+      cron: name="curator" minute="5" hour="2" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_yaf.yml"
     - name: enp0s8 up
       blockinfile:
         dest: /etc/network/interfaces.d/50-cloud-init.cfg
