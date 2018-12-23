@@ -12,3 +12,14 @@
 - name: compile super_mediator
   script: scripts/compile_super_mediator.sh
   become: yes
+- name: copy super_mediator config file
+  template: src=templates/super_mediator.conf.j2 dest=/usr/local/etc/super_mediator.conf
+  become: yes
+- name: install delete json file cron job
+  cron: name="delete json file" minute="1" hour="5" job="find /home/vagrant/yaf/json -mtime +29 -exec rm -f {} \;"
+  become: yes
+- name: copy systemd startup script
+  copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service
+  become: yes
+  notify: restart super_mediator
+  when: super_mediator_systemd == true

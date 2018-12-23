@@ -12,12 +12,6 @@
 ### install
 Please set http_proxy and https_proxy if you need.
 
-    $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
-    $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
-    $ vagrant plugin install vagrant-proxyconf # if you use proxy
-    $ vagrant plugin install vagrant-vbguest # option
-    $ vagrant plugin install vagrant-disksize
-    $ cd ansible/ELK6/playbooks
     $ vagrant up
     (snip)
     (select network interface for packet capture)
@@ -30,12 +24,16 @@ Please set http_proxy and https_proxy if you need.
     ==> default: When choosing an interface, it is usually the one that is
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
-
-### usage (shell)
-    $ cd ansible/ELK6/playbooks
+    (snip)
+    PLAY RECAP *********************************************************************
+    testserver                 : ok=44   changed=40   unreachable=0    failed=0       
+    
     $ vagrant ssh
-    vagrant@ubuntu-xenial:~$ super_mediator.sh
-    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
+    (snip)
+    vagrant@ubuntu-xenial:~$ ls -l yaf/json
+    total 2396
+    -rw-r--r-- 1 root root 2447363 Dec 18 06:11 yaf.20181217154009.json
+    vagrant@ubuntu-xenial:~$ 
 
 ### usage (kibana)
 Please use firefox or chrome.
@@ -62,11 +60,11 @@ Please use firefox or chrome.
 - login (username: admin password: admin)
 - change password
 - push "Add data source"
+- push "Elasticsearch" from "Choose data source type"
 - input "yaf" in Name
-- select "Elasticsearch" in Type
 - input "http://localhost:9200" in URL
 - input "yaf.*" in Elasticsearch details Index Name
-- select "5.6+" in Elasticsearch deaiils Version
+- select "6.0+" in Elasticsearch deaiils Version
 - push "Save & Test"
 - select "+" and "Import"
 - push "Upload .json File"

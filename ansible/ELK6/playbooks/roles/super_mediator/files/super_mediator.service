@@ -1,0 +1,13 @@
+[Unit]
+Description=Control super_mediator as a live capture daemon
+After=network.target local-fs.target syslog.socket named.service
+#Requisite=syslog.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/super_mediator -c /usr/local/etc/super_mediator.conf
+Restart=on-failure
+KillSignal=INT
+
+[Install]
+WantedBy=multi-user.target

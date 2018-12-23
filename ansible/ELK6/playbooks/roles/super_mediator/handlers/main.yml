@@ -1,0 +1,7 @@
+- name: restart super_mediator
+  systemd:
+    name: super_mediator.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes

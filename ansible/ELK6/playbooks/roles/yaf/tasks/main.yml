@@ -12,3 +12,8 @@
 - name: compile yaf
   script: scripts/compile_yaf.sh
   become: yes
+- name: copy systemd startup script of yaf
+  copy: src=files/yaf.service dest=/lib/systemd/system/yaf.service
+  become: yes
+  notify: restart yaf
+  when: yaf_systemd == true

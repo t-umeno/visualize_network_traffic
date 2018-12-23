@@ -10,6 +10,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * KibanaやGrafanaでElasticsearchに入力されたフロー情報を表示します。
 * curlやwiresharkなどパケットの解析に用いるソフトウェアもインストールします。
 * 作成されて30日以上経過した古いJSONファイルやElasticsearchのインデックスは自動的に削除されます。
+* systemdからsuper_mediatorとyafを起動する様に変更しました。super_mediator.shやyaf.sh をshell から実行する必要はありません。
 ### 事前にインストールするソフトウェア
 * VirtualBox
 * Vagrant
@@ -19,6 +20,8 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 
 ### install
 必要に応じてhttp_proxy, https_proxyの環境変数を設定してください。
+vagrant up を実行し、パケットを受信するNICを選択します。
+vagrant ssh を実行し、~/yaf/json にJSONファイルが存在することを確認します。
 
     $ export http_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
     $ export https_proxy="http://aaa.bbb.ccc.ddd:8080/" # if you use proxy
@@ -38,13 +41,17 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
     ==> default: When choosing an interface, it is usually the one that is
     ==> default: being used to connect to the internet.
         default: Which interface should the network bridge to? 3
-
-### 使用方法 (shell)
-    $ cd ansible/ELK6/playbooks
+    (snip)
+    PLAY RECAP *********************************************************************
+    testserver                 : ok=44   changed=40   unreachable=0    failed=0       
+    
     $ vagrant ssh
-    vagrant@ubuntu-xenial:~$ super_mediator.sh
-    vagrant@ubuntu-xenial:~$ yaf.sh enp0s8 >& /dev/null &
-
+    (snip)
+    vagrant@ubuntu-xenial:~$ ls -l yaf/json
+    total 2396
+    -rw-r--r-- 1 root root 2447363 Dec 18 06:11 yaf.20181217154009.json
+    vagrant@ubuntu-xenial:~$ 
+    
 ### 使用方法 (kibana)
 - http://127.0.0.1:5601/ をfirefox, chromeなどのブラウザで開きます。
 - "Management" を選択します
@@ -69,11 +76,11 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 - username: admin password: admin でログインします。
 - パスワードを変更します。
 - "Add data source" を押します。
+- "Choose data source type" から "Elasticsearch" を押します。
 - Name に "yaf" を入力します。
-- Type から "Elasticsearch" を選択します。
 - URL に "http://localhost:9200" を入力します。
 - Elasticsearch details の Index Name に "yaf.*" を入力します。
-- Elasticsearch deaiils の Versionselect から "5.6+" を選択します。
+- Elasticsearch deaiils の Versionselect から "6.0+" を選択します。
 - "Save & Test" を押します。
 - "+" を押し、 "Import" を選択します。
 - "Upload .json File" を押します。
