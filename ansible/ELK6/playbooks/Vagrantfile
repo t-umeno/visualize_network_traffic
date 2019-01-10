@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
     SHELL
     node01.vm.provision "ansible_local" do |ansible|
       #ansible.playbook = "ELK6.yml"
-      ansible.playbook = "ELK6_grafana.yml"
+      ansible.playbook = "ELK6_grafana_node01.yml"
       ansible.inventory_path = "hosts"
       ansible.limit = 'all'
     end
@@ -67,8 +67,7 @@ Vagrant.configure("2") do |config|
       vb02.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
     node02.vm.provider "virtualbox" do |vb02|
-      #vb02.memory = "4096"
-      vb02.memory = "2048"
+      vb02.memory = "4096"
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node02.proxy.http     = ENV['http_proxy']
@@ -81,12 +80,12 @@ Vagrant.configure("2") do |config|
       apt-get dist-upgrade -y
       apt-get install -y python2.7
     SHELL
-    #node02.vm.provision "ansible_local" do |ansible|
-    #  #ansible.playbook = "ELK6.yml"
-    #  ansible.playbook = "ELK6_grafana.yml"
-    #  ansible.inventory_path = "hosts"
-    #  ansible.limit = 'all'
-    #end
+    node02.vm.provision "ansible_local" do |ansible|
+      #ansible.playbook = "ELK6.yml"
+      ansible.playbook = "ELK6_grafana_node02.yml"
+      ansible.inventory_path = "hosts"
+      ansible.limit = 'all'
+    end
   end
 
   config.vm.define :node03 do | node03 |
@@ -99,8 +98,7 @@ Vagrant.configure("2") do |config|
       vb03.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
     node03.vm.provider "virtualbox" do |vb03|
-      #vb03.memory = "4096"
-      vb03.memory = "2048"
+      vb03.memory = "4096"
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node03.proxy.http     = ENV['http_proxy']
@@ -113,12 +111,12 @@ Vagrant.configure("2") do |config|
       apt-get dist-upgrade -y
       apt-get install -y python2.7
     SHELL
-    #node03.vm.provision "ansible_local" do |ansible|
-    #  #ansible.playbook = "ELK6.yml"
-    #  ansible.playbook = "ELK6_grafana.yml"
-    #  ansible.inventory_path = "hosts"
-    #  ansible.limit = 'all'
-    #end
+    node03.vm.provision "ansible_local" do |ansible|
+      #ansible.playbook = "ELK6.yml"
+      ansible.playbook = "ELK6_grafana_node03.yml"
+      ansible.inventory_path = "hosts"
+      ansible.limit = 'all'
+    end
   end
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
