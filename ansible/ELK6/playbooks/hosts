@@ -1,1 +1,4 @@
 testserver ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+node01 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
+node02 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2201
+node03 ansible_ssh_host=127.0.0.1 ansible_ssh_port=2202
