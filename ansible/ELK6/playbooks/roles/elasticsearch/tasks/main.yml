@@ -35,7 +35,7 @@
     dest: /etc/elasticsearch/elasticsearch.yml
     insertafter: '^#node.name: node-1$'
     block: |
-      node.name: {{ node }}
+      node.name: {{ node_name }}
   become: yes
   when: elasticsearch_cluster is defined
 - name: edit network.host in /etc/elasticsearch/elasticsearch.yml
