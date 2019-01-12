@@ -8,6 +8,8 @@ elasticsearch_maximum_heap_space: -Xmx2g
 #super_mediator_systemd: true
 #yaf_systemd: true
 
+capture_interface: enp0s9
+
 elasticsearch_cluster: true
 elasticsearch_cluster_name: visualize_network_traffic
 node01_ip_address: 192.168.33.11
