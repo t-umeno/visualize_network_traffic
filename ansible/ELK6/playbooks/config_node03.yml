@@ -1,3 +1,4 @@
-node: node03
+node_name: node03
+node_ip_address: 192.168.33.13
 super_mediator_systemd: false
 yaf_systemd: false
