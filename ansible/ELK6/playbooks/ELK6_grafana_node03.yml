@@ -2,7 +2,7 @@
   hosts: node03
   vars_files:
     - version.yml
-    - config.yml
+    - config_cluster.yml
     - config_node03.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
