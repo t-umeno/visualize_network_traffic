@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
       node01.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node01.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s8 up
+      ifconfig enp0s9 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
       node02.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node02.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s8 up
+      ifconfig enp0s9 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
@@ -106,7 +106,7 @@ Vagrant.configure("2") do |config|
       node03.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node03.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s8 up
+      ifconfig enp0s9 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
