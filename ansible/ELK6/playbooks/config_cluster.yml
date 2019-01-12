@@ -1,0 +1,16 @@
+timezone: Asia/Tokyo
+kibana_server_host: "0.0.0.0"
+kibana_server_maxPayloadBytes: 10485760
+kibana_elasticsearch_requestTimeout: 300000
+elasticsearch_thread_pool_search_queue_size: 100000
+elasticsearch_total_heap_space: -Xms2g
+elasticsearch_maximum_heap_space: -Xmx2g
+#super_mediator_systemd: true
+#yaf_systemd: true
+
+node01_ip_address: "192.168.33.11"
+node02_ip_address: "192.168.33.12"
+node03_ip_address: "192.168.33.13"
+node01_name: node01
+node02_name: node02
+node03_name: node03
