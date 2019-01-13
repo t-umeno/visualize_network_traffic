@@ -46,8 +46,8 @@
 - name: edit discovery.zen.ping.unicast.hosts in /etc/elasticsearch/elasticsearch.yml
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^#discovery.zen.ping.unicast.hosts: ["host1", "host2"]$'
-    replace: 'discovery.zen.ping.unicast.hosts: [ "{{ node01_ip_address }}" , "{{ node02_ip_address }}" , "{{ node03_ip_address }}" ]'
+    regexp: '^#discovery.zen.ping.unicast.hosts: \["host1", "host2"\]$'
+    replace: 'discovery.zen.ping.unicast.hosts: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}"]'
   become: yes
   when: elasticsearch_cluster is defined
 - name: edit discovery.zen.minimum_master_nodes in /etc/elasticsearch/elasticsearch.yml
