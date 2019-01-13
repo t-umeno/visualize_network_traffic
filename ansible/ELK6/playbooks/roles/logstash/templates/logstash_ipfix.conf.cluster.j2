@@ -83,7 +83,7 @@ filter {
 output {
     if ([type] == "ipfix") {
         elasticsearch {
-            hosts => ["{{ logstash_elasticsearch_nodes }}"]
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200" ]
             index => "%{index}"
         }
     }
