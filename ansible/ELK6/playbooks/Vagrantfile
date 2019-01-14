@@ -28,13 +28,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :node01 do | node01 |
     node01.vm.hostname = "node01"
-    node01.vm.network :private_network, ip: "192.168.33.11"
     node01.vm.network "forwarded_port", guest: 5601, host: 5601
     node01.vm.network "forwarded_port", guest: 3000, host: 3000
     node01.vm.network "public_network", auto_config: false
     node01.vm.provider "virtualbox" do |vb01|
       vb01.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
+    node01.vm.network :private_network, ip: "192.168.33.11"
     node01.vm.provider "virtualbox" do |vb01|
       vb01.memory = "4096"
     end
@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
       node01.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node01.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s9 up
+      ifconfig enp0s8 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
@@ -59,13 +59,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :node02 do | node02 |
     node02.vm.hostname = "node02"
-    node02.vm.network :private_network, ip: "192.168.33.12"
     node02.vm.network "forwarded_port", guest: 5601, host: 15601
     node02.vm.network "forwarded_port", guest: 3000, host: 13000
     node02.vm.network "public_network", auto_config: false
     node02.vm.provider "virtualbox" do |vb02|
       vb02.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
+    node02.vm.network :private_network, ip: "192.168.33.12"
     node02.vm.provider "virtualbox" do |vb02|
       vb02.memory = "4096"
     end
@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
       node02.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node02.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s9 up
+      ifconfig enp0s8 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
@@ -90,13 +90,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :node03 do | node03 |
     node03.vm.hostname = "node03"
-    node03.vm.network :private_network, ip: "192.168.33.13"
     node03.vm.network "forwarded_port", guest: 5601, host: 25601
     node03.vm.network "forwarded_port", guest: 3000, host: 23000
     node03.vm.network "public_network", auto_config: false
     node03.vm.provider "virtualbox" do |vb03|
       vb03.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     end
+    node03.vm.network :private_network, ip: "192.168.33.13"
     node03.vm.provider "virtualbox" do |vb03|
       vb03.memory = "4096"
     end
@@ -106,7 +106,7 @@ Vagrant.configure("2") do |config|
       node03.proxy.no_proxy = "localhost,127.0.0.1"
     end
     node03.vm.provision "shell", inline: <<-SHELL
-      ifconfig enp0s9 up
+      ifconfig enp0s8 up
       apt-get update
       apt-get dist-upgrade -y
       apt-get install -y python2.7
