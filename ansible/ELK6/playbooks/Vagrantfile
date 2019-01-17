@@ -1,8 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-config_type = "elasticsearch_1node"
+$visualize_network_traffic_config_type = "elasticsearch_1node"
 load "./Vagrantfile.local" if File.exist?("./Vagrantfile.local")
 
-load "./Vagrantfile.elasticsearch_1node" if config_type == "elasticsearch_1node"
-load "./Vagrantfile.elasticsearch_3nodes" if config_type == "elasticsearch_3nodes"
+load "./Vagrantfile.elasticsearch_1node" if $visualize_network_traffic_config_type == "elasticsearch_1node"
+load "./Vagrantfile.elasticsearch_3nodes" if $visualize_network_traffic_config_type == "elasticsearch_3nodes"
