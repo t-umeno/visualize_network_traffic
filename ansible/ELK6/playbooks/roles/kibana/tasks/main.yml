@@ -6,6 +6,13 @@
     packages:
     - kibana
   become: yes
+- name: edit elasticsearch.url in /etc/kibana/kibana.yml
+  replace:
+    path: /etc/kibana/kibana.yml
+    regexp: '^#elasticsearch.url: "http://localhost:9200"$'
+    replace: 'elasticsearch.url: "http://{{ node_ip_address }}:9200"'
+  become: yes
+  when: elasticsearch_cluster is defined
 - name: edit server.host in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml

@@ -1,0 +1,4 @@
+node_name: node01
+node_ip_address: 192.168.33.11
+super_mediator_systemd: true
+yaf_systemd: true

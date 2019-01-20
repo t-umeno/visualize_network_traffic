@@ -1,0 +1,4 @@
+node_name: node02
+node_ip_address: 192.168.33.12
+super_mediator_systemd: false
+yaf_systemd: false
