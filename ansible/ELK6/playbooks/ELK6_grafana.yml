@@ -47,7 +47,7 @@
         - delete_indices_yaf.yml
     - name: install curator cron job
       cron: name="curator" minute="5" hour="2" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_yaf.yml"
-    - name: enp0s8 up
+    - name: enp0s8 up by /etc/network/interfaces.d/50-cloud-init.cfg
       blockinfile:
         dest: /etc/network/interfaces.d/50-cloud-init.cfg
         insertafter: EOF
@@ -55,6 +55,9 @@
           auto enp0s8
           iface enp0s8 inet manual
       become: yes
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version == "16"
   roles:
     - role: libp0f
     - role: fixbuf
