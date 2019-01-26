@@ -1,0 +1,7 @@
+- name: restart manual-iface
+  systemd:
+    name: manual-iface.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
