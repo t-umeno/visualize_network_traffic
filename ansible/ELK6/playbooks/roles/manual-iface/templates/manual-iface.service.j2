@@ -1,0 +1,12 @@
+[Unit]
+Description=Service to bring up/down unconfigured nic {{ capture_interface }}
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/sbin/ip link set {{ capture_interface }} up
+ExecStop=/sbin/ip link set {{ capture_interface }} down
+
+[Install]
+WantedBy=multi-user.target
