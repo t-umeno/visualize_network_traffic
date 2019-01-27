@@ -81,6 +81,7 @@
     - name: copy super_mediator config file
       template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
   roles:
+    - role: manual-iface
     - role: elasticsearch
     - role: logstash
     - role: kibana
