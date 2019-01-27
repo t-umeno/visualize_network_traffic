@@ -29,6 +29,15 @@
         - mysql-server
         - mysql-client
         - libmysqlclient-dev
+    - name: install ndpi apt packages
+      apt: pkg={{ item }} update_cache=yes
+      become: yes
+      with_items:
+        - libndpi-dev
+        - libndpi-bin
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version == "16"
     - name: compile libp0f.tgz
       script: scripts/compile_libp0f.sh
       become: yes
@@ -55,6 +64,13 @@
         - yaf.sh
         - super_mediator.sh
         - logstash_config_test.sh
+    - name: copy yaf_ndpi shell scripts
+      copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
+      with_items:
+        - yaf_ndpi.sh
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version == "16"
     - name: copy curator file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
