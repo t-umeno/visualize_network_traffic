@@ -8,11 +8,14 @@
     - libpcap-dev
   become: yes
 - name: install ndpi apt packages
-  apt: pkg={{ item }} update_cache=yes
-  become: yes
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
     - libndpi-dev
     - libndpi-bin
+  become: yes
   when:
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_major_version == "16"
