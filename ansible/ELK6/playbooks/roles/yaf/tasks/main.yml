@@ -6,12 +6,28 @@
     packages:
     - libglib2.0-dev
     - libpcap-dev
+  become: yes
+- name: install ndpi apt packages
+  apt: pkg={{ item }} update_cache=yes
+  become: yes
+  with_items:
     - libndpi-dev
     - libndpi-bin
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_major_version == "16"
+- name: compile yaf ndpi
+  script: scripts/compile_yaf_ndpi.sh
   become: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_major_version == "16"
 - name: compile yaf
   script: scripts/compile_yaf.sh
   become: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_major_version == "18"
 - name: copy systemd startup script of yaf
   template: src=templates/yaf.service.j2 dest=/lib/systemd/system/yaf.service
   become: yes
