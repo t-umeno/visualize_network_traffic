@@ -6,13 +6,6 @@
     packages:
     - kibana
   become: yes
-- name: edit elasticsearch.url in /etc/kibana/kibana.yml
-  replace:
-    path: /etc/kibana/kibana.yml
-    regexp: '^#elasticsearch.hosts: \["http://localhost:9200"\]$'
-    replace: 'elasticsearch.hosts: ["http://{{ node_ip_address }}:9200"]'
-  become: yes
-  when: elasticsearch_cluster is defined
 - name: edit server.host in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml
@@ -23,3 +16,16 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
   become: yes
   notify: restart kibana
+  when: elasticsearch_cluster is not defined
+- name: edit elasticsearch.hosts in /etc/kibana/kibana.yml
+  blockinfile:
+    dest: /etc/kibana/kibana.yml
+    insertafter: EOF
+    block: |
+      server.host: {{ kibana_server_host }}
+      server.maxPayloadBytes: {{ kibana_server_maxPayloadBytes }}
+      elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
+      elasticsearch.hosts: ["http://{{ node01_ip_address }}:9200", "http://{{ node02_ip_address }}:9200", "http://{{ node03_ip_address }}:9200"]
+  become: yes
+  notify: restart kibana
+  when: elasticsearch_cluster is defined
