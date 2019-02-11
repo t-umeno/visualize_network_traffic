@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
   SHELL
   config.vm.provision "ansible_local" do |ansible|
     #ansible.playbook = "ELK6.yml"
-    ansible.playbook = "ELK6_grafana.yml"
+    ansible.playbook = "ELK6_grafana_aws_ec2.yml"
     ansible.inventory_path = "hosts"
     ansible.limit = 'all'
   end
