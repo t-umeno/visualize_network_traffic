@@ -1,0 +1,169 @@
+- name: install apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - build-essential
+    - libpcap-dev
+    - libpcre3-dev
+    - libdumbnet-dev
+    - bison
+    - flex
+    - zlib1g-dev
+    - liblzma-dev
+    - openssl
+    - libssl-dev
+    - libnghttp2-dev
+    - mysql-server
+    - libmysqlclient-dev
+    - mysql-client
+    - autoconf
+    - libtool
+    - libcrypt-ssleay-perl
+    - liblwp-useragent-determined-perl
+  become: yes
+- name: compile daq
+  script: scripts/compile_daq.sh
+  become: yes
+- name: compile snort
+  script: scripts/compile_snort.sh
+  become: yes
+- name: install snort rule
+  script: scripts/install_snort_rule.sh
+  become: yes
+- name: edit HOME_NET in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^ipvar HOME_NET any$'
+    replace: 'ipvar HOME_NET {{ snort_home_net }}'
+  become: yes
+- name: edit RULE_PATH in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^var RULE_PATH ../rules$'
+    replace: 'var RULE_PATH /etc/snort/rules'
+  become: yes
+- name: edit SO_RULE_PATH in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^var SO_RULE_PATH ../so_rules$'
+    replace: 'var SO_RULE_PATH /etc/snort/so_rules'
+  become: yes
+- name: edit PREPROC_RULE_PATH in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^var PREPROC_RULE_PATH /etc/snort/preproc_rules$'
+    replace: 'var PREPROC_RULE_PATH /etc/snort/preproc_rules'
+  become: yes
+- name: edit WHITE_LIST_PATH in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^var WHITE_LIST_PATH ../rules$'
+    replace: 'var WHITE_LIST_PATH /etc/snort/rules/iplists'
+  become: yes
+- name: edit BLACK_LIST_PATH in /etc/snort/snort.conf
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^var BLACK_LIST_PATH ../rules$'
+    replace: 'var BLACK_LIST_PATH /etc/snort/rules/iplists'
+  become: yes
+- name: un-comment include RULE_PATH/local.rules
+  replace:
+    path: /etc/snort/snort.conf
+    regexp: '^#include \$RULE_PATH/local.rules$'
+    replace: 'include $RULE_PATH/local.rules'
+  become: yes
+- name: remove snort file
+  script: scripts/compile_snort_after.sh
+  become: yes
+- name: install pulledpork
+  script: scripts/install_pulledpork.sh
+  become: yes
+- name: edit rule_url in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^rule_url=https://www.snort.org/reg-rules/\|snortrules-snapshot.tar.gz\|<oinkcode>$'
+    replace: 'rule_url=https://www.snort.org/reg-rules/|snortrules-snapshot.tar.gz|{{ pulledpork_oinkcode }}'
+  become: yes
+  when: pulledpork_oinkcode is defined
+- name: comment out rule_url in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^rule_url=https://www.snort.org/reg-rules/\|snortrules-snapshot.tar.gz\|<oinkcode>$'
+    replace: '#rule_url=https://www.snort.org/reg-rules/|snortrules-snapshot.tar.gz|<oinkcode>'
+  become: yes
+  when: pulledpork_oinkcode is not defined
+- name: un-comment emerging.rules.tar.gz in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^#rule_url=https://rules.emergingthreats.net/\|emerging.rules.tar.gz\|open-nogpl$'
+    replace: 'rule_url=https://rules.emergingthreats.net/|emerging.rules.tar.gz|open-nogpl'
+  become: yes
+- name: edit rule_path in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^rule_path=/usr/local/etc/snort/rules/snort.rules$'
+    replace: 'rule_path=/etc/snort/rules/snort.rules'
+  become: yes
+- name: edit local_rules in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^local_rules=/usr/local/etc/snort/rules/local.rules$'
+    replace: 'local_rules=/etc/snort/rules/local.rules'
+  become: yes
+- name: edit sid_msg in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^sid_msg=/usr/local/etc/snort/sid-msg.map$'
+    replace: 'sid_msg=/etc/snort/sid-msg.map'
+  become: yes
+- name: edit config_path in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^config_path=/usr/local/etc/snort/snort.conf$'
+    replace: 'config_path=/etc/snort/snort.conf'
+  become: yes
+- name: edit distro in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^distro=FreeBSD-8-1$'
+    replace: 'distro=Ubuntu-12-04'
+  become: yes
+- name: edit black_list in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^black_list=/usr/local/etc/snort/rules/iplists/default.blacklist$'
+    replace: 'black_list=/etc/snort/rules/iplists/black_list.rules'
+  become: yes
+- name: edit IPRVersion in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^IPRVersion=/usr/local/etc/snort/rules/iplists$'
+    replace: 'IPRVersion=/etc/snort/rules/iplists'
+  become: yes
+- name: copy pulledpork.sh
+  template: src=templates/pulledpork.sh.j2 dest=/usr/local/bin/pulledpork.sh mode=0755
+  become: yes
+- name: exec pulledpork
+  script: /usr/local/bin/pulledpork.sh
+  become: yes
+- name: add snort_rules in /etc/snort/snort.conf
+  blockinfile:
+    dest: /etc/snort/snort.conf
+    insertafter: EOF
+    block: |
+      include $RULE_PATH/snort.rules
+      output alert_fast: /var/log/snort/alert.log
+  become: yes
+- name: set crontab
+  blockinfile:
+    dest: /etc/crontab
+    insertafter: EOF
+    block: |
+      10 2    * * *   root   /usr/local/bin/pulledpork.sh
+  become: yes
+- name: copy systemd startup script
+  copy: src=files/snort.service  dest=/lib/systemd/system/snort.service
+  become: yes
+  notify: restart snort

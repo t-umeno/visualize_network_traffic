@@ -1,0 +1,8 @@
+[Unit]
+Description=Snort NIDS Daemon
+After=syslog.target network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/snort -q -u snort -g snort -c /etc/snort/snort.conf -i enp0s8 --pid-path /var/log/snort
+[Install]
+WantedBy=multi-user.target

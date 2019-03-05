@@ -1,0 +1,7 @@
+- name: restart snort
+  systemd:
+    name: snort.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
