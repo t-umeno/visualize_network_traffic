@@ -52,8 +52,11 @@
       with_items:
         - curator.yml
         - delete_indices_yaf.yml
-    - name: install curator cron job
+        - delete_indices_snort.yml
+    - name: install curator cron yaf job
       cron: name="curator" minute="2" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_yaf.yml"
+    - name: install curator cron snort job
+      cron: name="curator" minute="3" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_snort.yml"
     - name: capture interface up
       blockinfile:
         dest: /etc/network/interfaces.d/50-cloud-init.cfg
@@ -71,6 +74,7 @@
     - role: fixbuf
     - role: yaf
     - role: super_mediator
+    - role: snort
     - role: elasticsearch
     - role: logstash
     - role: kibana
