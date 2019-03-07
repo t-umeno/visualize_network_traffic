@@ -156,12 +156,8 @@
       include $RULE_PATH/snort.rules
       output alert_fast: /var/log/snort/alert.log
   become: yes
-- name: set crontab
-  blockinfile:
-    dest: /etc/crontab
-    insertafter: EOF
-    block: |
-      10 2    * * *   root   /usr/local/bin/pulledpork.sh
+- name: install cron pulledpork job
+  cron: name="pulledpork" minute="10" hour="2" job="/usr/local/bin/pulledpork.sh"
   become: yes
 - name: copy systemd startup script
   copy: src=files/snort.service  dest=/lib/systemd/system/snort.service
