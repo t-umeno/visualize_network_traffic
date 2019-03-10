@@ -1,5 +1,5 @@
 #!/bin/bash
-/usr/local/bin/pulledpork.pl -c /etc/snort/pulledpork.conf -l -vv -W
+/usr/local/bin/pulledpork.pl -c /etc/snort/pulledpork.conf -l -vv -W -S${snort_version}
 if [ -e /var/log/snort/snort/snort_enp0s8.pid ] ; then
     kill -HUP `cat /var/log/snort/snort_enp0s8.pid`
 fi
