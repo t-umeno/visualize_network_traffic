@@ -18,19 +18,19 @@
   become: yes
   when:
     - ansible_distribution == "Ubuntu"
-    - ansible_distribution_major_version == "16"
+    - ansible_distribution_major_version == "18"
 - name: compile yaf ndpi
   script: scripts/compile_yaf_ndpi.sh
   become: yes
   when:
     - ansible_distribution == "Ubuntu"
-    - ansible_distribution_major_version == "16"
+    - ansible_distribution_major_version == "18"
 - name: compile yaf
   script: scripts/compile_yaf.sh
   become: yes
   when:
     - ansible_distribution == "Ubuntu"
-    - ansible_distribution_major_version == "18"
+    - ansible_distribution_major_version == "16"
 - name: copy systemd startup script of yaf
   template: src=templates/yaf.service.j2 dest=/lib/systemd/system/yaf.service
   become: yes
