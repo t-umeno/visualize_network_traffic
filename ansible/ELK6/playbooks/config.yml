@@ -9,5 +9,3 @@ super_mediator_systemd: true
 yaf_systemd: true
 
 capture_interface: enp0s8
-
-snort_home_net: 10.0.0.0/24
