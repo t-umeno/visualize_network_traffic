@@ -2,7 +2,8 @@
   hosts: testserver
   vars_files:
     - version.yml
-    - config.yml
+    - version_snort.yml
+    - config_snort.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
