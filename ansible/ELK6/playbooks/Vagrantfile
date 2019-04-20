@@ -6,6 +6,5 @@ load "./Vagrantfile.local" if File.exist?("./Vagrantfile.local")
 
 load "./Vagrantfile.elasticsearch_1node" if $visualize_network_traffic_config_type == "elasticsearch_1node"
 load "./Vagrantfile.elasticsearch_3nodes" if $visualize_network_traffic_config_type == "elasticsearch_3nodes"
-load "./Vagrantfile.bionic_1node" if $visualize_network_traffic_config_type == "bionic_1node"
 load "./Vagrantfile.aws_ec2_1node" if $visualize_network_traffic_config_type == "aws_ec2_1node"
 load "./Vagrantfile.elasticsearch_snort_1node" if $visualize_network_traffic_config_type == "elasticsearch_snort_1node"
