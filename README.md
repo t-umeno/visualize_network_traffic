@@ -1,6 +1,6 @@
 # visualize_network_traffic
 ## ELK6
-* install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/xenial64
+* install ELK6 with YAF, super_mediator, curl and wireshark on ubuntu/bionic64
 * JSON files and Elasticsearch indicies created before 30 days are automatically deleted.
 ### requirements
 * VirtualBox
