@@ -39,20 +39,12 @@ Please set http_proxy and https_proxy if you need.
 Please use firefox or chrome.
 - open http://127.0.0.1:5601/
 - select "Management"
-- select "Index Patterns"
-- select "Create Index Pattern"
-- input "yaf*" in index pattern
-- select "@timestamp" in Time Filter field name
-- push "Create index pattern"
-- select "Management"
 - select "Saved Objects"
 - push "Import"
-- File Upload: kibana6/export.json
-- push "No, prompt for each object"
-- select "yaf*" as "New index pattern"
-- push "Confirm all changes"
+- File Upload: kibana6/yaf_ndpi.json (check "Automatically overwrite all saved objects?")
+- push "Done"
 - select "Dashboard"
-- select "main", "bar", "bar2", "circle" or "circle2"
+- select "main", "bar", "bar2", "bar2_nDPI", "circle" or "circle2"
 - enjoy!
 
 ### usage (grafana)

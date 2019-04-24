@@ -2,7 +2,7 @@
 ネットワークトラフィックのフロー情報を可視化します。
 
 ## ELK6
-Vagrantでネットワークトラフィックのフロー情報をKibanaやGrafanaで表示するVMを作成します。
+Vagrantでネットワークトラフィックのフロー情報をKibanaやGrafanaで表示する Ubuntu18.04 のVMを作成します。
 VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * NICから受信したパケットをYAFでフロー情報を抽出しIPfix形式に変換します。
 * super_mediatorでIPfix形式をJSONファイルに変換します。
@@ -11,6 +11,7 @@ VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
 * curlやwiresharkなどパケットの解析に用いるソフトウェアもインストールします。
 * 作成されて30日以上経過した古いJSONファイルやElasticsearchのインデックスは自動的に削除されます。
 * systemdからsuper_mediatorとyafを起動する様に変更しました。super_mediator.shやyaf.sh をshell から実行する必要はありません。
+* yaf_ndpi.jsonを使用する場合、index pattern作成は不要です。
 ### 事前にインストールするソフトウェア
 * VirtualBox
 * Vagrant
@@ -54,21 +55,13 @@ vagrant ssh を実行し、~/yaf/json にJSONファイルが存在すること�
     
 ### 使用方法 (kibana)
 - http://127.0.0.1:5601/ をfirefox, chromeなどのブラウザで開きます。
-- "Management" を選択します
-- "Index Patterns" を選択します。
-- "Create Index Pattern" を選択します。
-- index pattern に "yaf*" を入力します。
-- Time Filter field name から "@timestamp" を選択します。
-- "Create index pattern" を押します。
 - "Management" を選択します。
 - "Saved Objects" を選択します。
 - "Import" を押します。
-- kibana6/export.json をアップロードします。
-- "No, prompt for each object" を押します。
-- "yaf*" as "New index pattern" を選択します。
-- "Confirm all changes" を押します。
+- "Automatically overwrite all saved objects?"のチェックした状態で kibana6/yaf_ndpi.json をアップロードします。
+- "Done" を押します。
 - "Dashboard" を選択します。
-- "main", "bar", "bar2", "circle" もしくは "circle2" を選択します。
+- "main", "bar", "bar2", "bar2_nDPI", "circle" もしくは "circle2" を選択します。
 - ダッシュボードにネットワークのトラフィック情報が表示されます。
 
 ### 使用方法 (grafana)
