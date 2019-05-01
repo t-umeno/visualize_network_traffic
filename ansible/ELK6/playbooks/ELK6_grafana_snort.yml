@@ -3,6 +3,7 @@
   vars_files:
     - version.yml
     - version_snort.yml
+    - config.yml
     - config_snort.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
