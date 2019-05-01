@@ -9,6 +9,7 @@
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
     fixbuf_version: "{{ fixbuf_version }}"
+    elasticstack_version: "{{ elasticstack_version }}"
     snort_version: "{{ snort_version }}"
     daq_version: "{{ daq_version }}"
   connection: local
