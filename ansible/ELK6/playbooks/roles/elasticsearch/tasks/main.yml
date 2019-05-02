@@ -60,7 +60,7 @@
 - name: edit cluster.initial_master_nodes in /etc/elasticsearch/elasticsearch.yml
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
-    regexp: '^cluster.initial_master_nodes: \["node-1", "node-2"\]$'
+    regexp: '^#cluster.initial_master_nodes: \["node-1", "node-2"\]$'
     replace: 'cluster.initial_master_nodes: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}"]'
   become: yes
   when: elasticsearch_cluster is defined
