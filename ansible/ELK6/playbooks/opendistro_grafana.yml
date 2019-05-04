@@ -68,13 +68,13 @@
         - ansible_distribution_major_version == "16"
   roles:
     - role: docker
+    - role: docker-compose
     - role: manual-iface
     - role: libp0f
     - role: fixbuf
     - role: yaf
     - role: super_mediator
-    - role: opendistro_elasticsearch
+    - role: opendistro
     - role: logstash
-    - role: opendistro_kibana
     - role: elasticsearch-curator
     - role: grafana
