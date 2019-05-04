@@ -1,0 +1,6 @@
+- name: download docker-compose
+  script: scripts/download_docker-compose.sh
+  become: yes
+- name: chmod +x /usr/local/bin/docker-compose
+  command: chmod +x /usr/local/bin/docker-compose
+  become: yes
