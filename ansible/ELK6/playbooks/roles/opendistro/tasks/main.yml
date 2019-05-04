@@ -1,0 +1,22 @@
+- name: pull opendistro elasticsearch docker image
+  command: docker pull amazon/opendistro-for-elasticsearch:{{ opendistro_version }}
+  become: yes
+- name: pull opendistro kibana docker image
+  command: docker pull amazon/opendistro-for-elasticsearch-kibana:{{ opendistro_version }}
+  become: yes
+- name: add vm.max_map_count in /etc/sysctl.conf
+  blockinfile:
+    dest: /etc/sysctl.conf
+    insertafter: EOF
+    block: |
+      vm.max_map_count=262144
+  become: yes
+- name: exec sysctl -p
+  command: sysctl -p
+  become: yes
+- name: copy docker-compose.yml
+  copy: src=files/docker-compose_elasticsearch_1node.yml dest=~/docker-compose.yml
+  become: yes
+- name: exec docker-compose up
+  command: /usr/local/bin/docker-compose up
+  become: yes
