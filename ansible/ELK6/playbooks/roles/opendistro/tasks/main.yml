@@ -15,7 +15,6 @@
   command: sysctl -p
   become: yes
 - name: copy docker-compose.yml
-  copy: src=files/docker-compose_elasticsearch_1node.yml dest=~/docker-compose.yml
   template: src=templates/docker-compose_elasticsearch_1node.yml.j2 dest=~/docker-compose.yml
   become: yes
 - name: copy logstash config cluster file
