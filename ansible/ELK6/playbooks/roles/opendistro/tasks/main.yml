@@ -17,9 +17,6 @@
 - name: copy docker-compose.yml
   template: src=templates/docker-compose_elasticsearch_1node.yml.j2 dest=~/docker-compose.yml
   become: yes
-- name: copy logstash config cluster file
-  template: src=templates/logstash_ipfix.conf.cluster.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
-  become: yes
 - name: exec docker-compose up
   command: /usr/local/bin/docker-compose up
   become: yes
