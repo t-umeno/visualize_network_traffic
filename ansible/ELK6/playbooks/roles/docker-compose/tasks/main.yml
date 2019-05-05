@@ -2,5 +2,5 @@
   script: scripts/download_docker-compose.sh
   become: yes
 - name: chmod +x /usr/local/bin/docker-compose
-  command: chmod +x /usr/local/bin/docker-compose
+  file: path=/usr/local/bin/docker-compose owner=root group=root mode=0755
   become: yes
