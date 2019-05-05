@@ -14,9 +14,19 @@
 - name: exec sysctl -p
   command: sysctl -p
   become: yes
+- name: mkdir /usr/local/etc/opendistro
+- name: mkdir direcrory
+  file: path=/usr/local/etc/opendistro
+  state=directory
+  owner=root
+  group=root
+  mode=0755
+  become: yes
 - name: copy docker-compose.yml
-  template: src=templates/docker-compose_elasticsearch_1node.yml.j2 dest={{ home_dir }}/docker-compose.yml
+  template: src=templates/docker-compose_elasticsearch_1node.yml.j2 dest=/usr/local/etc/opendistro/docker-compose.yml
   become: yes
-- name: exec docker-compose up
-  command: /usr/local/bin/docker-compose -f {{ home_dir }}/docker-compose.yml up
+- name: copy systemd startup script
+  copy: src=files/opendistro.service dest=/lib/systemd/system/opendistro.service
   become: yes
+  notify: restart opendistro
+
