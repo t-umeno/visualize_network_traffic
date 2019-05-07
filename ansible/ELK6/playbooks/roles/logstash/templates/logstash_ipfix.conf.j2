@@ -83,8 +83,15 @@ filter {
 output {
     if ([type] == "ipfix") {
         elasticsearch {
+        {% if opendistro_version is defined %}
+            hosts => ["https://localhost:9200"]
+            ssl_certificate_verification => false
+            user => "logstash"
+            password => "logstash"
+	{% else %}
             hosts => ["localhost:9200"]
             index => "%{index}"
+	{% endif %}
         }
     }
 }
