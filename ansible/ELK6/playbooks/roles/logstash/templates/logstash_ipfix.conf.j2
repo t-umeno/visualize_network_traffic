@@ -85,6 +85,7 @@ output {
         elasticsearch {
         {% if opendistro_version is defined %}
             hosts => ["https://localhost:9200"]
+            index => "%{index}"
             ssl_certificate_verification => false
             user => "logstash"
             password => "logstash"
