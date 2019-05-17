@@ -1,0 +1,13 @@
+[Unit]
+Description=elastiflow
+
+[Service]
+ExecStart=/usr/local/bin/docker-compose -f /usr/local/etc/elastiflow/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f /usr/local/etc/elastiflow/docker-compose.yml down
+ExecReload=/usr/local/bin/docker-compose -f /usr/local/etc/elastiflow/docker-compose.yml restart
+Restart=always
+
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
