@@ -1,5 +1,5 @@
 - name: mkdir /var/lib/elastiflow_es
-  file: path=/var/lib/elastiflow_es state=directory owner=root group=root mode=0755
+  file: path=/var/lib/elastiflow_es state=directory owner=vagrant group=vagrant mode=0755
   become: yes
 - name: mkdir /usr/local/etc/elastiflow
   file: path=/usr/local/etc/elastiflow state=directory owner=root group=root mode=0755
