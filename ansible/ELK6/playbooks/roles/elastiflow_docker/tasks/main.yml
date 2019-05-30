@@ -1,0 +1,16 @@
+- name: mkdir /var/lib/elastiflow_es
+  file: path=/var/lib/elastiflow_es state=directory owner=vagrant group=vagrant mode=0755
+  become: yes
+- name: mkdir /usr/local/etc/elastiflow
+  file: path=/usr/local/etc/elastiflow state=directory owner=root group=root mode=0755
+  become: yes
+- name: download docker-compose.yml
+  get_url: url=https://raw.githubusercontent.com/robcowart/elastiflow/master/docker-compose.yml dest=~/docker-compose.yml force=True
+- name: copy docker-compose.yml
+  copy: src=~/docker-compose.yml dest=/usr/local/etc/elastiflow/docker-compose.yml
+  become: yes
+- name: copy systemd startup script
+  copy: src=files/elastiflow.service dest=/lib/systemd/system/elastiflow.service
+  become: yes
+  notify: restart elastiflow
+

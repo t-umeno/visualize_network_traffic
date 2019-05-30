@@ -1,0 +1,7 @@
+- name: restart elastiflow
+  systemd:
+    name: elastiflow.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
