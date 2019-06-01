@@ -8,7 +8,7 @@ Type=simple
 {% if ( ( elastiflow_systemd is defined ) and ( elastiflow_systemd == true ) ) %}
 ExecStart=/usr/local/bin/yaf --verbose --in {{ capture_interface }} --out 127.0.0.1 --ipfix-port 4739 --ipfix tcp --max-payload 4096 --applabel --ndpi --live pcap
 {% else %}
-ExecStart=/usr/local/bin/yaf --force-read-all --mac --silk --verbose --in {{ capture_interface }} --out 127.0.0.1 --ipfix-port 4739 --ipfix tcp --noerror --plugin-name=/usr/local/lib/yaf/dpacketplugin.la --max-payload 4096 --applabel --p0fprint --ndpi --live pcap
+ExecStart=/usr/local/bin/yaf --force-read-all --mac --silk --verbose --in {{ capture_interface }} --out 127.0.0.1 --ipfix-port 4739 --ipfix tcp --noerror --plugin-name=/usr/local/lib/yaf/dpacketplugin.la,/usr/local/lib/yaf/dhcp_fp_plugin.la --max-payload 4096 --applabel --p0fprint --ndpi --live pcap
 {% endif %}
 Restart=on-failure
 KillSignal=INT
