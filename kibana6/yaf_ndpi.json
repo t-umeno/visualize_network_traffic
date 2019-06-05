@@ -2029,26 +2029,6 @@
     }
   },
   {
-    "_id": "63356440-8606-11e9-b7df-ff85621d3f3d",
-    "_type": "visualization",
-    "_source": {
-      "title": "flows.dnsRecord.A",
-      "visState": "{\"title\":\"flows.dnsRecord.A\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"showMetricsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"flows.dnsRecord.A.keyword\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\"}}]}",
-      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":0,\"direction\":\"asc\"}}}}",
-      "description": "",
-      "version": 1,
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"c06f86d0-5eca-11e9-9451-a79392f87ec3\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
-      }
-    },
-    "_meta": {
-      "savedObjectVersion": 2
-    },
-    "_migrationVersion": {
-      "visualization": "6.7.2"
-    }
-  },
-  {
     "_id": "7540d660-8606-11e9-b7df-ff85621d3f3d",
     "_type": "visualization",
     "_source": {
@@ -2434,6 +2414,45 @@
     "_source": {
       "title": " flows.httpVia",
       "visState": "{\"title\":\" flows.httpVia\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"sort\":{\"columnIndex\":1,\"direction\":\"desc\"},\"showTotal\":false,\"totalFunc\":\"sum\",\"showMetricsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"flows.httpVia.keyword\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\"}}]}",
+      "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":1,\"direction\":\"desc\"}}}}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"c06f86d0-5eca-11e9-9451-a79392f87ec3\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    },
+    "_migrationVersion": {
+      "visualization": "6.7.2"
+    }
+  },
+  {
+    "_id": "c4670a30-8763-11e9-b5c5-1175eded5bfa",
+    "_type": "dashboard",
+    "_source": {
+      "title": "bar3",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"gridData\":{\"x\":0,\"y\":39,\"w\":24,\"h\":12,\"i\":\"5\"},\"id\":\"113e4f00-05d1-11e8-aa9e-738ecbf7813a\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":0,\"w\":24,\"h\":12,\"i\":\"9\"},\"id\":\"a1f95280-1592-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"9\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":24,\"w\":24,\"h\":15,\"i\":\"10\"},\"id\":\"b348e910-13ad-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"10\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":12,\"w\":24,\"h\":12,\"i\":\"11\"},\"id\":\"9f33b4c0-1590-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"11\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":12,\"w\":24,\"h\":12,\"i\":\"12\"},\"id\":\"4a8bc590-1593-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"12\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":87,\"w\":24,\"h\":12,\"i\":\"13\"},\"id\":\"e766d390-11a2-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"13\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":114,\"w\":24,\"h\":12,\"i\":\"14\"},\"id\":\"0a1463d0-11a3-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"14\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":99,\"w\":24,\"h\":15,\"i\":\"15\"},\"id\":\"65433fa0-1280-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"15\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":114,\"w\":24,\"h\":12,\"i\":\"16\"},\"id\":\"47879750-11a3-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"16\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":126,\"w\":24,\"h\":15,\"i\":\"21\"},\"id\":\"2a948cc0-11a3-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"21\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":39,\"w\":24,\"h\":12,\"i\":\"24\"},\"id\":\"e659cdb0-069c-11e8-9f71-f3c2266fe6ea\",\"panelIndex\":\"24\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":51,\"w\":24,\"h\":12,\"i\":\"25\"},\"id\":\"2d6daca0-069b-11e8-9f71-f3c2266fe6ea\",\"panelIndex\":\"25\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":51,\"w\":24,\"h\":12,\"i\":\"26\"},\"id\":\"a8b8fa80-069c-11e8-9f71-f3c2266fe6ea\",\"panelIndex\":\"26\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":63,\"w\":24,\"h\":12,\"i\":\"27\"},\"id\":\"cbe71e30-140a-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"27\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":63,\"w\":24,\"h\":12,\"i\":\"28\"},\"id\":\"6c1f2d00-1403-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"28\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":75,\"w\":24,\"h\":12,\"i\":\"29\"},\"id\":\"dc752b80-60df-11e8-84da-adfd11e9bd1e\",\"panelIndex\":\"29\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":75,\"w\":24,\"h\":12,\"i\":\"30\"},\"id\":\"4c120f20-608c-11e8-acb7-9b704641f5a1\",\"panelIndex\":\"30\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":24,\"y\":87,\"w\":24,\"h\":12,\"i\":\"31\"},\"id\":\"68370740-140c-11e8-9cc6-178aaba2d013\",\"panelIndex\":\"31\",\"type\":\"visualization\",\"version\":\"6.7.1\"},{\"gridData\":{\"x\":0,\"y\":126,\"w\":24,\"h\":15,\"i\":\"32\"},\"version\":\"6.7.1\",\"panelIndex\":\"32\",\"type\":\"visualization\",\"id\":\"101dab40-6118-11e9-9718-19a8b9264bc5\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":141,\"w\":24,\"h\":15,\"i\":\"33\"},\"version\":\"6.7.1\",\"panelIndex\":\"33\",\"type\":\"visualization\",\"id\":\"2d689f00-6106-11e9-9451-a79392f87ec3\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":0,\"y\":141,\"w\":24,\"h\":15,\"i\":\"34\"},\"version\":\"6.7.1\",\"panelIndex\":\"34\",\"type\":\"visualization\",\"id\":\"2060eb10-6119-11e9-9718-19a8b9264bc5\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":0,\"w\":24,\"h\":12,\"i\":\"35\"},\"version\":\"6.8.0\",\"panelIndex\":\"35\",\"type\":\"visualization\",\"id\":\"d3318570-60e7-11e8-84da-adfd11e9bd1e\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":24,\"w\":24,\"h\":15,\"i\":\"36\"},\"version\":\"6.8.0\",\"panelIndex\":\"36\",\"type\":\"visualization\",\"id\":\"63356440-8606-11e9-b7df-ff85621d3f3d\",\"embeddableConfig\":{}},{\"gridData\":{\"x\":24,\"y\":99,\"w\":24,\"h\":15,\"i\":\"37\"},\"version\":\"6.8.0\",\"panelIndex\":\"37\",\"type\":\"visualization\",\"id\":\"9986d810-84e1-11e9-8ad2-1355699056a3\",\"embeddableConfig\":{}}]",
+      "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query\":\"*\",\"language\":\"lucene\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+      }
+    },
+    "_meta": {
+      "savedObjectVersion": 2
+    }
+  },
+  {
+    "_id": "63356440-8606-11e9-b7df-ff85621d3f3d",
+    "_type": "visualization",
+    "_source": {
+      "title": "flows.dnsRecord.A",
+      "visState": "{\"title\":\"flows.dnsRecord.A\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\",\"showMetricsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"flows.dnsRecord.A.keyword\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"otherBucket\":true,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\"}}]}",
       "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":1,\"direction\":\"desc\"}}}}",
       "description": "",
       "version": 1,
