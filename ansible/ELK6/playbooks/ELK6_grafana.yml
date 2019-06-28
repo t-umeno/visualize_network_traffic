@@ -27,6 +27,14 @@
         - jq
         - wireshark
       become: yes
+    - name: edit server in /etc/ntp.conf
+    blockinfile:
+      dest: /etc/ntp.conf
+      insertafter: EOF
+      block: |
+        server {{ ntp_server }}
+      become: yes
+      when: ntp_server is defined
     - name: mkdir
       file: path={{ item }}  state=directory mode=0755
       with_items:
