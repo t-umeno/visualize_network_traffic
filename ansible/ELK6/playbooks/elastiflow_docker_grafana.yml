@@ -20,7 +20,6 @@
       vars:
         packages:
         - build-essential
-        - ntp
         - git
         - curl
         - jq
@@ -48,6 +47,7 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "16"
   roles:
+    - role: ntp
     - role: docker
     - role: docker-compose
     - role: manual-iface
