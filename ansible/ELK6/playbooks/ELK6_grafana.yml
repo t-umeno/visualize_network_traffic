@@ -21,20 +21,11 @@
       vars:
         packages:
         - build-essential
-        - ntp
         - git
         - curl
         - jq
         - wireshark
       become: yes
-    - name: edit server in /etc/ntp.conf
-      blockinfile:
-        dest: /etc/ntp.conf
-        insertafter: EOF
-        block: |
-          server {{ ntp_server }}
-      become: yes
-      when: ntp_server is defined
     - name: mkdir
       file: path={{ item }}  state=directory mode=0755
       with_items:
@@ -75,6 +66,7 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "16"
   roles:
+    - role: ntp
     - role: manual-iface
     - role: libp0f
     - role: fixbuf
