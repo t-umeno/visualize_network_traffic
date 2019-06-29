@@ -7,6 +7,7 @@
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
     fixbuf_version: "{{ fixbuf_version }}"
+    elasticstack_version: "{{ elasticstack_version }}"
   connection: local
   pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"
@@ -14,41 +15,16 @@
       script: scripts/set_timezone.sh {{ timezone }}
       become: yes
     - name: install apt packages
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
-        - ntp
+      apt:
+        name: "{{ packages }}"
+        update_cache: yes
+      vars:
+        packages:
+        - build-essential
         - git
         - curl
         - jq
         - wireshark
-        - libglib2.0-dev
-        - libssl-dev
-        - openssl
-        - libpcap-dev
-        - mysql-server
-        - mysql-client
-        - libmysqlclient-dev
-    - name: install ndpi apt packages
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
-        - libndpi-dev
-        - libndpi-bin
-      when:
-        - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version == "16"
-    - name: compile libp0f.tgz
-      script: scripts/compile_libp0f.sh
-      become: yes
-    - name: compile fixbuf
-      script: scripts/compile_fixbuf.sh
-      become: yes
-    - name: compile yaf
-      script: scripts/compile_yaf.sh
-      become: yes
-    - name: compile super_mediator
-      script: scripts/compile_super_mediator.sh
       become: yes
     - name: mkdir
       file: path={{ item }}  state=directory mode=0755
@@ -70,18 +46,32 @@
         - yaf_ndpi.sh
       when:
         - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version == "16"
+        - ansible_distribution_major_version == "18"
     - name: copy curator file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
         - curator.yml
         - delete_indices_yaf.yml
-    - name: set crontab
-      script: scripts/cron_curator.sh
-    - name: copy super_mediator config file
-      template: src=templates/super_mediator.conf.j2 dest=~/etc/super_mediator.conf
+    - name: install curator cron job
+      cron: name="curator" minute="5" hour="2" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_yaf.yml"
+    - name: capture interface up
+      blockinfile:
+        dest: /etc/network/interfaces.d/50-cloud-init.cfg
+        insertafter: EOF
+        block: |
+          auto {{ capture_interface }}
+          iface {{ capture_interface }} inet manual
+      become: yes
+      when:
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_major_version == "16"
   roles:
+    - role: ntp
     - role: manual-iface
+    - role: libp0f
+    - role: fixbuf
+    - role: yaf
+    - role: super_mediator
     - role: elasticsearch
     - role: logstash
     - role: kibana
