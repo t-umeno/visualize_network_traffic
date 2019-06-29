@@ -1,0 +1,17 @@
+- name: install ntp apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - ntp
+  become: yes
+- name: edit server in /etc/ntp.conf
+  blockinfile:
+    dest: /etc/ntp.conf
+    insertafter: EOF
+    block: |
+      server {{ ntp_server }}
+  become: yes
+  notify: restart ntp
+  when: ntp_server is defined
