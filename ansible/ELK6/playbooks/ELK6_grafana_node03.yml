@@ -22,7 +22,6 @@
       vars:
         packages:
         - build-essential
-        - ntp
         - git
         - curl
         - jq
