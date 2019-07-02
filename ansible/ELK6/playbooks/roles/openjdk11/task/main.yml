@@ -1,0 +1,11 @@
+- name: set up openjdk repository
+  script: scripts/add_apt-repository.sh
+  become: yes
+- name: install openjdk-11-jdk apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - openjdk-11-jdk
+  become: yes
