@@ -69,6 +69,13 @@
       when:
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "16"
+    - name: automatic generation of logstash_password
+      shell: cat /dev/urandom | tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo
+      register: result
+    - name: set value
+      set_fact:
+        logstash_password: "{{ result.stdout_lines.0 }}"
+      when: logstash_password is not defined
   roles:
     - role: ntp
     - role: docker
