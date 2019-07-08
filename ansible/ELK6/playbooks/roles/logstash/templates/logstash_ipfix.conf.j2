@@ -87,8 +87,8 @@ output {
             hosts => ["https://localhost:9200"]
             index => "%{index}"
             ssl_certificate_verification => false
-            user => "logstash"
-            password => "logstash"
+            user => "{{ logstash_user }}"
+            password => "{{ logstash_password }}"
 	{% else %}
             hosts => ["localhost:9200"]
             index => "%{index}"

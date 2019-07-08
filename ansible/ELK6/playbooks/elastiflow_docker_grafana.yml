@@ -7,6 +7,7 @@
   environment:
     yaf_version: "{{ yaf_version }}"
     fixbuf_version: "{{ fixbuf_version }}"
+    docker_compose_version: "{{ docker_compose_version }}"
   connection: local
   pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"

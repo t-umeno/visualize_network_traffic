@@ -4,12 +4,14 @@
     - version.yml
     - version_opendistro.yml
     - config.yml
+    - config_opendistro.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
     fixbuf_version: "{{ fixbuf_version }}"
     elasticstack_version: "{{ elasticstack_version }}"
     opendistro_version: "{{ opendistro_version }}"
+    docker_compose_version: "{{ docker_compose_version }}"
   connection: local
   pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"
@@ -67,6 +69,13 @@
       when:
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "16"
+    - name: automatic generation of logstash_password
+      shell: cat /dev/urandom | tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo
+      register: result
+    - name: set value
+      set_fact:
+        logstash_password: "{{ result.stdout_lines.0 }}"
+      when: logstash_password is not defined
   roles:
     - role: ntp
     - role: docker

@@ -1,1 +1,2 @@
 opendistro_version: 1.0.0
+docker_compose_version: 1.24.1
