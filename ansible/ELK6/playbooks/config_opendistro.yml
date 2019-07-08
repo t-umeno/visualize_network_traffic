@@ -1,2 +1,2 @@
 logstash_user: yaf
-logstash_password: yaf1234
+#logstash_password: yaf1234 # Automatic generation
