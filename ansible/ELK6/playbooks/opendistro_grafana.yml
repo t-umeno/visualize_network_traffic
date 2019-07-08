@@ -4,6 +4,7 @@
     - version.yml
     - version_opendistro.yml
     - config.yml
+    - config_opendistro.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"

@@ -28,7 +28,7 @@
   delay: 30
   listen: restart opendistro
 - name: add yaf user
-  script: scripts/user.yaf.sh
+  script: scripts/user.yaf.sh {{ logstash_user }} {{ logstash_password }}
   register: result
   until: result.stdout.find('CREATED') != -1 or result.stdout.find('OK') != -1
   retries: 10
