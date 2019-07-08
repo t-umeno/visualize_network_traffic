@@ -33,4 +33,5 @@
   until: result.stdout.find('CREATED') != -1 or result.stdout.find('OK') != -1
   retries: 10
   delay: 30
+  become: yes
   listen: restart opendistro
