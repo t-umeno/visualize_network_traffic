@@ -1,11 +1,3 @@
-- name: install openjdk-8-jdk apt packages
-  apt:
-    name: "{{ packages }}"
-    update_cache: yes
-  vars:
-    packages:
-    - openjdk-8-jdk
-  become: yes
 - name: install logstash apt packages
   apt:
     name: "{{ packages }}"

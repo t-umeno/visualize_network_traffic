@@ -1,0 +1,26 @@
+- name: set value openjdk
+  set_fact:
+    openjdk_version: 8
+  when: openjdk_version is not defined
+- name: set up openjdk repository
+  script: scripts/add_apt-repository.sh
+  become: yes
+  when: openjdk_version == 11
+- name: install openjdk-11-jdk apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - openjdk-11-jdk
+  become: yes
+  when: openjdk_version == 11
+- name: install openjdk-8-jdk apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - openjdk-8-jdk
+  become: yes
+  when: openjdk_version == 8

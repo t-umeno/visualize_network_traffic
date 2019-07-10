@@ -1,2 +1,3 @@
 dependencies:
   - { role: prepare_ELK6 }
+  - { role: openjdk }
