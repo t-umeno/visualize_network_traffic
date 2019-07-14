@@ -1,0 +1,8 @@
+- name: add GPG-KEY-opendistro
+  script: scripts/add_GPG-KEY-opendistro.sh
+  become: yes
+- name: create 
+  copy: src=files/opendistroforelasticsearch.list dest=/etc/apt/sources.list.d/opendistroforelasticsearch.list
+  become: yes
+
+
