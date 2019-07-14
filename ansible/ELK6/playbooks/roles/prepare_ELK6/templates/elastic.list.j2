@@ -1,2 +1,6 @@
+{% if opendistro_version is defined %}
+deb https://artifacts.elastic.co/packages/oss-{{ elasticstack_version }}/apt stable main
+{% else %}
 deb https://artifacts.elastic.co/packages/{{ elasticstack_version }}/apt stable main
+{% endif %}
 
