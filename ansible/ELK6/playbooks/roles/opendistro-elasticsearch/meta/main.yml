@@ -1,0 +1,4 @@
+dependencies:
+  - { role: prepare_ELK6 }
+  - { role: prepare_opendistro }
+  - { role: openjdk }

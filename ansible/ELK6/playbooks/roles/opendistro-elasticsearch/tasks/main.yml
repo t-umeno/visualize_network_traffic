@@ -1,0 +1,17 @@
+- name: install elasticsearch apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - elasticsearch-oss=7.0.1
+  become: yes
+- name: install Open Distro for Elasticsearch
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - opendistroforelasticsearch
+  become: yes
+  notify: restart opendistro-elasticsearch
