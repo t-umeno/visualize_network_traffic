@@ -6,6 +6,16 @@
     packages:
     - logstash
   become: yes
+  when: opendistro_version is not defined
+- name: install logstash-oss apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - logstash-oss
+  become: yes
+  when: opendistro_version is defined
 - name: copy logstash snort config file
   copy: src=files/logstash_snort.conf dest=/etc/logstash/conf.d/logstash_snort.conf
   become: yes
