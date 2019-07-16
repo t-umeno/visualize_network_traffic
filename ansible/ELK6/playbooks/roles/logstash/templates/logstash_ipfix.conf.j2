@@ -89,6 +89,7 @@ output {
             ssl_certificate_verification => false
             user => "{{ logstash_user }}"
             password => "{{ logstash_password }}"
+            ilm_enabled => false
 	{% else %}
             hosts => ["localhost:9200"]
             index => "%{index}"
