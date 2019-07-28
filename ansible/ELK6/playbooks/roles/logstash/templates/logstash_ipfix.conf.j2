@@ -2,7 +2,7 @@ input {
     file {
         type => "ipfix"
         path => ["{{ home_dir }}/yaf/json/yaf.*.json" ]
-	codec => json
+        start_position => "beginning"
     }
 }
 
@@ -10,6 +10,9 @@ filter {
     if ([type] == "ipfix") {
         grok {
             match => ["path", "(?<index>yaf.\d{8,14})\.json$" ]
+        }
+        json {
+            source => "message"
         }
         date {
             locale => "en"
@@ -78,6 +81,16 @@ filter {
             }
 	}
     }
+    fingerprint {
+        source => "message"
+        target => "[@metadata][fingerprint]"
+        method => "SHA256"
+    }
+    filter {
+        mutate {
+            remove_field => "message"
+        }
+    }
 }
 
 output {
@@ -85,15 +98,15 @@ output {
         elasticsearch {
         {% if opendistro_version is defined %}
             hosts => ["https://localhost:9200"]
-            index => "%{index}"
             ssl_certificate_verification => false
             user => "{{ logstash_user }}"
             password => "{{ logstash_password }}"
             ilm_enabled => false
 	{% else %}
             hosts => ["localhost:9200"]
-            index => "%{index}"
 	{% endif %}
+            index => "%{index}"
+            document_id => "%{[@metadata][fingerprint]}"
         }
     }
 }
