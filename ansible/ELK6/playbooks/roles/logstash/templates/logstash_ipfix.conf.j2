@@ -80,13 +80,11 @@ filter {
 	        }
             }
 	}
-    }
-    fingerprint {
-        source => "message"
-        target => "[@metadata][fingerprint]"
-        method => "SHA256"
-    }
-    filter {
+        fingerprint {
+            source => "message"
+            target => "[@metadata][fingerprint]"
+            method => "SHA256"
+        }
         mutate {
             remove_field => "message"
         }
