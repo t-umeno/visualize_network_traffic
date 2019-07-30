@@ -127,8 +127,8 @@
 - name: edit distro in /etc/snort/pulledpork.conf
   replace:
     path: /etc/snort/pulledpork.conf
-    regexp: '^distro=FreeBSD-8-1$'
-    replace: 'distro=Ubuntu-12-04'
+    regexp: '^distro=FreeBSD-12$'
+    replace: 'distro=Ubuntu-18-4'
   become: yes
 - name: edit black_list in /etc/snort/pulledpork.conf
   replace:
