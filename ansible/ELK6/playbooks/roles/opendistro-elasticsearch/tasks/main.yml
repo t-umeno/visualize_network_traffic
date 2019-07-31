@@ -14,7 +14,7 @@
     update_cache: yes
   vars:
     packages:
-    - elasticsearch-oss=7.0.1
+    - elasticsearch-oss={{ elasticsearch_oss_version }}
   become: yes
 - name: install Open Distro for Elasticsearch
   apt:
