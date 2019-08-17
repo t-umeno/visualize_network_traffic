@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     end
     node01.vm.network :private_network, ip: "192.168.33.11"
     node01.vm.provider "virtualbox" do |vb01|
-      vb01.memory = "4096"
+      vb01.memory = "6144"
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node01.proxy.http     = ENV['http_proxy']
@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
     end
     node02.vm.network :private_network, ip: "192.168.33.12"
     node02.vm.provider "virtualbox" do |vb02|
-      vb02.memory = "4096"
+      vb02.memory = "6144"
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node02.proxy.http     = ENV['http_proxy']
@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
     end
     node03.vm.network :private_network, ip: "192.168.33.13"
     node03.vm.provider "virtualbox" do |vb03|
-      vb03.memory = "4096"
+      vb03.memory = "6144"
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node03.proxy.http     = ENV['http_proxy']
