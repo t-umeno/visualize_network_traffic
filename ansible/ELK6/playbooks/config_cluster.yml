@@ -1,6 +1,6 @@
 timezone: Asia/Tokyo
 kibana_server_host: "0.0.0.0"
-kibana_server_maxPayloadBytes: 10485760
+kibana_server_maxPayloadBytes: 20971520
 kibana_elasticsearch_requestTimeout: 300000
 elasticsearch_thread_pool_search_queue_size: 100000
 elasticsearch_total_heap_space: -Xms2g
