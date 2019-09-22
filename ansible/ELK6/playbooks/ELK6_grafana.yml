@@ -77,4 +77,5 @@
     - role: kibana
     - role: elasticsearch-curator
     - role: grafana
-    - role: filebeat, when: elasticstack_version == "7.x"
+    - role: filebeat
+      when: elasticstack_version == "7.x"
