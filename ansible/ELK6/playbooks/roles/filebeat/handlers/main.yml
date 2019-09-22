@@ -1,0 +1,7 @@
+- name: restart filebeat
+  systemd:
+    name: filebeat.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
