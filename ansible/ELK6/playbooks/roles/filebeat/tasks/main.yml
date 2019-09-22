@@ -14,4 +14,4 @@
     packages:
     - filebeat
   become: yes
-  notify: restart elasticsearch
+  notify: restart filebeat
