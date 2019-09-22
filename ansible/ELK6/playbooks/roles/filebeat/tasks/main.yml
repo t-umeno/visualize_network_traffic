@@ -1,0 +1,17 @@
+- name: install apt-transport-https apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - apt-transport-https
+  become: yes
+- name: install filebeat apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - filebeat
+  become: yes
+  notify: restart elasticsearch
