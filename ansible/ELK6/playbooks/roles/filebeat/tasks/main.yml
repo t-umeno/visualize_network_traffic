@@ -14,4 +14,7 @@
     packages:
     - filebeat
   become: yes
+- name: filebeat modules enable elasticsearch
+  command: filebeat modules enable elasticsearch
+  become: yes
   notify: restart filebeat
