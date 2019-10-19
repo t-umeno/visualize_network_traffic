@@ -25,3 +25,5 @@
   command: filebeat modules enable elasticsearch
   become: yes
   notify: restart filebeat
+  when:
+    - filebeat_systemd == true
