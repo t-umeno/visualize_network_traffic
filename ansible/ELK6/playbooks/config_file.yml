@@ -7,5 +7,6 @@ elasticsearch_total_heap_space: -Xms2g
 elasticsearch_maximum_heap_space: -Xmx2g
 super_mediator_systemd: true
 yaf_systemd: false
+filebeat_systemd: false
 
 capture_interface: enp0s8
