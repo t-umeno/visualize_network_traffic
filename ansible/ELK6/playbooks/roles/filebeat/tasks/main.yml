@@ -1,0 +1,29 @@
+- name: install apt-transport-https apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - apt-transport-https
+  become: yes
+- name: install filebeat apt packages
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - filebeat
+  become: yes
+- name: edit hosts in /etc/filebeat/filebeat.yml
+  replace:
+    path: /etc/filebeat/filebeat.yml
+    regexp: '^  hosts: \["localhost:9200"\]$'
+    replace: '  hosts: ["{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200"]'
+  become: yes
+  when: elasticsearch_cluster is defined
+- name: filebeat modules enable elasticsearch
+  command: filebeat modules enable elasticsearch
+  become: yes
+  notify: restart filebeat
+  when:
+    - filebeat_systemd == true
