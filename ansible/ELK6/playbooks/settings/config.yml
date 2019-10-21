@@ -1,0 +1,35 @@
+
+#logstash_password: yaf1234 # Automatic generation
+#super_mediator_systemd: true
+#yaf_systemd: true
+capture_interface: enp0s8
+capture_interface: eth0
+elasticsearch_cluster_name: visualize_network_traffic
+elasticsearch_cluster: true
+elasticsearch_maximum_heap_space: -Xmx2g
+elasticsearch_thread_pool_search_queue_size: 100000
+elasticsearch_total_heap_space: -Xms2g
+elastiflow_systemd: true
+filebeat_systemd: false
+kibana_elasticsearch_requestTimeout: 300000
+kibana_server_host: "0.0.0.0"
+kibana_server_maxPayloadBytes: 20971520
+logstash_user: yaf
+node_ip_address: 192.168.33.11
+node_ip_address: 192.168.33.12
+node_ip_address: 192.168.33.13
+node_name: node01
+node_name: node02
+node_name: node03
+node01_ip_address: 192.168.33.11
+node01_name: node01
+node02_ip_address: 192.168.33.12
+node02_name: node02
+node03_ip_address: 192.168.33.13
+node03_name: node03
+snort_home_net: 10.0.0.0/24
+super_mediator_systemd: false
+super_mediator_systemd: true
+timezone: Asia/Tokyo
+yaf_systemd: false
+yaf_systemd: true
