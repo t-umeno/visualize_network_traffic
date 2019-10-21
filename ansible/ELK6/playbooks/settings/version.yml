@@ -1,0 +1,11 @@
+daq_version: 2.0.6
+docker_compose_version: 1.24.1
+elasticsearch_oss_version: 7.1.1
+elasticstack_version: 6.x
+elasticstack_version: 7.x
+fixbuf_version: 2.4.0
+opendistro_version: 1.1.0
+openjdk_version: 11
+snort_version: 2.9.14.1
+super_mediator_version: 1.7.0
+yaf_version: 2.11.0
