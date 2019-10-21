@@ -12,3 +12,4 @@ load "./Vagrantfile.elasticsearch_snort_1node" if $visualize_network_traffic_con
 load "./Vagrantfile.opendistro_1node" if $visualize_network_traffic_config_type == "opendistro_1node"
 load "./Vagrantfile.opendistro_apt_1node" if $visualize_network_traffic_config_type == "opendistro_apt_1node"
 load "./Vagrantfile.elastiflow_docker_grafana_1node" if $visualize_network_traffic_config_type == "elastiflow_docker_grafana_1node"
+load "./Vagrantfile.newconfig" if $visualize_network_traffic_config_type == "newconfig"
