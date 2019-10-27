@@ -50,7 +50,7 @@
         - yaf_ndpi.sh
       when:
         - ansible_distribution == "Ubuntu"
-        - ansible_distribution_major_version == "16"
+        - ansible_distribution_major_version == "18"
     - name: copy curator file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
