@@ -9,7 +9,13 @@ elasticstack_version: >-
       {%- endif -%}
 fixbuf_version: 2.4.0
 opendistro_version: 1.1.0
-#openjdk_version: 11
+openjdk_version: >-
+      {%- if   elasticstack_system == '6.x' -%} 8
+      {%- elif elasticstack_system == '7.x' -%} 8
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 11
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 11
+      {%- else -%} 8
+      {%- endif -%}
 snort_version: 2.9.14.1
 super_mediator_version: 1.7.1
 yaf_version: 2.11.0
