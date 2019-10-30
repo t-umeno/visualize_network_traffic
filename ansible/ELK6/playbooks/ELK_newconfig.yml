@@ -1,13 +1,15 @@
 - name: Install ELK6
   hosts: testserver
   vars_files:
-    - settings/version.yml
     - settings/config.yml
+    - settings/version.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
     yaf_version: "{{ yaf_version }}"
     fixbuf_version: "{{ fixbuf_version }}"
     elasticstack_version: "{{ elasticstack_version }}"
+    opendistro_version: "{{ opendistro_version }}"
+    docker_compose_version: "{{ docker_compose_version }}"
     snort_version: "{{ snort_version }}"
     daq_version: "{{ daq_version }}"
   connection: local

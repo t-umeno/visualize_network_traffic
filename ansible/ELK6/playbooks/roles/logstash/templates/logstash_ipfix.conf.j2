@@ -94,7 +94,7 @@ filter {
 output {
     if ([type] == "ipfix") {
         elasticsearch {
-        {% if opendistro_version is defined %}
+        {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
             hosts => ["https://localhost:9200"]
             ssl_certificate_verification => false
             user => "{{ logstash_user }}"

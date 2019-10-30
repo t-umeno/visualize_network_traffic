@@ -6,7 +6,7 @@
     packages:
     - logstash
   become: yes
-  when: opendistro_version is not defined
+  when: elasticstack_system == '6.x' or elasticstack_system == '7.x'
 - name: install logstash-oss apt packages
   apt:
     name: "{{ packages }}"
@@ -15,7 +15,7 @@
     packages:
     - logstash-oss
   become: yes
-  when: opendistro_version is defined
+  when: elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt'
 - name: copy logstash snort config file
   copy: src=files/logstash_snort.conf dest=/etc/logstash/conf.d/logstash_snort.conf
   become: yes
