@@ -79,8 +79,26 @@
       when:
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "16"
+    - name: automatic generation of logstash_password
+      shell: cat /dev/urandom | tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo
+      register: result
+      when:
+        - elasticstack_system == "opendistro_docker" or elasticstack_system == "opendistro_apt"
+        - logstash_password is not defined
+    - name: set value
+      set_fact:
+        logstash_password: "{{ result.stdout_lines.0 }}"
+      when:
+        - elasticstack_system == "opendistro_docker" or elasticstack_system == "opendistro_apt"
+        - logstash_password is not defined
   roles:
     - role: ntp
+    - role: docker
+      when:
+        - elasticstack_system == "opendistro_docker"
+    - role: docker-compose
+      when:
+        - elasticstack_system == "opendistro_docker"
     - role: manual-iface
     - role: libp0f
     - role: fixbuf
@@ -90,11 +108,18 @@
       when:
         - snort_systemd == true
     - role: elasticsearch
+      when:
+        - elasticstack_system == "6.x" or elasticstack_system == "7.x"
+    - role: opendistro
+      when:
+        - elasticstack_system == "opendistro_docker"
     - role: logstash
     - role: kibana
+      when:
+        - elasticstack_system == "6.x" or elasticstack_system == "7.x"
     - role: elasticsearch-curator
     - role: grafana
     - role: filebeat
       when:
-        - elasticstack_version == "7.x"
+        - elasticstack_system == "7.x"
         - filebeat_systemd == true

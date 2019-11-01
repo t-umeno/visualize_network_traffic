@@ -19,7 +19,7 @@
 - name: copy logstash snort config file
   copy: src=files/logstash_snort.conf dest=/etc/logstash/conf.d/logstash_snort.conf
   become: yes
-  when: snort_home_net is defined
+  when: snort_systemd == true
 - name: copy logstash config cluster file
   template: src=templates/logstash_ipfix.conf.cluster.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
   become: yes
