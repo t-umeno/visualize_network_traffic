@@ -22,7 +22,7 @@
     update_cache: yes
   vars:
     packages:
-    - opendistroforelasticsearch
+    - opendistroforelasticsearch={{ opendistro_version }}
   become: yes
 - name: edit thread_pool.search.queue_size in /etc/elasticsearch/elasticsearch.yml
   blockinfile:
