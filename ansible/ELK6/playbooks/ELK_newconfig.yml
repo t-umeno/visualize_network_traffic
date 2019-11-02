@@ -110,6 +110,9 @@
     - role: elasticsearch
       when:
         - elasticstack_system == "6.x" or elasticstack_system == "7.x"
+    - role: opendistro-elasticsearch
+      when:
+        - elasticstack_system == "opendistro_apt"
     - role: opendistro
       when:
         - elasticstack_system == "opendistro_docker"
@@ -117,6 +120,9 @@
     - role: kibana
       when:
         - elasticstack_system == "6.x" or elasticstack_system == "7.x"
+    - role: opendistro-kibana
+      when:
+        - elasticstack_system == "opendistro_apt"
     - role: elasticsearch-curator
     - role: grafana
     - role: filebeat
