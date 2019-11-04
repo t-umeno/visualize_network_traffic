@@ -4,7 +4,7 @@ elasticsearch_oss_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
       {%- elif elasticstack_system == 'opendistro_docker' -%} 7.1.1
-      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.2.0
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.2.1
       {%- else -%} dummy
       {%- endif -%}
 elasticstack_version: >-
@@ -19,7 +19,7 @@ opendistro_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
       {%- elif elasticstack_system == 'opendistro_docker' -%} 1.1.0
-      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.2.0-1
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.2.1-1
       {%- else -%} dummy
       {%- endif -%}
 openjdk_version: >-
