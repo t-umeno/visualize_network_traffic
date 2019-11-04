@@ -147,6 +147,10 @@
   become: yes
 - name: exec pulledpork
   script: /usr/local/bin/pulledpork.sh
+  register: result
+  until: result.stdout.find('Fly Piggy Fly!') != -1
+  retries: 10
+  delay: 30
   become: yes
 - name: add snort_rules in /etc/snort/snort.conf
   blockinfile:
