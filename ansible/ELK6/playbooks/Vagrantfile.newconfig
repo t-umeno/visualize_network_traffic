@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-settings = YAML.load_file 'settings/config.yml' 
+settings = YAML.load_file 'settings/config.default.yml'
+settings = YAML.load_file 'settings/config.yml'  if File.exist?("settings/config.yml")
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what

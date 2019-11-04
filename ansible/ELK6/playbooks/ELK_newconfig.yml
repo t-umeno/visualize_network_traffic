@@ -1,7 +1,8 @@
 - name: Install ELK6
   hosts: testserver
   vars_files:
-    - settings/config.yml
+    - settings/config.default.yml
+    - ["settings/config.yml", "settings/config.default.yml"]
     - settings/version.yml
   environment:
     super_mediator_version: "{{ super_mediator_version }}"
