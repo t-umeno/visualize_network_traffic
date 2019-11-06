@@ -23,7 +23,7 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
       elasticsearch.hosts: ["https://127.0.0.1:9200"]
   become: yes
-  notify: restart kibana
+  notify: restart opendistro-kibana
   when: elasticsearch_cluster is not defined
 - name: edit elasticsearch.hosts in /etc/kibana/kibana.yml
   blockinfile:
@@ -35,6 +35,6 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
       elasticsearch.hosts: ["https://{{ node01_ip_address }}:9200", "https://{{ node02_ip_address }}:9200", "https://{{ node03_ip_address }}:9200"]
   become: yes
-  notify: restart kibana
+  notify: restart opendistro-kibana
   when: elasticsearch_cluster is defined
 
