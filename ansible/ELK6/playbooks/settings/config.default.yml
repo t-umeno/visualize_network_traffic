@@ -20,6 +20,9 @@ snort_systemd: false
 capture_interface: enp0s8
 snort_home_net: 10.0.0.0/24
 
+#pulledpork_oinkcode: "your oinkcode"
+#pulledpork_oinkcode: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 #when elasticstack_system: opendistro_docker, opendistro_apt
 logstash_user: yaf
 #logstash_password: yaf1234 # Automatic generation
