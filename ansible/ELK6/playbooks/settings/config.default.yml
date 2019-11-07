@@ -1,3 +1,4 @@
+#plathome: virtualbox, aws_ec2
 plathome: virtualbox
 
 timezone: Asia/Tokyo
@@ -15,6 +16,7 @@ yaf_systemd: true
 filebeat_systemd: false
 snort_systemd: false
 
+#capture_interface: enp0s8 (plathome: virtualbox), eth0 (plathome: aws_ec2)
 capture_interface: enp0s8
 snort_home_net: 10.0.0.0/24
 
