@@ -16,6 +16,9 @@ yaf_systemd: true
 filebeat_systemd: false
 snort_systemd: false
 
+#ntp_server: "local ntp server"
+#ntp_server: 192.168.1.1
+
 #capture_interface: enp0s8 (plathome: virtualbox), eth0 (plathome: aws_ec2)
 capture_interface: enp0s8
 snort_home_net: 10.0.0.0/24
