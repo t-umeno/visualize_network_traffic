@@ -8,6 +8,6 @@ if File.exist?("settings/config.yml")
   settings = default_settings.merge user_settings
 else
   settings = default_settings
-
+end
 load "./Vagrantfile.newconfig.virtualbox" if settings['plathome'] == 'virtualbox'
 load "./Vagrantfile.newconfig.aws_ec2" if settings['plathome'] == 'aws_ec2'
