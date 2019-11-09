@@ -3,8 +3,11 @@
 
 require 'yaml'
 default_settings = YAML.load_file 'settings/config.default.yml'
-user_settings = YAML.load_file 'settings/config.yml' if File.exist?("settings/config.yml")
-settings = default_settings.merge user_settings
+if File.exist?("settings/config.yml")
+  user_settings = YAML.load_file 'settings/config.yml'
+  settings = default_settings.merge user_settings
+else
+  settings = default_settings
 
 load "./Vagrantfile.newconfig.virtualbox" if settings['plathome'] == 'virtualbox'
 load "./Vagrantfile.newconfig.aws_ec2" if settings['plathome'] == 'aws_ec2'
