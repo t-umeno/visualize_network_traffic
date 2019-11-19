@@ -9,9 +9,9 @@ if File.exist?("settings/config.yml")
 else
   settings = default_settings
 end
-if settings['plathome'] == 'virtualbox' AND settings['elasticsearch_nodes'] == 1
+if settings['plathome'] == 'virtualbox' && settings['elasticsearch_nodes'] == 1
   load "./Vagrantfile.newconfig.virtualbox"
-elsif settings['plathome'] == 'virtualbox' AND settings['elasticsearch_nodes'] == 3
+elsif settings['plathome'] == 'virtualbox' && settings['elasticsearch_nodes'] == 3
   load "./Vagrantfile.newconfig.virtualbox_3nodes"
 elsif  settings['plathome'] == 'aws_ec2'
   load "./Vagrantfile.newconfig.aws_ec2"
