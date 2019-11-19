@@ -13,6 +13,7 @@ elasticsearch_maximum_heap_space: -Xmx2g
 elasticstack_system: 6.x
 super_mediator_systemd: true
 yaf_systemd: true
+logstash_systemd: true
 filebeat_systemd: false
 snort_systemd: false
 
