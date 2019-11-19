@@ -1,6 +1,9 @@
 #plathome: virtualbox, aws_ec2
 plathome: virtualbox
 
+#elasticsearch_nodes: 1, 3
+elasticsearch_nodes: 1
+
 timezone: Asia/Tokyo
 kibana_server_host: "0.0.0.0"
 kibana_server_maxPayloadBytes: 20971520
