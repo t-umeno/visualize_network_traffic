@@ -118,6 +118,8 @@
       when:
         - elasticstack_system == "opendistro_docker"
     - role: logstash
+      when:
+        - logstash_systemd == true
     - role: kibana
       when:
         - elasticstack_system == "6.x" or elasticstack_system == "7.x"

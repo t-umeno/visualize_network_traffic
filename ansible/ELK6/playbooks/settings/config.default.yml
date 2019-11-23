@@ -1,6 +1,12 @@
 #plathome: virtualbox, aws_ec2
 plathome: virtualbox
 
+#elasticsearch_vm: 1, 3
+elasticsearch_vm: 1
+
+#elasticsearch_docker_nodes: 1, 3
+elasticsearch_docker_nodes: 1
+
 timezone: Asia/Tokyo
 kibana_server_host: "0.0.0.0"
 kibana_server_maxPayloadBytes: 20971520
@@ -13,6 +19,7 @@ elasticsearch_maximum_heap_space: -Xmx2g
 elasticstack_system: 6.x
 super_mediator_systemd: true
 yaf_systemd: true
+logstash_systemd: true
 filebeat_systemd: false
 snort_systemd: false
 
