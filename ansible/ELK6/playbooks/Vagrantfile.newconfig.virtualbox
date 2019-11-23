@@ -87,7 +87,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "ELK_newconfig.yml"
     #ansible.verbose = "vvvv"
-    ansible.inventory_path = "hosts"
     ansible.limit = 'all'
   end
 end
