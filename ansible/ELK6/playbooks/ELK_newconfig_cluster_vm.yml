@@ -1,5 +1,5 @@
 - name: Install ELK6
-  hosts: default
+  hosts: ELK
   vars_files:
     - settings/config.default.yml
     - ["settings/config.yml", "settings/config.default.yml"]

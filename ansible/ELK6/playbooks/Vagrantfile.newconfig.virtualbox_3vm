@@ -51,9 +51,11 @@ Vagrant.configure("2") do |config|
     SHELL
     node01.vm.provision "ansible_local" do |ansible|
       #ansible.playbook = "ELK6.yml"
-      ansible.playbook = "ELK6_grafana_node01.yml"
-      ansible.inventory_path = "hosts"
+      ansible.playbook = "ELK_newconfig_cluster_vm.yml"
       ansible.limit = 'all'
+      ansible.groups = {
+        "ELK" => ["node01"]
+      }
     end
   end
 
@@ -82,9 +84,11 @@ Vagrant.configure("2") do |config|
     SHELL
     node02.vm.provision "ansible_local" do |ansible|
       #ansible.playbook = "ELK6.yml"
-      ansible.playbook = "ELK6_grafana_node02.yml"
-      ansible.inventory_path = "hosts"
+      ansible.playbook = "ELK_newconfig_cluster_vm.yml"
       ansible.limit = 'all'
+      ansible.groups = {
+        "ELK" => ["node02"]
+      }
     end
   end
 
@@ -113,9 +117,11 @@ Vagrant.configure("2") do |config|
     SHELL
     node03.vm.provision "ansible_local" do |ansible|
       #ansible.playbook = "ELK6.yml"
-      ansible.playbook = "ELK6_grafana_node03.yml"
-      ansible.inventory_path = "hosts"
+      ansible.playbook = "ELK_newconfig_cluster_vm.yml"
       ansible.limit = 'all'
+      ansible.groups = {
+        "ELK" => ["node03"]
+      }
     end
   end
   # Create a forwarded port mapping which allows access to a specific port
