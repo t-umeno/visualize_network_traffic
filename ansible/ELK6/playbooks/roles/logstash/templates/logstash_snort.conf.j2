@@ -52,6 +52,8 @@ output {
             user => "{{ logstash_user }}"
             password => "{{ logstash_password }}"
             ilm_enabled => false
+        {% elif elasticsearch_vm == 3 %}
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200" ]
 	{% else %}
             hosts => ["localhost:9200"]
 	{% endif %}

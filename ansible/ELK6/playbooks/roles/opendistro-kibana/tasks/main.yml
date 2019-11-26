@@ -24,7 +24,7 @@
       elasticsearch.hosts: ["https://127.0.0.1:9200"]
   become: yes
   notify: restart opendistro-kibana
-  when: elasticsearch_cluster is not defined
+  when: elasticsearch_vm == 1
 - name: edit elasticsearch.hosts in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml
@@ -36,5 +36,4 @@
       elasticsearch.hosts: ["https://{{ node01_ip_address }}:9200", "https://{{ node02_ip_address }}:9200", "https://{{ node03_ip_address }}:9200"]
   become: yes
   notify: restart opendistro-kibana
-  when: elasticsearch_cluster is defined
-
+  when: elasticsearch_vm == 3

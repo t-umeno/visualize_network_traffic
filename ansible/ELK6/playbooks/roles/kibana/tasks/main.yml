@@ -16,7 +16,7 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
   become: yes
   notify: restart kibana
-  when: elasticsearch_cluster is not defined
+  when: elasticsearch_vm == 1
 - name: edit elasticsearch.hosts in /etc/kibana/kibana.yml
   blockinfile:
     dest: /etc/kibana/kibana.yml
@@ -28,4 +28,4 @@
       elasticsearch.hosts: ["http://{{ node01_ip_address }}:9200", "http://{{ node02_ip_address }}:9200", "http://{{ node03_ip_address }}:9200"]
   become: yes
   notify: restart kibana
-  when: elasticsearch_cluster is defined
+  when: elasticsearch_vm == 3

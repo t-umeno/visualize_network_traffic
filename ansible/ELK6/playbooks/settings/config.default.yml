@@ -37,7 +37,6 @@ snort_home_net: 10.0.0.0/24
 logstash_user: yaf
 #logstash_password: yaf1234 # Automatic generation
 
-elasticsearch_cluster: false
 elasticsearch_cluster_name: visualize_network_traffic
 node01_ip_address: 192.168.33.11
 node02_ip_address: 192.168.33.12
