@@ -25,7 +25,7 @@
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#node.name: node-1$'
-    replace: 'node.name: {{ inventory_hostname }}
+    replace: 'node.name: {{ inventory_hostname }}'
   become: yes
   when: elasticsearch_vm > 1
 - name: edit network.host in /etc/elasticsearch/elasticsearch.yml
