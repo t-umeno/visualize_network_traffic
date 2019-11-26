@@ -132,3 +132,71 @@
       when:
         - elasticstack_system == "7.x"
         - filebeat_systemd == true
+- name: Install Elasticsearch and Kibana
+  hosts: EK_only
+  vars_files:
+    - settings/config.default.yml
+    - ["settings/config.yml", "settings/config.default.yml"]
+    - settings/version.yml
+  connection: local
+  pre_tasks:
+    - set_fact: home_dir="{{ ansible_env.HOME }}"
+    - name: set timezone
+      script: scripts/set_timezone.sh {{ timezone }}
+      become: yes
+    - name: install apt packages
+      apt:
+        name: "{{ packages }}"
+        update_cache: yes
+      vars:
+        packages:
+        - build-essential
+        - git
+        - curl
+        - jq
+      become: yes
+    - name: mkdir
+      file: path={{ item }}  state=directory mode=0755
+      with_items:
+        - ~/bin
+        - ~/.curator
+    - name: copy curator file
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      with_items:
+        - curator.yml
+        - delete_indices_yaf.yml
+    - name: copy curator snort file
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      with_items:
+        - delete_indices_snort.yml
+      when:
+        - snort_systemd == true
+    - name: install curator cron yaf job
+      cron: name="curator yaf" minute="2" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_yaf.yml"
+    - name: install curator cron snort job
+      cron: name="curator snort" minute="3" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_snort.yml"
+      when:
+        - snort_systemd == true
+  roles:
+    - role: ntp
+    - role: elasticsearch
+      when:
+        - elasticstack_system == "6.x" or elasticstack_system == "7.x"
+    - role: opendistro-elasticsearch
+      when:
+        - elasticstack_system == "opendistro_apt"
+    - role: opendistro
+      when:
+        - elasticstack_system == "opendistro_docker"
+    - role: kibana
+      when:
+        - elasticstack_system == "6.x" or elasticstack_system == "7.x"
+    - role: opendistro-kibana
+      when:
+        - elasticstack_system == "opendistro_apt"
+    - role: elasticsearch-curator
+    - role: grafana
+    - role: filebeat
+      when:
+        - elasticstack_system == "7.x"
+        - filebeat_systemd == true
