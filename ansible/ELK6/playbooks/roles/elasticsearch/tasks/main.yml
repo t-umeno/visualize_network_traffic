@@ -29,12 +29,10 @@
   become: yes
   when: elasticsearch_vm > 1
 - name: edit network.host in /etc/elasticsearch/elasticsearch.yml
-  blockinfile:
-    dest: /etc/elasticsearch/elasticsearch.yml
-    insertafter: '^#network.host: 192.168.0.1$'
-    block: |
-      network.bind_host: [ _local_ , {{ node_ip_address }} ]
-      network.publish_host: {{ node_ip_address }}
+  replace:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: '^#network.host: 192.168.0.1$'
+    replace: 'network.bind_host: [ _local_ , {{ node_ip_address }} ]\nnetwork.publish_host: {{ node_ip_address }}'
   become: yes
   when: elasticsearch_vm > 1
 - name: edit discovery.zen.ping.unicast.hosts in /etc/elasticsearch/elasticsearch.yml
