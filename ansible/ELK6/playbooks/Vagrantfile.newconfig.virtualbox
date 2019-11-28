@@ -5,6 +5,14 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+require 'yaml'
+default_settings = YAML.load_file 'settings/config.default.yml'
+if File.exist?("settings/config.yml")
+  user_settings = YAML.load_file 'settings/config.yml'
+  settings = default_settings.merge user_settings
+else
+  settings = default_settings
+end
 Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -60,7 +68,11 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-    vb.memory = "6144"
+    if settings['elasticstack_system'] == 'opendistro_docker' && settings['elasticsearch_docker_nodes'] == 3
+      vb.memory = "10240"
+    else
+      vb.memory = "6144"
+    end
   end
   #
   # View the documentation for the provider you are using for more

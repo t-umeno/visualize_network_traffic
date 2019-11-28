@@ -17,9 +17,14 @@
 - name: mkdir /usr/local/etc/opendistro
   file: path=/usr/local/etc/opendistro state=directory owner=root group=root mode=0755
   become: yes
-- name: copy docker-compose.yml
+- name: copy from docker-compose_elasticsearch_1node.yml.j2
   template: src=templates/docker-compose_elasticsearch_1node.yml.j2 dest=/usr/local/etc/opendistro/docker-compose.yml
   become: yes
+  when: elasticsearch_docker_nodes == 1
+- name: copy from docker-compose_elasticsearch_3nodes.yml.j2
+  template: src=templates/docker-compose_elasticsearch_3nodes.yml.j2 dest=/usr/local/etc/opendistro/docker-compose.yml
+  become: yes
+  when: elasticsearch_docker_nodes == 3
 - name: copy systemd startup script
   copy: src=files/opendistro.service dest=/lib/systemd/system/opendistro.service
   become: yes
