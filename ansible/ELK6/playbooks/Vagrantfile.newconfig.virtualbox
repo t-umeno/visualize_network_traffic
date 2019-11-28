@@ -88,5 +88,8 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "ELK_newconfig.yml"
     #ansible.verbose = "vvvv"
     ansible.limit = 'all'
+    ansible.groups = {
+      "ELK" => ["default"]
+    }
   end
 end
