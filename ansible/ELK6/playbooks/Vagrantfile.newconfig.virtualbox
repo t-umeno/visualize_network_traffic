@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
-  config.disksize.size = '100GB'
+  config.disksize.size = settings['ELK']['disksize']
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,11 +69,11 @@ Vagrant.configure("2") do |config|
   #
   #   # Customize the amount of memory on the VM:
     if settings['elasticstack_system'] == 'opendistro_docker' && settings['elasticsearch_docker_nodes'] == 5
-      vb.memory = "14336"
+      vb.memory = settings['ELK']['memory_docker_5nodes']
     elsif settings['elasticstack_system'] == 'opendistro_docker' && settings['elasticsearch_docker_nodes'] == 3
-      vb.memory = "10240"
+      vb.memory = settings['ELK']['memory_docker_3nodes']
     else
-      vb.memory = "6144"
+      vb.memory = settings['ELK']['memory']
     end
   end
   #

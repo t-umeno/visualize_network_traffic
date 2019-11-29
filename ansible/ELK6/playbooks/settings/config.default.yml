@@ -41,3 +41,13 @@ elasticsearch_cluster_name: visualize_network_traffic
 node01_ip_address: 192.168.33.11
 node02_ip_address: 192.168.33.12
 node03_ip_address: 192.168.33.13
+
+ELK:
+  disksize: 100GB
+  memory_docker_5nodes: 14336
+  memory_docker_3nodes: 10240
+  memory: 6144
+
+EK_only:
+  disksize: 100GB
+  memory: 4096
