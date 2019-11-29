@@ -26,7 +26,7 @@
   become: yes
   when: elasticsearch_docker_nodes == 3
 - name: copy from docker-compose_elasticsearch_5nodes.yml.j2
-  template: src=templates/docker-compose_elasticsearch_3nodes.yml.j2 dest=/usr/local/etc/opendistro/docker-compose.yml
+  template: src=templates/docker-compose_elasticsearch_5nodes.yml.j2 dest=/usr/local/etc/opendistro/docker-compose.yml
   become: yes
   when: elasticsearch_docker_nodes == 5
 - name: copy systemd startup script
