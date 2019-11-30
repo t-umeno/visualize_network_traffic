@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
     end
     node01.vm.network :private_network, ip: settings['node01_ip_address']
     node01.vm.provider "virtualbox" do |vb01|
-      vb01.memory = "6144"
+      vb01.memory = settings['ELK']['memory']
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node01.proxy.http     = ENV['http_proxy']
@@ -58,8 +58,8 @@ Vagrant.configure("2") do |config|
       apt-get install -y python2.7
     SHELL
     node01.vm.provision "ansible_local" do |ansible|
-      #ansible.playbook = "ELK6.yml"
       ansible.playbook = "ELK_newconfig.yml"
+      #ansible.verbose = "vvvv"
       ansible.limit = 'all'
       ansible.groups = {
         "ELK" => ["node01"]
@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
     end
     node02.vm.network :private_network, ip: settings['node02_ip_address']
     node02.vm.provider "virtualbox" do |vb02|
-      vb02.memory = "6144"
+      vb02.memory = settings['EK_only']['memory']
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node02.proxy.http     = ENV['http_proxy']
@@ -94,8 +94,8 @@ Vagrant.configure("2") do |config|
       apt-get install -y python2.7
     SHELL
     node02.vm.provision "ansible_local" do |ansible|
-      #ansible.playbook = "ELK6.yml"
       ansible.playbook = "ELK_newconfig.yml"
+      #ansible.verbose = "vvvv"
       ansible.limit = 'all'
       ansible.groups = {
         "EK_only" => ["node02"]
@@ -116,7 +116,7 @@ Vagrant.configure("2") do |config|
     end
     node03.vm.network :private_network, ip: settings['node03_ip_address']
     node03.vm.provider "virtualbox" do |vb03|
-      vb03.memory = "6144"
+      vb03.memory = settings['EK_only']['memory']
     end
     if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
       node03.proxy.http     = ENV['http_proxy']
@@ -130,8 +130,8 @@ Vagrant.configure("2") do |config|
       apt-get install -y python2.7
     SHELL
     node03.vm.provision "ansible_local" do |ansible|
-      #ansible.playbook = "ELK6.yml"
       ansible.playbook = "ELK_newconfig.yml"
+      #ansible.verbose = "vvvv"
       ansible.limit = 'all'
       ansible.groups = {
         "EK_only" => ["node03"]
