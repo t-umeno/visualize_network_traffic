@@ -147,4 +147,80 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+
+  if settings['elasticsearch_vm'] >= 4
+    config.vm.define :node04 do | node04 |
+      node04.vm.hostname = "node04"
+      node04.vm.network "forwarded_port", guest: 5601, host: 35601
+      node04.vm.network "forwarded_port", guest: 3000, host: 33000
+      node04.vm.network "public_network", auto_config: false
+      node04.vm.provider "virtualbox" do |vb03|
+        vb03.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+      end
+      node04.vm.network :private_network, ip: settings['node04_ip_address']
+      node04.vm.provider "virtualbox" do |vb03|
+        vb03.memory = settings['EK_only']['memory']
+      end
+      if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
+        node04.proxy.http     = ENV['http_proxy']
+        node04.proxy.https    = ENV['https_proxy']
+        node04.proxy.no_proxy = "localhost,127.0.0.1"
+      end
+      node04.vm.provision "shell", inline: <<-SHELL
+        ifconfig enp0s8 up
+        apt-get update
+        apt-get dist-upgrade -y
+        apt-get install -y python2.7
+      SHELL
+      node04.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "ELK_newconfig.yml"
+        #ansible.verbose = "vvvv"
+        ansible.limit = 'all'
+        ansible.groups = {
+          "EK_only" => ["node04"]
+        }
+        ansible.extra_vars = {
+          node_ip_address: settings['node04_ip_address']
+        }
+      end
+    end
+  end
+
+  if settings['elasticsearch_vm'] >= 4
+    config.vm.define :node05 do | node05 |
+      node05.vm.hostname = "node05"
+      node05.vm.network "forwarded_port", guest: 5601, host: 45601
+      node05.vm.network "forwarded_port", guest: 3000, host: 43000
+      node05.vm.network "public_network", auto_config: false
+      node05.vm.provider "virtualbox" do |vb03|
+        vb03.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+      end
+      node05.vm.network :private_network, ip: settings['node05_ip_address']
+      node05.vm.provider "virtualbox" do |vb03|
+        vb03.memory = settings['EK_only']['memory']
+      end
+      if Vagrant.has_plugin?("vagrant-proxyconf") && ( ENV['http_proxy'] || ENV['https_proxy'] )
+        node05.proxy.http     = ENV['http_proxy']
+        node05.proxy.https    = ENV['https_proxy']
+        node05.proxy.no_proxy = "localhost,127.0.0.1"
+      end
+      node05.vm.provision "shell", inline: <<-SHELL
+        ifconfig enp0s8 up
+        apt-get update
+        apt-get dist-upgrade -y
+        apt-get install -y python2.7
+      SHELL
+      node05.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "ELK_newconfig.yml"
+        #ansible.verbose = "vvvv"
+        ansible.limit = 'all'
+        ansible.groups = {
+          "EK_only" => ["node05"]
+        }
+        ansible.extra_vars = {
+          node_ip_address: settings['node05_ip_address']
+        }
+      end
+    end
+  end
 end
