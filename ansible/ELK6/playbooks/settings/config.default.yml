@@ -1,7 +1,7 @@
 #plathome: virtualbox, aws_ec2
 plathome: virtualbox
 
-#elasticsearch_vm: 1, 3
+#elasticsearch_vm: 1, 3, 5
 elasticsearch_vm: 1
 
 #elasticsearch_docker_nodes: 1, 3, 5
@@ -41,6 +41,8 @@ elasticsearch_cluster_name: visualize_network_traffic
 node01_ip_address: 192.168.33.11
 node02_ip_address: 192.168.33.12
 node03_ip_address: 192.168.33.13
+node04_ip_address: 192.168.33.14
+node05_ip_address: 192.168.33.15
 
 ELK:
   disksize: 100GB
