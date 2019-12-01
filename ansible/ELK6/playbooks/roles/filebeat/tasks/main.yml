@@ -14,13 +14,20 @@
     packages:
     - filebeat
   become: yes
-- name: edit hosts in /etc/filebeat/filebeat.yml
+- name: edit hosts in /etc/filebeat/filebeat.yml for 3nodes
   replace:
     path: /etc/filebeat/filebeat.yml
     regexp: '^  hosts: \["localhost:9200"\]$'
     replace: '  hosts: ["{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200"]'
   become: yes
   when: elasticsearch_vm == 3
+- name: edit hosts in /etc/filebeat/filebeat.yml for 5nodes
+  replace:
+    path: /etc/filebeat/filebeat.yml
+    regexp: '^  hosts: \["localhost:9200"\]$'
+    replace: '  hosts: ["{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200", "{{ node04_ip_address }}:9200", "{{ node05_ip_address }}:9200"]'
+  become: yes
+  when: elasticsearch_vm == 5
 - name: filebeat modules enable elasticsearch
   command: filebeat modules enable elasticsearch
   become: yes
