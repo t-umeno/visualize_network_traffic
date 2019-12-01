@@ -35,34 +35,62 @@
     replace: 'network.bind_host: [ _local_ , {{ node_ip_address }} ]\nnetwork.publish_host: {{ node_ip_address }}'
   become: yes
   when: elasticsearch_vm > 1
-- name: edit discovery.zen.ping.unicast.hosts in /etc/elasticsearch/elasticsearch.yml
+- name: edit discovery.zen.ping.unicast.hosts in /etc/elasticsearch/elasticsearch.yml for 3nodes
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#discovery.zen.ping.unicast.hosts: \["host1", "host2"\]$'
     replace: 'discovery.zen.ping.unicast.hosts: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}"]'
   become: yes
   when: elasticsearch_vm == 3
-- name: edit discovery.seed_hosts in /etc/elasticsearch/elasticsearch.yml
+- name: edit discovery.zen.ping.unicast.hosts in /etc/elasticsearch/elasticsearch.yml for 5nodes
+  replace:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: '^#discovery.zen.ping.unicast.hosts: \["host1", "host2"\]$'
+    replace: 'discovery.zen.ping.unicast.hosts: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}", "{{ node04_ip_address }}", "{{ node05_ip_address }}"]'
+  become: yes
+  when: elasticsearch_vm == 5
+- name: edit discovery.seed_hosts in /etc/elasticsearch/elasticsearch.yml for 3nodes
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#discovery.seed_hosts: \["host1", "host2"\]$'
     replace: 'discovery.seed_hosts: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}"]'
   become: yes
   when: elasticsearch_vm == 3
-- name: edit cluster.initial_master_nodes in /etc/elasticsearch/elasticsearch.yml
+- name: edit discovery.seed_hosts in /etc/elasticsearch/elasticsearch.yml for 5nodes
+  replace:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: '^#discovery.seed_hosts: \["host1", "host2"\]$'
+    replace: 'discovery.seed_hosts: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}", "{{ node04_ip_address }}", "{{ node05_ip_address }}"]'
+  become: yes
+  when: elasticsearch_vm == 5
+- name: edit cluster.initial_master_nodes in /etc/elasticsearch/elasticsearch.yml for 3nodes
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#cluster.initial_master_nodes: \["node-1", "node-2"\]$'
     replace: 'cluster.initial_master_nodes: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}"]'
   become: yes
   when: elasticsearch_vm == 3
-- name: edit discovery.zen.minimum_master_nodes in /etc/elasticsearch/elasticsearch.yml
+- name: edit cluster.initial_master_nodes in /etc/elasticsearch/elasticsearch.yml for 5nodes
+  replace:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: '^#cluster.initial_master_nodes: \["node-1", "node-2"\]$'
+    replace: 'cluster.initial_master_nodes: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}", "{{ node04_ip_address }}", "{{ node05_ip_address }}]'
+  become: yes
+  when: elasticsearch_vm == 5
+- name: edit discovery.zen.minimum_master_nodes in /etc/elasticsearch/elasticsearch.yml for 3nodes
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#discovery.zen.minimum_master_nodes:'
     replace: 'discovery.zen.minimum_master_nodes: 2'
   become: yes
   when: elasticsearch_vm == 3
+- name: edit discovery.zen.minimum_master_nodes in /etc/elasticsearch/elasticsearch.yml for 5nodes
+  replace:
+    path: /etc/elasticsearch/elasticsearch.yml
+    regexp: '^#discovery.zen.minimum_master_nodes:'
+    replace: 'discovery.zen.minimum_master_nodes: 3'
+  become: yes
+  when: elasticsearch_vm == 5
 - name: edit thread_pool.search.queue_size in /etc/elasticsearch/elasticsearch.yml
   blockinfile:
     dest: /etc/elasticsearch/elasticsearch.yml
