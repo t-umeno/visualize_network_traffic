@@ -74,7 +74,7 @@
   replace:
     path: /etc/elasticsearch/elasticsearch.yml
     regexp: '^#cluster.initial_master_nodes: \["node-1", "node-2"\]$'
-    replace: 'cluster.initial_master_nodes: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}", "{{ node04_ip_address }}", "{{ node05_ip_address }}]'
+    replace: 'cluster.initial_master_nodes: ["{{ node01_ip_address }}", "{{ node02_ip_address }}", "{{ node03_ip_address }}", "{{ node04_ip_address }}", "{{ node05_ip_address }}"]'
   become: yes
   when: elasticsearch_vm == 5
 - name: edit discovery.zen.minimum_master_nodes in /etc/elasticsearch/elasticsearch.yml for 3nodes
