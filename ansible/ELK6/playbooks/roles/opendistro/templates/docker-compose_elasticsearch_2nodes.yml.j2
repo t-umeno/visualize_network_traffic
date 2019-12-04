@@ -9,7 +9,7 @@ services:
       - discovery.seed_hosts=odfe-node1,odfe-node2
       - cluster.initial_master_nodes=odfe-node1,odfe-node2
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+      - "ES_JAVA_OPTS={{ elasticsearch_total_heap_space }} {{ elasticsearch_maximum_heap_space }}" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
     ulimits:
       memlock:
         soft: -1
@@ -33,7 +33,7 @@ services:
       - discovery.seed_hosts=odfe-node1,odfe-node2
       - cluster.initial_master_nodes=odfe-node1,odfe-node2
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS={{ elasticsearch_total_heap_space }} {{ elasticsearch_maximum_heap_space }}" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
     ulimits:
       memlock:
         soft: -1
