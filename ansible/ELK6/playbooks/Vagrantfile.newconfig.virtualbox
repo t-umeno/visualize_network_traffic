@@ -69,11 +69,11 @@ Vagrant.configure("2") do |config|
   #
   #   # Customize the amount of memory on the VM:
     if settings['elasticstack_system'] == 'opendistro_docker' && settings['elasticsearch_docker_nodes'] == 5
-      vb.memory = settings['ELK']['memory_docker_5nodes']
+      vb.memory = settings['ELK_memory_docker_5nodes']
     elsif settings['elasticstack_system'] == 'opendistro_docker' && settings['elasticsearch_docker_nodes'] == 3
-      vb.memory = settings['ELK']['memory_docker_3nodes']
+      vb.memory = settings['ELK_memory_docker_3nodes']
     else
-      vb.memory = settings['ELK']['memory']
+      vb.memory = settings['ELK_memory']
     end
   end
   #
