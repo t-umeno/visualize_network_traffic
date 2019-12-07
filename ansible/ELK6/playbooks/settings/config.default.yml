@@ -44,12 +44,12 @@ node03_ip_address: 192.168.33.13
 node04_ip_address: 192.168.33.14
 node05_ip_address: 192.168.33.15
 
+disksize: 100GB
+
 ELK:
-  disksize: 100GB
   memory_docker_5nodes: 14336
   memory_docker_3nodes: 10240
   memory: 6144
 
 EK_only:
-  disksize: 100GB
   memory: 4096
