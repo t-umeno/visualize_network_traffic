@@ -102,6 +102,7 @@ output {
             hosts => ["localhost:9200"]
         {% endif %}
         {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
+            ssl => true
             ssl_certificate_verification => false
             user => "{{ logstash_user }}"
             password => "{{ logstash_password }}"
