@@ -50,5 +50,4 @@ ELK_memory_docker_5nodes: 14336
 ELK_memory_docker_3nodes: 10240
 ELK_memory: 6144
 
-EK_only:
-  memory: 4096
+EK_only_memory: 4096
