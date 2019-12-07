@@ -32,3 +32,4 @@ openjdk_version: >-
 snort_version: 2.9.14.1
 super_mediator_version: 1.7.1
 yaf_version: 2.11.0
+grafana_version_with_opendistro: 6.4.5

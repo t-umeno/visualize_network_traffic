@@ -10,3 +10,14 @@
     - grafana
   become: yes
   notify: restart grafana-server
+  when: elasticstack_system == '6.x' or elasticstack_system == '7.x'
+- name: install grafana apt packages specific version
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - grafana={{ grafana_version_with_opendistro }}
+  become: yes
+  notify: restart grafana-server
+  when: elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt'
