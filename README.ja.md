@@ -3,7 +3,7 @@
 
 ## ELK6
 Vagrantでネットワークトラフィックのフロー情報をKibanaやGrafanaで表示する Ubuntu18.04 のVMを作成します。
-VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
+VMは100GBの仮想ディスクと6GBの仮想メモリを使用します。
 * NICから受信したパケットをYAFでフロー情報を抽出しIPfix形式に変換します。
 * super_mediatorでIPfix形式をJSONファイルに変換します。
 * JSONファイルをLogstash経由でElasticsearchに入力します。
