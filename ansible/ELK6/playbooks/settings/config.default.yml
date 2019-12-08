@@ -46,8 +46,8 @@ node05_ip_address: 192.168.33.15
 
 disksize: 100GB
 
-ELK_memory_docker_5nodes: 14336
-ELK_memory_docker_3nodes: 10240
+ELK_memory_docker_5nodes: 16384
+ELK_memory_docker_3nodes: 12288
 ELK_memory: 6144
 
 EK_only_memory: 4096
