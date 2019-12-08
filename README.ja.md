@@ -99,5 +99,17 @@ ansible/ELK6/playbooks/settings/config.yml
 
     elasticstack_system: 7.x
 
+- elasticsearch_vm
+Elasticsearchが動作するVMの数を指定します。1, 3, 5を指定できます。
+elasticstack_system に 6.x, 7.x, opendistro_aptを指定した場合のみ3, 5を指定できます。
+最初の1個のVMはメモリを6GB, 以降のVMは1個あたりメモリを4GB使用します。
+  - 1: VMを1個作成し、メモリを6GB使用します。(デフォルト)
+  - 3: VMを3個作成し、メモリを14GB使用します。
+  - 5: VMを5個作成し、メモリを22GB使用します。
+
+例:
+
+    elasticsearch_vm: 3
+
 ### ToDo
 - ドキュメント
