@@ -122,5 +122,19 @@ elasticstack_system に 6.x, 7.x, opendistro_aptを指定した場合のみ3, 5�
 
     elasticsearch_vm: 3
 
+- elasticsearch_docker_nodes
+
+Elasticsearchが動作するdocker nodeの数を指定します。
+
+elasticstack_system に opendistro_docker を指定した場合のみ3, 5を指定できます。
+
+  - 1: docker nodeを1個作成し、メモリを6GB使用します。(デフォルト)
+  - 3: docker nodeを3個作成し、メモリを12GB使用します。
+  - 5: docker nodeを5個作成し、メモリを16GB使用します。
+
+例:
+
+    elasticsearch_docker_nodes: 3
+
 ### ToDo
 - ドキュメント
