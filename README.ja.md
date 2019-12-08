@@ -87,7 +87,14 @@ vagrant ssh を実行し、~/yaf/json にJSONファイルが存在すること�
 ansible/ELK6/playbooks/settings/config.yml
 を作成後にインストールしてください。
 
+ansible/ELK6/playbooks/settings/config.default.yml
+の記載がデフォルトの設定になります。
+
+
+設定可能な項目を知りたい場合は config.default.yml を参照してください。
+
 ### ansible/ELK6/playbooks/settings/config.yml の記載方法
+
 - elasticstack_system
 
 6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
