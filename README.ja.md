@@ -89,6 +89,7 @@ ansible/ELK6/playbooks/settings/config.yml
 
 ### ansible/ELK6/playbooks/settings/config.yml の記載方法
 - elasticstack_system
+
 6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
   - 6.x: 最新のElasticStack 6.x (デフォルト)
   - 7.x: 最新のElasticStack 7.x
@@ -100,7 +101,8 @@ ansible/ELK6/playbooks/settings/config.yml
     elasticstack_system: 7.x
 
 - elasticsearch_vm
-Elasticsearchが動作するVMの数を指定します。1, 3, 5を指定できます。
+
+Elasticsearchが動作するVMの数を指定します。
 
 elasticstack_system に 6.x, 7.x, opendistro_aptを指定した場合のみ3, 5を指定できます。
 
