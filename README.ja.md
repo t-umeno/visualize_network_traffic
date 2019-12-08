@@ -82,5 +82,22 @@ vagrant ssh を実行し、~/yaf/json にJSONファイルが存在すること�
 - "Import" を押します。
 - ElasticSearch YAF count のダッシュボードが表示されます。flow count, octetTotalCount, packetTotalCount について表示します。
 
+## カスタマイズ
+カスタマイズする際は
+ansible/ELK6/playbooks/settings/config.yml
+を作成後にインストールしてください。
+
+### ansible/ELK6/playbooks/settings/config.yml の記載方法
+- elasticstack_system
+6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
+  - 6.x: 最新のElasticStack 6.x (デフォルト)
+  - 7.x: 最新のElasticStack 7.x
+  - opendistro_docker: Docker 版の opendistro for Elasticsearch 1.2.1
+  - opendistro_apt: apt 版の opendistro for Elasticsearch 1.2.1
+
+例:
+
+    elasticstack_system: 7.x
+
 ### ToDo
 - ドキュメント
