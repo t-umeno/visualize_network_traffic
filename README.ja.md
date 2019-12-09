@@ -157,5 +157,13 @@ snortのhomenet(自側のネットワークアドレス)を指定します。
 
     snort_home_net: 192.168.2.0/24
 
+- pulledpork_oinkcode
+
+pulledporkで使用するoinkcodeを入手した場合は設定してください。デフォルトでは定義されていません。
+
+例:
+
+    pulledpork_oinkcode: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 ### ToDo
 - ドキュメント
