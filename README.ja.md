@@ -147,5 +147,15 @@ snort を使用するか指定します。snortを使用する場合は yaf_ndpi
 
     snort_systemd: true
 
+- snort_home_net
+
+snortのhomenet(自側のネットワークアドレス)を指定します。
+
+  - 10.0.0.0/24 (デフォルト)
+
+例:
+
+    snort_home_net: 192.168.2.0/24
+
 ### ToDo
 - ドキュメント
