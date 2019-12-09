@@ -1,7 +1,0 @@
-super_mediator_version: 1.7.1
-yaf_version: 2.11.0
-fixbuf_version: 2.4.0
-elasticstack_version: 7.x
-opendistro_version: 1.2.1
-docker_compose_version: 1.25.0
-openjdk_version: 11
