@@ -165,5 +165,13 @@ pulledporkで使用するoinkcodeを入手した場合は設定してくださ�
 
     pulledpork_oinkcode: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+- ntp_server
+
+デフォルトでは定義されていません。イントラネット内のNTP serverのIPアドレスを指定する場合に使用します。
+
+例:
+
+    ntp_server: 192.168.1.1
+
 ### ToDo
 - ドキュメント
