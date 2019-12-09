@@ -1,4 +1,4 @@
-- name: restart kibana
+- name: restart opendistro-kibana
   systemd:
     name: kibana.service
     state: restarted

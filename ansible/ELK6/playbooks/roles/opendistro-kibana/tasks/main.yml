@@ -23,9 +23,9 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
       elasticsearch.hosts: ["https://127.0.0.1:9200"]
   become: yes
-  notify: restart kibana
-  when: elasticsearch_cluster is not defined
-- name: edit elasticsearch.hosts in /etc/kibana/kibana.yml
+  notify: restart opendistro-kibana
+  when: elasticsearch_vm == 1
+- name: edit elasticsearch.hosts in /etc/kibana/kibana.yml for 3nodes
   blockinfile:
     dest: /etc/kibana/kibana.yml
     insertafter: EOF
@@ -35,6 +35,17 @@
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
       elasticsearch.hosts: ["https://{{ node01_ip_address }}:9200", "https://{{ node02_ip_address }}:9200", "https://{{ node03_ip_address }}:9200"]
   become: yes
-  notify: restart kibana
-  when: elasticsearch_cluster is defined
-
+  notify: restart opendistro-kibana
+  when: elasticsearch_vm == 3
+- name: edit elasticsearch.hosts in /etc/kibana/kibana.yml for 5nodes
+  blockinfile:
+    dest: /etc/kibana/kibana.yml
+    insertafter: EOF
+    block: |
+      server.host: {{ kibana_server_host }}
+      server.maxPayloadBytes: {{ kibana_server_maxPayloadBytes }}
+      elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
+      elasticsearch.hosts: ["https://{{ node01_ip_address }}:9200", "https://{{ node02_ip_address }}:9200", "https://{{ node03_ip_address }}:9200", "https://{{ node04_ip_address }}:9200", "https://{{ node05_ip_address }}:9200"]
+  become: yes
+  notify: restart opendistro-kibana
+  when: elasticsearch_vm == 5

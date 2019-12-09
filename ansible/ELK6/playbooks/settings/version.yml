@@ -1,0 +1,35 @@
+daq_version: 2.0.6
+docker_compose_version: 1.25.0
+elasticsearch_oss_version: >-
+      {%- if   elasticstack_system == '6.x' -%} dummy
+      {%- elif elasticstack_system == '7.x' -%} dummy
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 7.2.1
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.2.1
+      {%- else -%} dummy
+      {%- endif -%}
+elasticstack_version: >-
+      {%- if   elasticstack_system == '6.x' -%} 6.x
+      {%- elif elasticstack_system == '7.x' -%} 7.x
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 7.x
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.x
+      {%- else -%} 6.x
+      {%- endif -%}
+fixbuf_version: 2.4.0
+opendistro_version: >-
+      {%- if   elasticstack_system == '6.x' -%} dummy
+      {%- elif elasticstack_system == '7.x' -%} dummy
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 1.2.1
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.2.1-1
+      {%- else -%} dummy
+      {%- endif -%}
+openjdk_version: >-
+      {%- if   elasticstack_system == '6.x' -%} 8
+      {%- elif elasticstack_system == '7.x' -%} 8
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 11
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 11
+      {%- else -%} 8
+      {%- endif -%}
+snort_version: 2.9.14.1
+super_mediator_version: 1.7.1
+yaf_version: 2.11.0
+grafana_version_with_opendistro: 6.4.5

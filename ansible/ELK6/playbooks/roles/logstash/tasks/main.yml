@@ -6,7 +6,7 @@
     packages:
     - logstash
   become: yes
-  when: opendistro_version is not defined
+  when: elasticstack_system == '6.x' or elasticstack_system == '7.x'
 - name: install logstash-oss apt packages
   apt:
     name: "{{ packages }}"
@@ -15,18 +15,12 @@
     packages:
     - logstash-oss
   become: yes
-  when: opendistro_version is defined
+  when: elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt'
 - name: copy logstash snort config file
-  copy: src=files/logstash_snort.conf dest=/etc/logstash/conf.d/logstash_snort.conf
+  template: src=templates/logstash_snort.conf.j2 dest=/etc/logstash/conf.d/logstash_snort.conf
   become: yes
-  when: snort_home_net is defined
-- name: copy logstash config cluster file
-  template: src=templates/logstash_ipfix.conf.cluster.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
-  become: yes
-  notify: restart logstash
-  when: elasticsearch_cluster is defined
+  when: snort_systemd == true
 - name: copy logstash config file
   template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
   become: yes
   notify: restart logstash
-  when: elasticsearch_cluster is not defined

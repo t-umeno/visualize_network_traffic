@@ -1,0 +1,67 @@
+input {
+    file {
+        type => "snort"
+        path => "/var/log/snort/alert.log"
+        start_position => "beginning"
+    }
+}
+
+filter {
+    if ([type] == "snort") {
+{% raw %}
+        grok {
+            match => { "message" => "^%{DATA:logtimestamp}\s+\[\*\*\]\s+\[%{INT:gid}:%{INT:sid}:%{INT:rid}\]\s+%{DATA:alert}\s\[\*\*\]\s+\[Classification:\s+%{DATA:classification}\]\s+\[Priority:\s+%{INT:priority}\]\s+\{%{DATA:protocol}\}\s+%{IP:SrcIp}:%{INT:SrcPort}\s+->\s+%{IP:DstIp}:%{INT:DstPort}" }
+            match => { "message" => "^%{DATA:logtimestamp}\s+\[\*\*\]\s+\[%{INT:gid}:%{INT:sid}:%{INT:rid}\]\s+%{DATA:alert}\s\[\*\*\]\s+\[Classification:\s+%{DATA:classification}\]\s+\[Priority:\s+%{INT:priority}\]\s+\{%{DATA:protocol}\}\s+%{IP:SrcIp}\s+->\s+%{IP:DstIp}" }
+        }
+{% endraw %}
+        date {
+            locale => "en"
+            match => ["logtimestamp", "MM/dd-HH:mm:ss.SSSSSS"]
+            target => "@timestamp"
+        }
+        mutate {
+            add_field => { "gid_sid_rid" => "%{gid}:%{sid}:%{rid}" }
+            add_field => { "SrcIp_SrcPort" => "%{SrcIp}:%{SrcPort}" }
+            add_field => { "DstIp_DstPort" => "%{DstIp}:%{DstPort}" }
+            add_field => { "SrcIp_SrcPort_DstIp_DstPort" => "%{SrcIp}:%{SrcPort} - %{DstIp}:%{DstPort}" }
+            add_field => { "SrcIp_DstIp" => "%{SrcIp} - %{DstIp}" }
+	}
+        fingerprint {
+            source => "message"
+            target => "[@metadata][fingerprint]"
+            method => "SHA256"
+        }
+        mutate {
+            convert => [ "gid", "integer" ]
+            convert => [ "sid", "integer" ]
+            convert => [ "rid", "integer" ]
+            convert => [ "SrcPort", "integer" ]
+            convert => [ "DstPort", "integer" ]
+            convert => [ "priority", "integer" ]
+            remove_field => [ "message"]
+        }
+    }
+}
+
+output {
+    if ([type] == "snort") {
+        elasticsearch {
+        {% if elasticsearch_vm == 5 %}
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200", "{{ node04_ip_address }}:9200", "{{ node05_ip_address }}:9200" ]
+        {% elif elasticsearch_vm == 3 %}
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200" ]
+        {% else %}
+            hosts => ["localhost:9200"]
+        {% endif %}
+        {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
+            ssl => true
+            ssl_certificate_verification => false
+            user => "{{ logstash_user }}"
+            password => "{{ logstash_password }}"
+            ilm_enabled => false
+	{% endif %}
+            index => "snort.%{+YYYYMMdd}"
+            document_id => "%{[@metadata][fingerprint]}"
+        }
+    }
+}

@@ -20,6 +20,15 @@
   retries: 10
   delay: 30
   listen: restart opendistro-elasticsearch
+  when: snort_systemd == false
+- name: add yaf and snort role
+  script: scripts/role.yaf.snort.sh
+  register: result
+  until: result.stdout.find('CREATED') != -1 or result.stdout.find('OK') != -1
+  retries: 10
+  delay: 30
+  listen: restart opendistro-elasticsearch
+  when: snort_systemd == true
 - name: add yaf roles mapping
   script: scripts/rolesmapping.yaf.sh
   register: result

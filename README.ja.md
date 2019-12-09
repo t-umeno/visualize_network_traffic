@@ -3,7 +3,7 @@
 
 ## ELK6
 Vagrantでネットワークトラフィックのフロー情報をKibanaやGrafanaで表示する Ubuntu18.04 のVMを作成します。
-VMは100GBの仮想ディスクと4GBの仮想メモリを使用します。
+VMは100GBの仮想ディスクと6GBの仮想メモリを使用します。
 * NICから受信したパケットをYAFでフロー情報を抽出しIPfix形式に変換します。
 * super_mediatorでIPfix形式をJSONファイルに変換します。
 * JSONファイルをLogstash経由でElasticsearchに入力します。
@@ -81,6 +81,97 @@ vagrant ssh を実行し、~/yaf/json にJSONファイルが存在すること�
 - "Select a Elasticsearch data source" から "yaf" を選択します。
 - "Import" を押します。
 - ElasticSearch YAF count のダッシュボードが表示されます。flow count, octetTotalCount, packetTotalCount について表示します。
+
+## カスタマイズ
+カスタマイズする際は
+ansible/ELK6/playbooks/settings/config.yml
+を作成後にインストールしてください。
+
+ansible/ELK6/playbooks/settings/config.default.yml
+の記載がデフォルトの設定になります。
+
+
+設定可能な項目を知りたい場合は config.default.yml を参照してください。
+
+### ansible/ELK6/playbooks/settings/config.yml の記載方法
+
+- elasticstack_system
+
+6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
+  - 6.x: 最新のElasticStack 6.x (デフォルト)
+  - 7.x: 最新のElasticStack 7.x
+  - opendistro_docker: Docker 版の opendistro for Elasticsearch 1.2.1
+  - opendistro_apt: apt 版の opendistro for Elasticsearch 1.2.1
+
+例:
+
+    elasticstack_system: 7.x
+
+- elasticsearch_vm
+
+Elasticsearchが動作するVMの数を指定します。
+
+elasticstack_system に 6.x, 7.x, opendistro_aptを指定した場合のみ3, 5を指定できます。
+
+最初の1個のVMはメモリを6GB, 以降のVMは1個あたりメモリを4GB使用します。
+  - 1: VMを1個作成し、メモリを6GB使用します。(デフォルト)
+  - 3: VMを3個作成し、メモリを14GB使用します。
+  - 5: VMを5個作成し、メモリを22GB使用します。
+
+例:
+
+    elasticsearch_vm: 3
+
+- elasticsearch_docker_nodes
+
+Elasticsearchが動作するdocker nodeの数を指定します。
+
+elasticstack_system に opendistro_docker を指定した場合のみ3, 5を指定できます。
+
+  - 1: docker nodeを1個作成し、メモリを6GB使用します。(デフォルト)
+  - 3: docker nodeを3個作成し、メモリを12GB使用します。
+  - 5: docker nodeを5個作成し、メモリを16GB使用します。
+
+例:
+
+    elasticsearch_docker_nodes: 3
+
+- snort_systemd
+
+snort を使用するか指定します。snortを使用する場合は yaf_ndpi_snort.json を kibana に読み込ませてください。
+
+  - true: snort を使用します。
+  - false: snort を使用しません。(デフォルト)
+
+例:
+
+    snort_systemd: true
+
+- snort_home_net
+
+snortのhomenet(自側のネットワークアドレス)を指定します。
+
+  - 10.0.0.0/24 (デフォルト)
+
+例:
+
+    snort_home_net: 192.168.2.0/24
+
+- pulledpork_oinkcode
+
+pulledporkで使用するoinkcodeを入手した場合は設定してください。デフォルトでは定義されていません。
+
+例:
+
+    pulledpork_oinkcode: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+- ntp_server
+
+デフォルトでは定義されていません。イントラネット内のNTP serverのIPアドレスを指定する場合に使用します。
+
+例:
+
+    ntp_server: 192.168.1.1
 
 ### ToDo
 - ドキュメント

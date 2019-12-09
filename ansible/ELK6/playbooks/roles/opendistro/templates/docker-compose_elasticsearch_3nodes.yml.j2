@@ -6,8 +6,8 @@ services:
     environment:
       - cluster.name=odfe-cluster
       - node.name=odfe-node1
-      - discovery.seed_hosts=odfe-node1,odfe-node2
-      - cluster.initial_master_nodes=odfe-node1,odfe-node2
+      - discovery.seed_hosts=odfe-node1,odfe-node2,odfe-node3
+      - cluster.initial_master_nodes=odfe-node1,odfe-node2,odfe-node3
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
       - "ES_JAVA_OPTS={{ elasticsearch_total_heap_space }} {{ elasticsearch_maximum_heap_space }}" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
     ulimits:
@@ -30,8 +30,8 @@ services:
     environment:
       - cluster.name=odfe-cluster
       - node.name=odfe-node2
-      - discovery.seed_hosts=odfe-node1,odfe-node2
-      - cluster.initial_master_nodes=odfe-node1,odfe-node2
+      - discovery.seed_hosts=odfe-node1,odfe-node2,odfe-node3
+      - cluster.initial_master_nodes=odfe-node1,odfe-node2,odfe-node3
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS={{ elasticsearch_total_heap_space }} {{ elasticsearch_maximum_heap_space }}" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
     ulimits:
@@ -43,6 +43,27 @@ services:
         hard: 65536
     volumes:
       - odfe-data2:/usr/share/elasticsearch/data
+    networks:
+      - odfe-net
+  odfe-node3:
+    image: amazon/opendistro-for-elasticsearch:{{ opendistro_version }}
+    container_name: odfe-node3
+    environment:
+      - cluster.name=odfe-cluster
+      - node.name=odfe-node3
+      - discovery.seed_hosts=odfe-node1,odfe-node2,odfe-node3
+      - cluster.initial_master_nodes=odfe-node1,odfe-node2,odfe-node3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS={{ elasticsearch_total_heap_space }} {{ elasticsearch_maximum_heap_space }}" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - odfe-data3:/usr/share/elasticsearch/data
     networks:
       - odfe-net
   kibana:
@@ -63,6 +84,7 @@ services:
 volumes:
   odfe-data1:
   odfe-data2:
+  odfe-data3:
 
 networks:
   odfe-net:

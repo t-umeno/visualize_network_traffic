@@ -94,15 +94,20 @@ filter {
 output {
     if ([type] == "ipfix") {
         elasticsearch {
-        {% if opendistro_version is defined %}
-            hosts => ["https://localhost:9200"]
+        {% if elasticsearch_vm == 5 %}
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200", "{{ node04_ip_address }}:9200", "{{ node05_ip_address }}:9200" ]
+        {% elif elasticsearch_vm == 3 %}
+            hosts => [ "{{ node01_ip_address }}:9200", "{{ node02_ip_address }}:9200", "{{ node03_ip_address }}:9200" ]
+        {% else %}
+            hosts => ["localhost:9200"]
+        {% endif %}
+        {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
+            ssl => true
             ssl_certificate_verification => false
             user => "{{ logstash_user }}"
             password => "{{ logstash_password }}"
             ilm_enabled => false
-	{% else %}
-            hosts => ["localhost:9200"]
-	{% endif %}
+        {% endif %}
             index => "%{index}"
             document_id => "%{[@metadata][fingerprint]}"
         }

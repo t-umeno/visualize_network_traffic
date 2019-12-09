@@ -1,4 +1,10 @@
-{% if opendistro_version is defined %}
+{% if   elasticstack_system == '6.x' %}
+deb https://artifacts.elastic.co/packages/{{ elasticstack_version }}/apt stable main
+{% elif elasticstack_system == '7.x' %}
+deb https://artifacts.elastic.co/packages/{{ elasticstack_version }}/apt stable main
+{% elif elasticstack_system == 'opendistro_docker' %}
+deb https://artifacts.elastic.co/packages/oss-{{ elasticstack_version }}/apt stable main
+{% elif elasticstack_system == 'opendistro_apt' %}
 deb https://artifacts.elastic.co/packages/oss-{{ elasticstack_version }}/apt stable main
 {% else %}
 deb https://artifacts.elastic.co/packages/{{ elasticstack_version }}/apt stable main
