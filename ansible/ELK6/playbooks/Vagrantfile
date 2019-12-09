@@ -1,15 +1,22 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$visualize_network_traffic_config_type = "elasticsearch_1node"
-load "./Vagrantfile.local" if File.exist?("./Vagrantfile.local")
-
-load "./Vagrantfile.elasticsearch_1node" if $visualize_network_traffic_config_type == "elasticsearch_1node"
-load "./Vagrantfile.elasticsearch_file_1node" if $visualize_network_traffic_config_type == "elasticsearch_file_1node"
-load "./Vagrantfile.elasticsearch_3nodes" if $visualize_network_traffic_config_type == "elasticsearch_3nodes"
-load "./Vagrantfile.aws_ec2_1node" if $visualize_network_traffic_config_type == "aws_ec2_1node"
-load "./Vagrantfile.elasticsearch_snort_1node" if $visualize_network_traffic_config_type == "elasticsearch_snort_1node"
-load "./Vagrantfile.opendistro_1node" if $visualize_network_traffic_config_type == "opendistro_1node"
-load "./Vagrantfile.opendistro_apt_1node" if $visualize_network_traffic_config_type == "opendistro_apt_1node"
-load "./Vagrantfile.elastiflow_docker_grafana_1node" if $visualize_network_traffic_config_type == "elastiflow_docker_grafana_1node"
-load "./Vagrantfile.newconfig" if $visualize_network_traffic_config_type == "newconfig"
+require 'yaml'
+default_settings = YAML.load_file 'settings/config.default.yml'
+if File.exist?("settings/config.yml")
+  user_settings = YAML.load_file 'settings/config.yml'
+  settings = default_settings.merge user_settings
+else
+  settings = default_settings
+end
+if settings['plathome'] == 'virtualbox'
+   if settings['elasticsearch_vm'] == 1
+     load "./Vagrantfile.newconfig.virtualbox"
+   elsif settings['elasticsearch_vm'] == 3
+     load "./Vagrantfile.newconfig.virtualbox_multivm"
+   elsif settings['elasticsearch_vm'] == 5
+     load "./Vagrantfile.newconfig.virtualbox_multivm"
+   end
+elsif settings['plathome'] == 'aws_ec2'
+  load "./Vagrantfile.newconfig.aws_ec2"
+end
