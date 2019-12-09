@@ -136,5 +136,16 @@ elasticstack_system に opendistro_docker を指定した場合のみ3, 5を指�
 
     elasticsearch_docker_nodes: 3
 
+- snort_systemd
+
+snort を使用するか指定します。snortを使用する場合は yaf_ndpi_snort.json を kibana に読み込ませてください。
+
+  - true: snort を使用します。
+  - false: snort を使用しません。(デフォルト)
+
+例:
+
+    snort_systemd: true
+
 ### ToDo
 - ドキュメント
