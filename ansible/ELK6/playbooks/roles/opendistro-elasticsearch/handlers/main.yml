@@ -7,7 +7,7 @@
   become: yes
   listen: restart opendistro-elasticsearch
 - name: wait elasticsearch
-  shell: curl -XGET https://localhost:9200/ -u admin:admin --insecure
+  shell: curl --noproxy localhost -XGET https://localhost:9200/ -u admin:admin --insecure
   register: result
   until: result.stdout.find('tagline') != -1
   retries: 10
