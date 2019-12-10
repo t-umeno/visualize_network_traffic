@@ -6,16 +6,10 @@
     enabled: yes
   become: yes
   listen: restart opendistro
-- name: wait elasticsearch uri module
-  uri:
-    uri: https://localhost:9200/
-    url_username: admin
-    url_password: admin
-    force_basic_auth: yes
-    use_proxy: no
-    validate_certs: no
-  register: this
-  until: "'tagline' in this.content"
+- name: wait elasticsearch
+  shell: curl --noproxy localhost -XGET https://localhost:9200/ -u admin:admin --insecure
+  register: result
+  until: result.stdout.find('tagline') != -1
   retries: 10
   delay: 30
   listen: restart opendistro
