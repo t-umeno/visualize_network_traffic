@@ -49,6 +49,7 @@
       copy: src=files/{{ item }} dest=~/bin/{{ item }} mode=0755
       with_items:
         - yaf_ndpi.sh
+        - yaf_ndpi_pcapfile.sh
       when:
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "18"
