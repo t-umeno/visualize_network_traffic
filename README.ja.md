@@ -95,6 +95,14 @@ ansible/ELK6/playbooks/settings/config.default.yml
 
 ### ansible/ELK6/playbooks/settings/config.yml の記載方法
 
+- disksize
+
+VMで使用するディスクサイズを指定します。(デフォルト 100GB)
+
+例:
+
+    disksize: 200GB
+
 - elasticstack_system
 
 6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
