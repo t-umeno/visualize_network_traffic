@@ -1,0 +1,26 @@
+client:
+  hosts:
+    - localhost
+  port: 9200
+  {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
+  use_ssl: True
+  ssl_no_validate: True
+  http_auth: admin:admin
+  {% else %}
+  use_ssl: False
+  ssl_no_validate: False
+  http_auth:
+  {% endif %}
+  url_prefix:
+  certificate:
+  client_cert:
+  client_key:
+  timeout: 30
+  master_only: False
+
+logging:
+  loglevel: INFO
+  logfile:
+  logformat: default
+  blacklist: ['elasticsearch', 'urllib3']
+
