@@ -160,10 +160,11 @@
       with_items:
         - ~/bin
         - ~/.curator
-    - name: copy curator file
+    - name: copy curator.yml
+      template: src=templates/curator.yml.j2 dest=~/.curator/curator.yml
+    - name: copy curator yaf file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
-        - curator.yml
         - delete_indices_yaf.yml
     - name: copy curator snort file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
