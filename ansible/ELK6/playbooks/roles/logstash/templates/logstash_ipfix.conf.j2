@@ -35,7 +35,7 @@ filter {
 
 	if ([flows][sourceIPv4Address]) {
         {% if use_geoip == true %}
-	    geoip {
+            geoip {
                 source => "[flows][sourceIPv4Address]"
                 target => "src_geoip"
             }
