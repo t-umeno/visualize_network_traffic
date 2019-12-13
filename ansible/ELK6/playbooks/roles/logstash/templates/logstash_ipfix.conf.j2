@@ -34,6 +34,16 @@ filter {
         }
 
 	if ([flows][sourceIPv4Address]) {
+        {% if use_geoip == true %}
+	    geoip {
+                source => "[flows][sourceIPv4Address]"
+                target => "src_geoip"
+            }
+            geoip {
+                source => "[flows][destinationIPv4Address]"
+                target => "dst_geoip"
+            }
+        {% endif %}
             mutate {
 	        add_field => { "src_ip_dst_ip" => "%{[flows][sourceIPv4Address]} - %{[flows][destinationIPv4Address]}" }
 	        add_field => { "src_ip_proto" => "%{[flows][sourceIPv4Address]} %{[flows][protocolIdentifier]}" }
