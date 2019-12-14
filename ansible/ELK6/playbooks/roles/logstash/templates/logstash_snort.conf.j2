@@ -19,6 +19,16 @@ filter {
             match => ["logtimestamp", "MM/dd-HH:mm:ss.SSSSSS"]
             target => "@timestamp"
         }
+        {% if use_geoip == true %}
+        geoip {
+            source => "SrcIp"
+            target => "src_geoip"
+        }
+        geoip {
+            source => "DstIp"
+            target => "dst_geoip"
+        }
+        {% endif %}
         mutate {
             add_field => { "gid_sid_rid" => "%{gid}:%{sid}:%{rid}" }
             add_field => { "SrcIp_SrcPort" => "%{SrcIp}:%{SrcPort}" }
