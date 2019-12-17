@@ -1,7 +1,24 @@
-- name: restart elasticsearch
+- name: restart elasticsearch systemd
   systemd:
     name: elasticsearch.service
     state: restarted
     daemon_reload: yes
     enabled: yes
   become: yes
+  listen: restart elasticsearch
+- name: wait elasticsearch
+  shell: curl --noproxy localhost -XGET http://localhost:9200/
+  register: result
+  until: result.stdout.find('tagline') != -1
+  retries: 10
+  delay: 30
+  listen: restart elasticsearch
+  when: use_geoip == true
+- name: add template yaf geoip
+  script: scripts/template.yaf.geoip.sh
+  register: result
+  until: result.stdout.find('true') != -1
+  retries: 10
+  delay: 30
+  listen: restart elasticsearch
+  when: use_geoip == true
