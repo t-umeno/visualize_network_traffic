@@ -21,7 +21,6 @@
       server.host: {{ kibana_server_host }}
       server.maxPayloadBytes: {{ kibana_server_maxPayloadBytes }}
       elasticsearch.requestTimeout: {{ kibana_elasticsearch_requestTimeout }}
-      elasticsearch.hosts: ["https://127.0.0.1:9200"]
   become: yes
   notify: restart opendistro-kibana
   when: elasticsearch_vm == 1
