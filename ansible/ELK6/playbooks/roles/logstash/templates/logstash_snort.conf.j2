@@ -22,11 +22,11 @@ filter {
         {% if use_geoip == true %}
         geoip {
             source => "SrcIp"
-            target => "src_geoip"
+            target => "[src][geoip]"
         }
         geoip {
             source => "DstIp"
-            target => "dst_geoip"
+            target => "[dst][geoip]"
         }
         {% endif %}
         mutate {
