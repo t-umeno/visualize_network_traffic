@@ -37,11 +37,11 @@ filter {
         {% if use_geoip == true %}
             geoip {
                 source => "[flows][sourceIPv4Address]"
-                target => "src_geoip"
+                target => "[src][geoip]"
             }
             geoip {
                 source => "[flows][destinationIPv4Address]"
-                target => "dst_geoip"
+                target => "[dst][geoip]"
             }
         {% endif %}
             mutate {

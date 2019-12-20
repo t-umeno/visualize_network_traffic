@@ -4,7 +4,7 @@ curl -XPUT http://localhost:9200/_template/yaf -H 'Content-Type: application/jso
   "template" : "yaf.*",
   "mappings" : {
     "properties" : {
-      "src_geoip" : {
+      "src.geoip" : {
         "dynamic" : true,
         "properties" : {
           "ip" : {
@@ -21,7 +21,7 @@ curl -XPUT http://localhost:9200/_template/yaf -H 'Content-Type: application/jso
           }
         }
       },
-      "dst_geoip" : {
+      "dst.geoip" : {
         "dynamic" : true,
         "properties" : {
           "ip" : {
