@@ -1,5 +1,5 @@
 #!/bin/bash
-curl -XPUT http://localhost:9200/_template/snort -H 'Content-Type: application/json' -d '
+curl --noproxy localhost -XPUT https://localhost:9200/_template/snort -u admin:admin -k -H 'Content-Type: application/json' -d '
 {
   "template" : "snort.*",
   "mappings" : {
