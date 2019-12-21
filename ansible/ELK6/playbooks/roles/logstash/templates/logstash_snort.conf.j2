@@ -28,6 +28,20 @@ filter {
             source => "DstIp"
             target => "[dst][geoip]"
         }
+        if [src][geoip][region_code] {
+            mutate {
+                add_field => {
+                    "[src][geoip][region_iso_code]" => "%{[src][geoip][country_code2]}-%{[src][geoip][region_code]}"
+                }
+            }
+        }
+        if [dst][geoip][region_code] {
+            mutate {
+                add_field => {
+                    "[dst][geoip][region_iso_code]" => "%{[dst][geoip][country_code2]}-%{[dst][geoip][region_code]}"
+                }
+            }
+        }
         {% endif %}
         mutate {
             add_field => { "gid_sid_rid" => "%{gid}:%{sid}:%{rid}" }

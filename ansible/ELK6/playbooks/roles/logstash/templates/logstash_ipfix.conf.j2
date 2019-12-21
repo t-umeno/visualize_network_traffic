@@ -34,7 +34,7 @@ filter {
         }
 
 	if ([flows][sourceIPv4Address]) {
-        {% if use_geoip == true %}
+            {% if use_geoip == true %}
             geoip {
                 source => "[flows][sourceIPv4Address]"
                 target => "[src][geoip]"
@@ -43,7 +43,21 @@ filter {
                 source => "[flows][destinationIPv4Address]"
                 target => "[dst][geoip]"
             }
-        {% endif %}
+            if [src][geoip][region_code] {
+                mutate {
+                    add_field => {
+                        "[src][geoip][region_iso_code]" => "%{[src][geoip][country_code2]}-%{[src][geoip][region_code]}"
+                    }
+                }
+            }
+            if [dst][geoip][region_code] {
+                mutate {
+                    add_field => {
+                        "[dst][geoip][region_iso_code]" => "%{[dst][geoip][country_code2]}-%{[dst][geoip][region_code]}"
+                    }
+                }
+            }
+            {% endif %}
             mutate {
 	        add_field => { "src_ip_dst_ip" => "%{[flows][sourceIPv4Address]} - %{[flows][destinationIPv4Address]}" }
 	        add_field => { "src_ip_proto" => "%{[flows][sourceIPv4Address]} %{[flows][protocolIdentifier]}" }
