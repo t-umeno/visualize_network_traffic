@@ -14,6 +14,16 @@
   delay: 30
   listen: restart elasticsearch
   when: use_geoip == true
+- name: add template yaf geoip es6
+  script: scripts/template.yaf.geoip.es6.sh
+  register: result
+  until: result.stdout.find('true') != -1
+  retries: 10
+  delay: 30
+  listen: restart elasticsearch
+  when:
+    - use_geoip == true
+    - elasticstack_version == '6.x'
 - name: add template yaf geoip
   script: scripts/template.yaf.geoip.sh
   register: result
@@ -21,7 +31,20 @@
   retries: 10
   delay: 30
   listen: restart elasticsearch
-  when: use_geoip == true
+  when:
+    - use_geoip == true
+    - elasticstack_version != '6.x'
+- name: add template snort geoip es6
+  script: scripts/template.snort.geoip.es6.sh
+  register: result
+  until: result.stdout.find('true') != -1
+  retries: 10
+  delay: 30
+  listen: restart elasticsearch
+  when:
+    - use_geoip == true
+    - snort_systemd == true
+    - elasticstack_version == '6.x'
 - name: add template snort geoip
   script: scripts/template.snort.geoip.sh
   register: result
@@ -32,3 +55,4 @@
   when:
     - use_geoip == true
     - snort_systemd == true
+    - elasticstack_version != '6.x'
