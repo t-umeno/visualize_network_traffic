@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
     aws.instance_type = settings['aws_instance_type']
     aws.region = "us-west-2"
 
-    aws.ami = "ami-0a7d051a1c4b54f65"
+    aws.ami = settings['aws_ami']
 
     #override.ssh.username = "ec2-user"
     override.ssh.username = "ubuntu"
