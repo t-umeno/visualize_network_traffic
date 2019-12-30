@@ -93,7 +93,7 @@ Vagrant.configure("2") do |config|
         'VirtualName' => "volume1",
         'Ebs.VolumeSize' => settings['Ebs_VolumeSize'],
         'Ebs.DeleteOnTermination' => true,
-        'Ebs.VolumeType' => 'standard',
+        'Ebs.VolumeType' => settings['Ebs_VolumeType'],
         #'Ebs.VolumeType' => 'io1',
         #'Ebs.Iops' => 1000
       }
