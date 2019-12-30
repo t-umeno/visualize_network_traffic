@@ -65,4 +65,4 @@ aws_ami: ami-0a7d051a1c4b54f65
 #Ebs.VolumeSize (GB)
 Ebs_VolumeSize: 100
 #Ebs VolumeType
-Ebs_VolumeType: standard
+Ebs_VolumeType: gp2
