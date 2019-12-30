@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
       {
         'DeviceName' => "/dev/sda1",
         'VirtualName' => "volume1",
-        'Ebs.VolumeSize' => 100,
+        'Ebs.VolumeSize' => settings['Ebs_VolumeSize'],
         'Ebs.DeleteOnTermination' => true,
         'Ebs.VolumeType' => 'standard',
         #'Ebs.VolumeType' => 'io1',

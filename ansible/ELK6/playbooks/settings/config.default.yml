@@ -58,3 +58,5 @@ EK_only_memory: 4096
 
 #aws instance_type
 aws_instance_type: t2.medium
+#Ebs.VolumeSize (GB)
+Ebs_VolumeSize: 100
