@@ -53,3 +53,6 @@ ELK_memory_docker_3nodes: 12288
 ELK_memory: 6144
 
 EK_only_memory: 4096
+
+#aws instance_type
+aws_instance_type: t2.medium

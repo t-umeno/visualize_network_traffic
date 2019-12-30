@@ -72,8 +72,7 @@ Vagrant.configure("2") do |config|
     aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
     aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
     aws.keypair_name = ENV['AWS_KEYPAIR_NAME']
-    #aws.instance_type = "t2.large"
-    aws.instance_type = "t2.medium"
+    aws.instance_type = settings['aws_instance_type']
     aws.region = "us-west-2"
 
     aws.ami = "ami-06d51e91cea0dac8d"
