@@ -26,7 +26,9 @@ snort_systemd: false
 #ntp_server: "local ntp server"
 #ntp_server: 192.168.1.1
 
-#capture_interface: enp0s8 (plathome: virtualbox), eth0 (plathome: aws_ec2)
+#capture_interface: enp0s8 (plathome: virtualbox)
+#capture_interface: eth0 (plathome: aws_ec2, aws_instance_type: t2.medium)
+#capture_interface: ens5 (plathome: aws_ec2, aws_instance_type: r5.large)
 capture_interface: enp0s8
 snort_home_net: 10.0.0.0/24
 
