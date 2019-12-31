@@ -66,3 +66,5 @@ aws_ami: ami-0a7d051a1c4b54f65
 Ebs_VolumeSize: 100
 #Ebs VolumeType
 Ebs_VolumeType: gp2
+#Ebs Iops
+Ebs_Iops: 1000

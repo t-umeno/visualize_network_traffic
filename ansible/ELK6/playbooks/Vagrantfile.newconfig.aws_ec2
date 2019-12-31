@@ -87,18 +87,28 @@ Vagrant.configure("2") do |config|
     }
     aws.elastic_ip = true
     aws.subnet_id = ENV['AWS_SUBNET_ID']
-    aws.block_device_mapping = [
-      {
-        'DeviceName' => "/dev/sda1",
-        'VirtualName' => "volume1",
-        'Ebs.VolumeSize' => settings['Ebs_VolumeSize'],
-        'Ebs.DeleteOnTermination' => true,
-        'Ebs.VolumeType' => settings['Ebs_VolumeType'],
-        #'Ebs.VolumeType' => 'io1',
-        #'Ebs.Iops' => 1000
-      }
-    ]
-
+    if settings['Ebs_VolumeType'] == "io1"
+      aws.block_device_mapping = [
+        {
+          'DeviceName' => "/dev/sda1",
+          'VirtualName' => "volume1",
+          'Ebs.VolumeSize' => settings['Ebs_VolumeSize'],
+          'Ebs.DeleteOnTermination' => true,
+          'Ebs.VolumeType' => settings['Ebs_VolumeType'],
+          'Ebs.Iops' => settings['Ebs_Iops']
+        }
+      ]
+    else
+      aws.block_device_mapping = [
+        {
+          'DeviceName' => "/dev/sda1",
+          'VirtualName' => "volume1",
+          'Ebs.VolumeSize' => settings['Ebs_VolumeSize'],
+          'Ebs.DeleteOnTermination' => true,
+          'Ebs.VolumeType' => settings['Ebs_VolumeType'],
+        }
+      ]
+    end
     #config.ssh.pty=true
     aws.user_data = "sed -i -e 's/^\\(Defaults.*requiretty\\)/#\\1/' /etc/sudoers"
 
