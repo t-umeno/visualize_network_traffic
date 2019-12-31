@@ -28,7 +28,7 @@ snort_systemd: false
 
 #capture_interface: enp0s8 (plathome: virtualbox)
 #capture_interface: eth0 (plathome: aws_ec2, aws_instance_type: t2.medium)
-#capture_interface: ens5 (plathome: aws_ec2, aws_instance_type: r5.large)
+#capture_interface: ens5 (plathome: aws_ec2, aws_instance_type: r5.large, t3a.medium)
 capture_interface: enp0s8
 snort_home_net: 10.0.0.0/24
 
@@ -57,7 +57,7 @@ ELK_memory: 6144
 EK_only_memory: 4096
 
 #aws instance_type
-aws_instance_type: t2.medium
+aws_instance_type: t3a.medium
 #aws region
 aws_region: us-west-2
 #aws ami
