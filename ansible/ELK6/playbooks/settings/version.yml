@@ -3,8 +3,8 @@ docker_compose_version: 1.25.4
 elasticsearch_oss_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
-      {%- elif elasticstack_system == 'opendistro_docker' -%} 7.3.2
-      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.3.2
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 7.4.2
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 7.4.2
       {%- else -%} dummy
       {%- endif -%}
 elasticstack_version: >-
@@ -18,8 +18,8 @@ fixbuf_version: 2.4.0
 opendistro_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
-      {%- elif elasticstack_system == 'opendistro_docker' -%} 1.3.0
-      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.3.0-1
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 1.4.0
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.4.0-1
       {%- else -%} dummy
       {%- endif -%}
 openjdk_version: >-
