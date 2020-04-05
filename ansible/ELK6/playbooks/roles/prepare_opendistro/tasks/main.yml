@@ -4,5 +4,12 @@
 - name: create 
   copy: src=files/opendistroforelasticsearch.list dest=/etc/apt/sources.list.d/opendistroforelasticsearch.list
   become: yes
-
-
+- name: install unzip
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+  vars:
+    packages:
+    - unzip
+  become: yes
+  when: elasticstack_system == 'opendistro_apt'
