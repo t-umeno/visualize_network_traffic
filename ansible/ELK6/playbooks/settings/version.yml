@@ -18,8 +18,8 @@ fixbuf_version: 2.4.0
 opendistro_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
-      {%- elif elasticstack_system == 'opendistro_docker' -%} 1.6.0
-      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.6.0-1
+      {%- elif elasticstack_system == 'opendistro_docker' -%} 1.7.0
+      {%- elif elasticstack_system == 'opendistro_apt' -%} 1.7.0-1
       {%- else -%} dummy
       {%- endif -%}
 openjdk_version: >-
