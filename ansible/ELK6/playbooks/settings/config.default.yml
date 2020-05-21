@@ -14,6 +14,7 @@ kibana_elasticsearch_requestTimeout: 300000
 elasticsearch_thread_pool_search_queue_size: 100000
 elasticsearch_total_heap_space: -Xms2g
 elasticsearch_maximum_heap_space: -Xmx2g
+systemd_elasticsearch_TimeoutStartSec: 900
 
 #elasticstack_system: 6.x, 7.x, opendistro_docker, opendistro_apt
 elasticstack_system: 6.x
