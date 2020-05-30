@@ -2,15 +2,15 @@ client:
   hosts:
     - localhost
   port: 9200
-  {% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
+{% if elasticstack_system == 'opendistro_docker' or elasticstack_system == 'opendistro_apt' %}
   use_ssl: True
   ssl_no_validate: True
   http_auth: admin:admin
-  {% else %}
+{% else %}
   use_ssl: False
   ssl_no_validate: False
   http_auth:
-  {% endif %}
+{% endif %}
   url_prefix:
   certificate:
   client_cert:
