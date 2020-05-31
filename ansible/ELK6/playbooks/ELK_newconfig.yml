@@ -68,7 +68,7 @@
     - name: copy curator filebeat file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
-        - delete_indices_filebeat.yml
+        - delete_indices_filebeat_creationdate.yml
       when:
         - filebeat_systemd == true
     - name: install curator cron yaf job
@@ -78,7 +78,7 @@
       when:
         - snort_systemd == true
     - name: install curator cron filebeat job
-      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
+      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat_creationdate.yml"
       when:
         - filebeat_systemd == true
     - name: capture interface up
@@ -187,7 +187,7 @@
     - name: copy curator filebeat file
       copy: src=files/{{ item }} dest=~/.curator/{{ item }}
       with_items:
-        - delete_indices_filebeat.yml
+        - delete_indices_filebeat_creationdate.yml
       when:
         - filebeat_systemd == true
     - name: install curator cron yaf job
@@ -197,7 +197,7 @@
       when:
         - snort_systemd == true
     - name: install curator cron filebeat job
-      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
+      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat_creationdate.yml"
       when:
         - filebeat_systemd == true
   roles:
