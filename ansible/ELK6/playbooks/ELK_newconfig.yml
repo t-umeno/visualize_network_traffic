@@ -78,7 +78,7 @@
       when:
         - snort_systemd == true
     - name: install curator cron filebeat job
-      cron: name="curator snort" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
+      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
       when:
         - filebeat_systemd == true
     - name: capture interface up
@@ -197,7 +197,7 @@
       when:
         - snort_systemd == true
     - name: install curator cron filebeat job
-      cron: name="curator snort" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
+      cron: name="curator filebeat" minute="4" hour="5" user={{ ansible_env.USER }} job="curator ~/.curator/delete_indices_filebeat.yml"
       when:
         - filebeat_systemd == true
   roles:
