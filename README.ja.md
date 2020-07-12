@@ -108,8 +108,8 @@ VMで使用するディスクサイズを指定します。(デフォルト 100G
 6.x, 7.x, opendistro_docker, opendistro_apt のいずれかを指定できます。
   - 6.x: 最新のElasticStack 6.x (デフォルト)
   - 7.x: 最新のElasticStack 7.x
-  - opendistro_docker: Docker 版の opendistro for Elasticsearch 1.8.0
-  - opendistro_apt: apt 版の opendistro for Elasticsearch 1.8.0
+  - opendistro_docker: Docker 版の opendistro for Elasticsearch 1.9.0
+  - opendistro_apt: apt 版の opendistro for Elasticsearch 1.9.0
 
 例:
 
