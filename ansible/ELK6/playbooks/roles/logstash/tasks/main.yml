@@ -21,6 +21,6 @@
   become: yes
   when: snort_systemd == true
 - name: copy logstash config file
-  template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf
+  template: src=templates/logstash_ipfix.conf.j2 dest=/etc/logstash/conf.d/logstash_ipfix.conf mode=0644
   become: yes
   notify: restart logstash
