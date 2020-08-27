@@ -1,5 +1,5 @@
 - name: copy systemd startup script of manual-iface
-  template: src=templates/manual-iface.service.j2 dest=/lib/systemd/system/manual-iface.service
+  template: src=templates/manual-iface.service.j2 dest=/lib/systemd/system/manual-iface.service mode=0644
   become: yes
   notify: restart manual-iface
   when:
