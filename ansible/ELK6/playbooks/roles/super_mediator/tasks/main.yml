@@ -19,7 +19,7 @@
   cron: name="delete json file" minute="1" hour="5" job="find /home/vagrant/yaf/json -mtime +29 -exec rm -f {} \;"
   become: yes
 - name: copy systemd startup script
-  copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service
+  copy: src=files/super_mediator.service dest=/lib/systemd/system/super_mediator.service mode=0644
   become: yes
   notify: restart super_mediator
   when: super_mediator_systemd == true
