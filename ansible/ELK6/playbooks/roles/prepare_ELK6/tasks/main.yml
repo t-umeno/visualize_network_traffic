@@ -2,6 +2,6 @@
   script: scripts/add_GPG-KEY-elasticsearch.sh
   become: yes
 - name: create elastic.list
-  template: src=templates/elastic.list.j2 dest=/etc/apt/sources.list.d/elastic-{{ elasticstack_version }}.list
+  template: src=templates/elastic.list.j2 dest=/etc/apt/sources.list.d/elastic-{{ elasticstack_version }}.list mode=0644
   become: yes
 
