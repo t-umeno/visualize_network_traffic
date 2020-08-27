@@ -32,7 +32,7 @@
     - ansible_distribution == "Ubuntu"
     - ansible_distribution_major_version == "16"
 - name: copy systemd startup script of yaf ndpi
-  template: src=templates/yaf_ndpi.service.j2 dest=/lib/systemd/system/yaf.service
+  template: src=templates/yaf_ndpi.service.j2 dest=/lib/systemd/system/yaf.service mode=0644
   become: yes
   notify: restart yaf
   when:
