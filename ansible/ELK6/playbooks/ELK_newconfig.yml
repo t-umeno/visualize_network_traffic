@@ -54,9 +54,9 @@
         - ansible_distribution == "Ubuntu"
         - ansible_distribution_major_version == "18"
     - name: copy curator.yml
-      template: src=templates/curator.yml.j2 dest=~/.curator/curator.yml
+      template: src=templates/curator.yml.j2 dest=~/.curator/curator.yml mode=0644
     - name: copy curator yaf file
-      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }} mode=0644
       with_items:
         - delete_indices_yaf.yml
     - name: copy curator snort file
@@ -173,9 +173,9 @@
         - ~/bin
         - ~/.curator
     - name: copy curator.yml
-      template: src=templates/curator.yml.j2 dest=~/.curator/curator.yml
+      template: src=templates/curator.yml.j2 dest=~/.curator/curator.yml mode=0644
     - name: copy curator yaf file
-      copy: src=files/{{ item }} dest=~/.curator/{{ item }}
+      copy: src=files/{{ item }} dest=~/.curator/{{ item }} mode=0644
       with_items:
         - delete_indices_yaf.yml
     - name: copy curator snort file
