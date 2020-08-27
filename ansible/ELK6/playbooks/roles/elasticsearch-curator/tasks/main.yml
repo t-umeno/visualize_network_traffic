@@ -1,5 +1,5 @@
 - name: create curator.list
-  copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list
+  copy: src=files/curator.list dest=/etc/apt/sources.list.d/curator.list mode=0644
   become: yes
 - name: install elasticsearch-curator
   apt:
