@@ -80,6 +80,12 @@
 - name: install pulledpork
   script: scripts/install_pulledpork.sh
   become: yes
+- name: edit block_list in /etc/snort/pulledpork.conf
+  replace:
+    path: /etc/snort/pulledpork.conf
+    regexp: '^block_list=/usr/local/etc/snort/rules/iplists/default.blocklist$'
+    replace: 'block_list=/etc/snort/rules/iplists/default.blocklist'
+  become: yes
 - name: edit rule_url in /etc/snort/pulledpork.conf
   replace:
     path: /etc/snort/pulledpork.conf
