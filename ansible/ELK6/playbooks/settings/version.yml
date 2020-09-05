@@ -29,7 +29,7 @@ openjdk_version: >-
       {%- elif elasticstack_system == 'opendistro_apt' -%} 11
       {%- else -%} 8
       {%- endif -%}
-snort_version: 2.9.15.1
+snort_version: 2.9.16.1
 super_mediator_version: 1.7.1
 yaf_version: 2.11.0
 
