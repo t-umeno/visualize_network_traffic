@@ -1,5 +1,5 @@
 daq_version: 2.0.7
-docker_compose_version: 1.26.2
+docker_compose_version: 1.27.3
 elasticsearch_oss_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
