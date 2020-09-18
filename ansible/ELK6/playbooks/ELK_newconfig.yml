@@ -13,6 +13,7 @@
     docker_compose_version: "{{ docker_compose_version }}"
     snort_version: "{{ snort_version }}"
     daq_version: "{{ daq_version }}"
+    pulledpork_version: "{{ pulledpork_version }}"
   connection: local
   pre_tasks:
     - set_fact: home_dir="{{ ansible_env.HOME }}"
