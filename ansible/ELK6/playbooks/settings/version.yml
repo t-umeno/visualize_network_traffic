@@ -14,7 +14,7 @@ elasticstack_version: >-
       {%- elif elasticstack_system == 'opendistro_apt' -%} 7.x
       {%- else -%} 6.x
       {%- endif -%}
-fixbuf_version: 2.4.0
+fixbuf_version: 2.4.1
 opendistro_version: >-
       {%- if   elasticstack_system == '6.x' -%} dummy
       {%- elif elasticstack_system == '7.x' -%} dummy
@@ -31,6 +31,6 @@ openjdk_version: >-
       {%- endif -%}
 pulledpork_version: 0.7.4
 snort_version: 2.9.16.1
-super_mediator_version: 1.7.1
-yaf_version: 2.11.2
+super_mediator_version: 1.8.0
+yaf_version: 2.12.1
 
