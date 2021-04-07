@@ -14,6 +14,7 @@ else
   settings = default_settings
 end
 Vagrant.configure("2") do |config|
+  config.vm.boot_timeout = 300
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
